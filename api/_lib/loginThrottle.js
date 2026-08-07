@@ -32,17 +32,24 @@ const MAX_FAILURES_PER_IP = 50;
 export async function assertLoginAllowed({ email, ip }) {
   const identifier = String(email ?? "").trim().toLowerCase();
 
-  const { rows } = await query(
-    `SELECT
-       count(*) FILTER (
-         WHERE identifier = $1 AND created_at > now() - interval '${WINDOW}'
-       )::int AS by_identifier,
-       count(*) FILTER (
-         WHERE request_ip = $2 AND $2 <> '' AND created_at > now() - interval '${WINDOW}'
-       )::int AS by_ip
-     FROM login_attempts`,
-    [identifier, ip || ""]
-  );
+  let rows;
+  try {
+    const result = await query(
+      `SELECT
+         count(*) FILTER (
+           WHERE identifier = $1 AND created_at > now() - interval '${WINDOW}'
+         )::int AS by_identifier,
+         count(*) FILTER (
+           WHERE request_ip = $2 AND $2 <> '' AND created_at > now() - interval '${WINDOW}'
+         )::int AS by_ip
+       FROM login_attempts`,
+      [identifier, ip || ""]
+    );
+    rows = result.rows;
+  } catch {
+    // No DB (demo/Vercel mode) — skip throttle check
+    return;
+  }
 
   const { by_identifier: byIdentifier, by_ip: byIp } = rows[0];
 
@@ -58,14 +65,14 @@ export async function recordLoginFailure({ email, ip, portal }) {
     `INSERT INTO login_attempts (identifier, request_ip, portal)
      VALUES ($1, $2, $3)`,
     [String(email ?? "").trim().toLowerCase(), ip || "", portal]
-  );
+  ).catch(() => {});
 }
 
 /** Signing in successfully returns the address's full budget. */
 export async function clearLoginFailures(email) {
   await query("DELETE FROM login_attempts WHERE identifier = $1", [
     String(email ?? "").trim().toLowerCase(),
-  ]);
+  ]).catch(() => {});
 }
 
 /**
