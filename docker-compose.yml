@@ -1,0 +1,29 @@
+# Local Postgres for development.
+#
+#   docker compose up -d      start it
+#   docker compose down       stop it (data survives)
+#   docker compose down -v    stop it and wipe the data
+#
+# Port 55432 rather than 5432 so this never collides with a Postgres already
+# installed on the host. It matches DATABASE_URL in .env.example.
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: iotify-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust   # local dev only; never for anything reachable
+      POSTGRES_DB: iotify
+    ports:
+      - "55432:5432"
+    volumes:
+      - iotify-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d iotify"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  iotify-pgdata:

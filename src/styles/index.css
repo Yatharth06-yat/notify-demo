@@ -1,0 +1,780 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --color-cyan: #00CFFF;
+  --color-cyan-bright: #7DF9FF;
+  --color-blue: #4F7DFF;
+  --color-bg: #05070B;
+  --cursor-size: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+
+
+/* ── Selection ── */
+::selection {
+  background: rgba(0, 207, 255, 0.3);
+  color: #ffffff;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05070B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00CFFF, #4F7DFF);
+  border-radius: 999px;
+}
+
+
+
+/* ── Glass Components ── */
+@layer components {
+  .glass-panel {
+    @apply bg-white/[0.04] backdrop-blur-2xl border border-white/[0.09];
+  }
+
+  .glass-card {
+    @apply relative backdrop-blur-2xl border rounded-3xl transition-all duration-500;
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(0, 207, 255, 0.35);
+    transform: translateY(-8px);
+    box-shadow: 0 30px 80px -20px rgba(0, 207, 255, 0.2);
+  }
+
+  .glass-card-strong {
+    @apply relative backdrop-blur-2xl border rounded-3xl transition-all duration-500;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card-strong:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(0, 207, 255, 0.3);
+    box-shadow: 0 25px 70px -15px rgba(0, 207, 255, 0.2);
+    transform: translateY(-6px);
+  }
+
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full font-body font-semibold text-sm tracking-wide text-white transition-all duration-300 overflow-hidden;
+    background: linear-gradient(135deg, #00CFFF 0%, #4F7DFF 100%);
+    box-shadow: 0 0 0 1px rgba(0, 207, 255, 0.4) inset, 0 14px 40px -10px rgba(0, 207, 255, 0.6);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 0 1px rgba(125, 249, 255, 0.6) inset, 0 20px 50px -8px rgba(0, 207, 255, 0.8);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, #7DF9FF 0%, #00CFFF 100%);
+  }
+
+  .btn-primary:hover::before {
+    @apply opacity-20;
+  }
+
+  .btn-glass {
+    @apply relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full font-body font-semibold text-sm tracking-wide text-white/90 border border-white/[0.12] backdrop-blur-md transition-all duration-300;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .btn-glass:hover {
+    @apply border-white/25 text-white -translate-y-0.5;
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  .btn-outline-cyan {
+    @apply relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full font-body font-semibold text-sm tracking-wide bg-transparent transition-all duration-300;
+    color: #00CFFF;
+    border: 1px solid rgba(0, 207, 255, 0.4);
+  }
+
+  .btn-outline-cyan:hover {
+    @apply -translate-y-0.5;
+    border-color: #7DF9FF;
+    color: #7DF9FF;
+    box-shadow: 0 0 30px -6px rgba(125, 249, 255, 0.5);
+  }
+
+  .eyebrow-badge {
+    border: 1px solid rgba(0, 207, 255, 0.3);
+    color: #7DF9FF;
+    background: rgba(0, 207, 255, 0.06);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 6px 14px;
+    /* reduced */
+    line-height: 1;
+    border-radius: 9999px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .section-label {
+    @apply font-display text-xs font-semibold tracking-[0.35em] uppercase;
+    color: #00CFFF;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #7DF9FF 0%, #00CFFF 45%, #4F7DFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B35 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glow-line {
+    @apply h-px w-full;
+    background: linear-gradient(90deg, transparent, rgba(0, 207, 255, 0.5), transparent);
+  }
+
+  .circuit-dot {
+    @apply w-1.5 h-1.5 rounded-full;
+    background: rgba(0, 207, 255, 0.6);
+    box-shadow: 0 0 8px rgba(0, 207, 255, 0.8);
+  }
+
+  .tag-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-body font-medium tracking-wide border;
+    background: rgba(0, 207, 255, 0.06);
+    border-color: rgba(0, 207, 255, 0.2);
+    color: #7DF9FF;
+  }
+
+  .number-gradient {
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* ── Gradient Mesh Background ── */
+.gradient-mesh {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gradient-mesh::before {
+  content: '';
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 207, 255, 0.08) 0%, transparent 70%);
+  top: -200px;
+  left: -100px;
+  animation: drift 16s ease-in-out infinite;
+}
+
+.gradient-mesh::after {
+  content: '';
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 125, 255, 0.07) 0%, transparent 70%);
+  bottom: -200px;
+  right: -100px;
+  animation: drift 20s ease-in-out infinite reverse;
+}
+
+/* ── Dot Grid (matches reference image) ── */
+.circuit-bg {
+  background-image: radial-gradient(circle, rgba(0, 207, 255, 0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.3;
+}
+
+/* ── Blueprint pattern (same dot grid, slightly denser) ── */
+.blueprint-bg {
+  background-image: radial-gradient(circle, rgba(0, 207, 255, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ── Animated Gradient Border ── */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0, 207, 255, 0.5), rgba(79, 125, 255, 0.5), rgba(0, 207, 255, 0.1));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ── Spotlight Glow on hover ── */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 207, 255, 0.06), transparent 40%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.spotlight-card:hover::after {
+  opacity: 1;
+}
+
+/* ── Typing cursor ── */
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: #00CFFF;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ── Page transitions ── */
+.page-enter {
+  animation: pageEnter 0.5s ease-out;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Floating animation variants ── */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes drift {
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  33% {
+    transform: translate(20px, -15px) rotate(1deg);
+  }
+
+  66% {
+    transform: translate(-10px, 10px) rotate(-1deg);
+  }
+}
+
+/* ── Marquee ── */
+.marquee-container {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+
+/* ── Glow dot ── */
+.glow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00CFFF;
+  box-shadow: 0 0 10px #00CFFF, 0 0 20px #00CFFF, 0 0 40px rgba(0, 207, 255, 0.5);
+}
+
+/* ── Card shimmer on hover ── */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+
+  100% {
+    transform: translateX(300%) rotate(45deg);
+  }
+}
+
+.shimmer-card:hover::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 30%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transform: translateX(-100%) rotate(45deg);
+  animation: shimmer 0.8s ease-out;
+}
+
+/* ── Line clamp ── */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Scroll snap ── */
+.snap-x-mandatory {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+/* ── Mobile adjustments ── */
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+}
+/* Wrapped in Tailwind's components layer so a utility class always wins:
+   `className="a-field pr-11"` must actually get the right padding. */
+@layer components {
+/* ═══════════════════════════════════════════════════════════════════
+   ADMIN PORTAL
+   ═══════════════════════════════════════════════════════════════════
+   A separate surface from the marketing site, and deliberately so. The
+   public pages are built to impress for ten seconds; the portal is built
+   to be read for an hour. Everything here is quieter, denser and holds
+   still — no card that lifts 8px when the pointer crosses it, no glow
+   on a row someone is trying to read.
+
+   Every value is a token on `.admin-root` so the whole portal can be
+   retuned from this block alone.
+   ══════════════════════════════════════════════════════════════════ */
+.admin-root {
+  --a-bg: #05070B;
+  --a-bg-raised: #080B11;
+
+  /* Three surface steps, and no more — page, panel, and the thing that
+     sits on a panel. Any more and nothing reads as foreground. */
+  --a-surface: rgba(255, 255, 255, 0.022);
+  --a-surface-hover: rgba(255, 255, 255, 0.04);
+  --a-inset: rgba(255, 255, 255, 0.035);
+
+  --a-line: rgba(255, 255, 255, 0.07);
+  --a-line-soft: rgba(255, 255, 255, 0.045);
+
+  --a-text: #EDF2F7;
+  --a-text-2: #93A1B4;
+  --a-text-3: #616E7F;
+
+  --a-accent: #00CFFF;
+  --a-accent-soft: rgba(0, 207, 255, 0.13);
+  --a-accent-line: rgba(0, 207, 255, 0.34);
+
+  --a-radius: 16px;
+  --a-radius-sm: 10px;
+
+  color: var(--a-text);
+}
+
+/* ── Surfaces ─────────────────────────────────────────────────── */
+.a-panel {
+  background: var(--a-surface);
+  border: 1px solid var(--a-line);
+  border-radius: var(--a-radius);
+}
+
+/* Only for panels that are themselves a button or a link. */
+.a-panel-interactive {
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.a-panel-interactive:hover {
+  background: var(--a-surface-hover);
+  border-color: var(--a-accent-line);
+}
+
+.a-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--a-line-soft);
+}
+
+/* ── Type ─────────────────────────────────────────────────────── */
+.a-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #fff;
+}
+
+.a-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--a-text-3);
+}
+
+.a-muted { color: var(--a-text-2); }
+
+/* Tabular figures: counts in a column should line up digit for digit,
+   otherwise a table of numbers reads as ragged. */
+.a-num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* ── Form controls ────────────────────────────────────────────── */
+.a-field {
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  font-size: 14px;
+  color: var(--a-text);
+  background: var(--a-inset);
+  border: 1px solid var(--a-line);
+  border-radius: var(--a-radius-sm);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.a-field::placeholder { color: var(--a-text-3); }
+
+.a-field:hover:not(:disabled) { border-color: rgba(255, 255, 255, 0.13); }
+
+/* A visible focus ring, not just a tinted border — this portal is worked
+   through with the keyboard and Tab has to be followable. */
+.a-field:focus,
+.a-field:focus-visible {
+  outline: none;
+  border-color: var(--a-accent-line);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 3px var(--a-accent-soft);
+}
+
+.a-field:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.a-field option { background: #0A0E14; }
+
+select.a-field {
+  cursor: pointer;
+  appearance: none;
+  padding-right: 2.25rem;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2393A1B4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+}
+
+textarea.a-field {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.6;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.a-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.05rem;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: var(--a-radius-sm);
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease, opacity 0.15s ease;
+}
+
+.a-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--a-accent-soft);
+}
+
+.a-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.a-btn-primary {
+  color: #04202A;
+  background: var(--a-accent);
+  border-color: var(--a-accent);
+}
+
+.a-btn-primary:hover:not(:disabled) { background: #52E0FF; }
+
+.a-btn-secondary {
+  color: var(--a-text);
+  background: var(--a-inset);
+  border-color: var(--a-line);
+}
+
+.a-btn-secondary:hover:not(:disabled) {
+  background: var(--a-surface-hover);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.a-btn-ghost {
+  color: var(--a-text-2);
+  background: transparent;
+}
+
+.a-btn-ghost:hover:not(:disabled) {
+  color: var(--a-text);
+  background: var(--a-surface-hover);
+}
+
+.a-btn-danger {
+  color: #FF8A8A;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.22);
+}
+
+.a-btn-danger:hover:not(:disabled) { background: rgba(239, 68, 68, 0.18); }
+
+.a-btn-sm { padding: 0.35rem 0.7rem; font-size: 12px; }
+
+/* Square icon-only button, sized to stay a comfortable tap target. */
+.a-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--a-text-2);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.a-icon-btn:hover:not(:disabled) {
+  color: var(--a-text);
+  background: var(--a-surface-hover);
+}
+
+.a-icon-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--a-accent-soft);
+}
+
+.a-icon-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Badges ───────────────────────────────────────────────────── */
+.a-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.55rem;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.45;
+  white-space: nowrap;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.a-badge-neutral { color: #A8B4C4; background: rgba(255,255,255,0.055); border-color: rgba(255,255,255,0.1); }
+.a-badge-success { color: #5FE3A1; background: rgba(34,197,94,0.1);  border-color: rgba(34,197,94,0.22); }
+.a-badge-warning { color: #FFD166; background: rgba(234,179,8,0.1);  border-color: rgba(234,179,8,0.24); }
+.a-badge-danger  { color: #FF8A8A; background: rgba(239,68,68,0.1);  border-color: rgba(239,68,68,0.22); }
+.a-badge-info    { color: #6FE4FF; background: var(--a-accent-soft); border-color: var(--a-accent-line); }
+
+/* ── Tables ───────────────────────────────────────────────────── */
+.a-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13.5px; }
+
+.a-table thead th {
+  padding: 0.7rem 1.25rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--a-text-3);
+  background: rgba(255, 255, 255, 0.012);
+  border-bottom: 1px solid var(--a-line);
+  white-space: nowrap;
+}
+
+.a-table tbody td {
+  padding: 0.8rem 1.25rem;
+  border-bottom: 1px solid var(--a-line-soft);
+  vertical-align: middle;
+}
+
+.a-table tbody tr { transition: background-color 0.12s ease; }
+.a-table tbody tr:hover { background: rgba(255, 255, 255, 0.022); }
+.a-table tbody tr:last-child td { border-bottom: none; }
+
+/* Actions column: keep the controls out of the way until the row is
+   under the pointer, but never hide them from the keyboard. */
+.a-row-actions { opacity: 0.45; transition: opacity 0.15s ease; }
+.a-table tbody tr:hover .a-row-actions,
+.a-row-actions:focus-within { opacity: 1; }
+
+@media (hover: none) {
+  .a-row-actions { opacity: 1; }
+}
+
+/* ── Sidebar navigation ───────────────────────────────────────── */
+.a-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  font-size: 13.5px;
+  font-weight: 500;
+  border-radius: var(--a-radius-sm);
+  color: var(--a-text-2);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.a-nav-item:hover {
+  color: var(--a-text);
+  background: var(--a-surface-hover);
+}
+
+.a-nav-item:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--a-accent-soft);
+}
+
+.a-nav-item[data-active="true"] {
+  color: #fff;
+  background: var(--a-accent-soft);
+}
+
+/* The active rail, rather than a filled pill: it marks position in the
+   list without turning the whole row into a block of colour. */
+.a-nav-item[data-active="true"]::before {
+  content: "";
+  position: absolute;
+  left: -0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 18px;
+  border-radius: 0 3px 3px 0;
+  background: var(--a-accent);
+}
+
+/* ── Loading placeholder ──────────────────────────────────────── */
+.a-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.035) 25%,
+    rgba(255, 255, 255, 0.07) 37%,
+    rgba(255, 255, 255, 0.035) 63%
+  );
+  background-size: 400% 100%;
+  animation: a-shimmer 1.4s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  .a-skeleton { animation: none; }
+}
+
+/* The portal is a working tool — a custom cursor and page-level smooth
+   scrolling belong to the marketing site, not here. */
+.admin-root, .admin-root * { cursor: auto; }
+.admin-root button:not(:disabled),
+.admin-root a,
+.admin-root [role="button"] { cursor: pointer; }
+
+/* The marketing site's cyan gradient scrollbar is a feature there and noise
+   here — inside a data table it reads as a filled progress bar. */
+.admin-root ::-webkit-scrollbar { width: 8px; height: 8px; }
+.admin-root ::-webkit-scrollbar-track { background: transparent; }
+.admin-root ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.13);
+  border-radius: 999px;
+}
+.admin-root ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
+.admin-root { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent; }
+}
+
+@keyframes a-shimmer {
+  from { background-position: 100% 50%; }
+  to { background-position: 0 50%; }
+}
