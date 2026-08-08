@@ -5,11 +5,10 @@ import { Menu, X, ChevronRight, Sparkles } from "lucide-react";
 const NAV_LINKS = [
   { label: "Home", page: "home" },
   { label: "About", page: "about" },
-  { label: "IoT KITS", page: "iotkit" },
+  { label: "IoT Kits", page: "iotkit" },
   { label: "Modules", page: "projects" },
-  { label: "Explore IoT", page: "Iot" },
   { label: "Gallery", page: "gallery" },
-  { label: "Book a Workshop", page: "book" },
+  { label: "Book Workshop", page: "book" },
   { label: "Developer", page: "developer" },
   { label: "Admin Login", page: "admin-login" },
 ];
@@ -35,11 +34,10 @@ export default function Navbar({ currentPage, onNavigate }) {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? "bg-slate-950/85 backdrop-blur-2xl border-b border-cyan-500/20 py-3 shadow-[0_10px_35px_rgba(0,0,0,0.8)]"
           : "bg-transparent py-5"
-      }`}
+        }`}
     >
       {/* Multi-color ambient background glow line / gradient bar */}
       <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-cyan-500 via-indigo-500 to-blue-600 opacity-75" />
@@ -75,11 +73,10 @@ export default function Navbar({ currentPage, onNavigate }) {
               <button
                 key={link.label}
                 onClick={() => handleNav(link.page)}
-                className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 overflow-hidden ${
-                  isActive
+                className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 overflow-hidden ${isActive
                     ? "text-cyan-300 font-semibold"
                     : "text-slate-300 hover:text-white"
-                }`}
+                  }`}
               >
                 {isActive && (
                   <>
@@ -164,18 +161,16 @@ export default function Navbar({ currentPage, onNavigate }) {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.04 }}
                   onClick={() => handleNav(link.page)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                    isActive
+                  className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${isActive
                       ? "text-cyan-300 bg-gradient-to-r from-cyan-500/15 via-blue-500/10 to-transparent border-l-4 border-cyan-400 font-semibold shadow-[0_0_20px_rgba(0,207,255,0.2)]"
                       : "text-slate-300 hover:text-white hover:bg-white/[0.04]"
-                  }`}
+                    }`}
                 >
                   <span>{link.label}</span>
                   <ChevronRight
                     size={14}
-                    className={`transition-transform ${
-                      isActive ? "text-cyan-400 translate-x-1" : "opacity-40"
-                    }`}
+                    className={`transition-transform ${isActive ? "text-cyan-400 translate-x-1" : "opacity-40"
+                      }`}
                   />
                 </motion.button>
               );

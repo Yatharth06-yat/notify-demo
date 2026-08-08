@@ -118,7 +118,7 @@ export default function Testimonials() {
           {marqueeReviews.map((rev, idx) => (
             <div
               key={`${rev.name}-${idx}`}
-              className="glass-card spotlight-card group relative w-[320px] sm:w-[420px] p-8 rounded-3xl border border-white/[0.09] bg-white/[0.03] flex-shrink-0 flex flex-col justify-between transition-all duration-500 hover:border-cyan-primary/50 hover:shadow-[0_15px_40px_-10px_rgba(0,207,255,0.2)] hover:-translate-y-1"
+              className="glass-card spotlight-card group relative w-[320px] sm:w-[420px] p-8 rounded-3xl border border-white/[0.09] bg-white/[0.03] flex-shrink-0 flex flex-col justify-between transition-all duration-500 hover:border-cyan-primary/50 hover:shadow-[0_15px_40px_-10px_rgba(0,207,255,0.2)] hover:-translate-y-1 text-justify"
             >
               <div>
                 {/* 5 Stars */}

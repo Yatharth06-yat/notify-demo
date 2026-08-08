@@ -14,20 +14,19 @@ export default function HomePage({ onNavigate }) {
       {/* 1. Hero Section */}
       <Hero onNavigate={onNavigate} />
 
-      {/* 2. About Company */}
-      <CompanyAbout />
+      <HardwareSection onNavigate={onNavigate} />
 
       {/* 3. Interactive Lab Preview */}
-      <LabPreview />
+      
 
       {/* 4. Programs Section */}
       <ProgramsGrid onNavigate={onNavigate} />
 
       {/* 5. Statistics Counters Strip */}
-      <StatsCounter />
+      
 
       {/* 6. Hardware Showcase */}
-      <HardwareSection onNavigate={onNavigate} />
+      <LabPreview />
 
       {/* Tech Partners & Ecosystem Marquee */}
       {/* 7. CSR Partners */}
@@ -35,7 +34,7 @@ export default function HomePage({ onNavigate }) {
 
       {/* 8. Testimonials Auto-Playing Carousel */}
       <Testimonials />
-
+      <StatsCounter />
       {/* 10. Call to Action */}
       <CTASection onNavigate={onNavigate} />
     </div>

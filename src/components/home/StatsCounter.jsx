@@ -22,11 +22,11 @@ function SingleStatItem({ target, suffix, label, inView, index }) {
       transition={{ duration: 0.6, delay: index * 0.08 }}
       className="flex flex-col items-center text-center p-3 sm:p-4"
     >
-      <div className="font-mono font-extrabold text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-2">
+      <div className="font-sans font-bold text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-2">
         {formattedCount}
         <span className="text-cyan-primary">{suffix}</span>
       </div>
-      <div className="text-xs sm:text-sm text-muted font-body tracking-wide">
+      <div className="text-xs sm:text-sm text-muted font-sans font-medium tracking-wide">
         {label}
       </div>
     </motion.div>

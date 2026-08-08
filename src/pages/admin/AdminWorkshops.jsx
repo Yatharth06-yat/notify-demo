@@ -34,8 +34,9 @@ const EMPTY_FORM = {
   status: "Draft",
 };
 
-const fieldClass = "a-field";
-const labelClass = "a-label";
+const fieldClass =
+  "w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-cyan-primary/50 transition-colors placeholder:text-white/20";
+const labelClass = "text-xs font-medium text-white/70 uppercase tracking-wider font-display";
 
 // Serverless request bodies top out around 4.5 MB, so the upload has to stay
 // under that — the API rejects anything larger anyway.
@@ -394,14 +395,14 @@ export default function AdminWorkshops() {
       {/* Create / Edit modal */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto"
+          className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto mt-24"
           onClick={handleCloseModal}
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-[#0A0E14] border border-white/[0.08] rounded-2xl w-full max-w-2xl shadow-2xl my-8"
+            className="bg-[#0A0E14] border border-white/[0.08] rounded-2xl w-full max-w-2xl shadow-2xl my-8 overflow-hidden"
           >
-            <div className="p-6 border-b border-white/[0.05] flex items-center justify-between sticky top-0 bg-[#0A0E14] rounded-t-2xl z-10">
+            <div className="p-6 border-b border-white/[0.05] flex items-center justify-between sticky top-0 bg-[#0A0E14] z-10">
               <h2 className="font-display font-bold text-xl text-white">
                 {editingWorkshop ? "Edit Workshop" : "Create Workshop"}
               </h2>
@@ -414,13 +415,14 @@ export default function AdminWorkshops() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-5">
+            <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-5 max-h-[80vh] overflow-y-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-2">
                   <label className={labelClass}>Title *</label>
                   <input
                     required
                     maxLength={140}
+                    placeholder="Enter workshop title"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     className={fieldClass}
@@ -429,6 +431,7 @@ export default function AdminWorkshops() {
                 <div className="flex flex-col gap-2">
                   <label className={labelClass}>Category</label>
                   <input
+                    placeholder="e.g. IoT, AI, Robotics"
                     value={formData.category}
                     onChange={(e) =>
                       setFormData({ ...formData, category: e.target.value })
@@ -442,6 +445,7 @@ export default function AdminWorkshops() {
                 <label className={labelClass}>Description</label>
                 <textarea
                   rows="3"
+                  placeholder="Enter workshop description..."
                   value={formData.description}
                   onChange={(e) =>
                     setFormData({ ...formData, description: e.target.value })
@@ -454,6 +458,7 @@ export default function AdminWorkshops() {
                 <div className="flex flex-col gap-2">
                   <label className={labelClass}>Speaker Name</label>
                   <input
+                    placeholder="Speaker full name"
                     value={formData.speaker}
                     onChange={(e) =>
                       setFormData({ ...formData, speaker: e.target.value })
@@ -464,6 +469,7 @@ export default function AdminWorkshops() {
                 <div className="flex flex-col gap-2">
                   <label className={labelClass}>Speaker Designation</label>
                   <input
+                    placeholder="e.g. Senior Researcher"
                     value={formData.designation}
                     onChange={(e) =>
                       setFormData({ ...formData, designation: e.target.value })
@@ -479,7 +485,7 @@ export default function AdminWorkshops() {
                   type="file"
                   accept="image/*"
                   onChange={pickImage(setSpeakerPhotoFile)}
-                  className="text-sm a-muted file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-cyan-primary/10 file:text-cyan-primary hover:file:bg-cyan-primary/20 transition-all"
+                  className="text-sm text-white/60 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-cyan-primary/10 file:text-cyan-primary hover:file:bg-cyan-primary/20 transition-all cursor-pointer bg-white/[0.03] border border-white/[0.08] rounded-xl"
                 />
               </div>
 
@@ -521,6 +527,7 @@ export default function AdminWorkshops() {
                   <label className={labelClass}>Venue *</label>
                   <input
                     required
+                    placeholder="e.g. CIoT Lab, MITS"
                     value={formData.venue}
                     onChange={(e) => setFormData({ ...formData, venue: e.target.value })}
                     className={fieldClass}
@@ -532,6 +539,7 @@ export default function AdminWorkshops() {
                     type="number"
                     min="1"
                     required
+                    placeholder="e.g. 50"
                     value={formData.seats}
                     onChange={(e) => setFormData({ ...formData, seats: e.target.value })}
                     className={fieldClass}
@@ -582,7 +590,7 @@ export default function AdminWorkshops() {
                   type="file"
                   accept="image/*"
                   onChange={pickImage(setBannerFile)}
-                  className="text-sm a-muted file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-cyan-primary/10 file:text-cyan-primary hover:file:bg-cyan-primary/20 transition-all"
+                  className="text-sm text-white/60 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-cyan-primary/10 file:text-cyan-primary hover:file:bg-cyan-primary/20 transition-all cursor-pointer bg-white/[0.03] border border-white/[0.08] rounded-xl"
                 />
               </div>
 

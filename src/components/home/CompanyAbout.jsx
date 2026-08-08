@@ -6,7 +6,7 @@ const logo = "https://res.cloudinary.com/dwumernfk/image/upload/v1785964187/imag
 const tickerItems = [
   "IoRT + AI Systems",
   "AIoT Compatible Kits",
-  "MSCP (MITS Student Connect Program)",
+  "MSCP (MITS school Connect Program)",
   "MITS Gwalior Initiative"
 ];
 

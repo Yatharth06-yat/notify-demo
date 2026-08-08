@@ -407,10 +407,12 @@ body {
     cursor: auto;
   }
 }
+
 /* Wrapped in Tailwind's components layer so a utility class always wins:
    `className="a-field pr-11"` must actually get the right padding. */
 @layer components {
-/* ═══════════════════════════════════════════════════════════════════
+
+  /* ═══════════════════════════════════════════════════════════════════
    ADMIN PORTAL
    ═══════════════════════════════════════════════════════════════════
    A separate surface from the marketing site, and deliberately so. The
@@ -422,359 +424,447 @@ body {
    Every value is a token on `.admin-root` so the whole portal can be
    retuned from this block alone.
    ══════════════════════════════════════════════════════════════════ */
-.admin-root {
-  --a-bg: #05070B;
-  --a-bg-raised: #080B11;
+  .admin-root {
+    --a-bg: #05070B;
+    --a-bg-raised: #080B11;
 
-  /* Three surface steps, and no more — page, panel, and the thing that
+    /* Three surface steps, and no more — page, panel, and the thing that
      sits on a panel. Any more and nothing reads as foreground. */
-  --a-surface: rgba(255, 255, 255, 0.022);
-  --a-surface-hover: rgba(255, 255, 255, 0.04);
-  --a-inset: rgba(255, 255, 255, 0.035);
+    --a-surface: rgba(255, 255, 255, 0.022);
+    --a-surface-hover: rgba(255, 255, 255, 0.04);
+    --a-inset: rgba(255, 255, 255, 0.035);
 
-  --a-line: rgba(255, 255, 255, 0.07);
-  --a-line-soft: rgba(255, 255, 255, 0.045);
+    --a-line: rgba(255, 255, 255, 0.07);
+    --a-line-soft: rgba(255, 255, 255, 0.045);
 
-  --a-text: #EDF2F7;
-  --a-text-2: #93A1B4;
-  --a-text-3: #616E7F;
+    --a-text: #EDF2F7;
+    --a-text-2: #93A1B4;
+    --a-text-3: #616E7F;
 
-  --a-accent: #00CFFF;
-  --a-accent-soft: rgba(0, 207, 255, 0.13);
-  --a-accent-line: rgba(0, 207, 255, 0.34);
+    --a-accent: #00CFFF;
+    --a-accent-soft: rgba(0, 207, 255, 0.13);
+    --a-accent-line: rgba(0, 207, 255, 0.34);
 
-  --a-radius: 16px;
-  --a-radius-sm: 10px;
+    --a-radius: 16px;
+    --a-radius-sm: 10px;
 
-  color: var(--a-text);
-}
+    color: var(--a-text);
+  }
 
-/* ── Surfaces ─────────────────────────────────────────────────── */
-.a-panel {
-  background: var(--a-surface);
-  border: 1px solid var(--a-line);
-  border-radius: var(--a-radius);
-}
+  /* ── Surfaces ─────────────────────────────────────────────────── */
+  .a-panel {
+    background: var(--a-surface);
+    border: 1px solid var(--a-line);
+    border-radius: var(--a-radius);
+  }
 
-/* Only for panels that are themselves a button or a link. */
-.a-panel-interactive {
-  transition: background-color 0.15s ease, border-color 0.15s ease;
-}
+  /* Only for panels that are themselves a button or a link. */
+  .a-panel-interactive {
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
 
-.a-panel-interactive:hover {
-  background: var(--a-surface-hover);
-  border-color: var(--a-accent-line);
-}
+  .a-panel-interactive:hover {
+    background: var(--a-surface-hover);
+    border-color: var(--a-accent-line);
+  }
 
-.a-panel-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--a-line-soft);
-}
+  .a-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--a-line-soft);
+  }
 
-/* ── Type ─────────────────────────────────────────────────────── */
-.a-title {
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  color: #fff;
-}
+  /* ── Type ─────────────────────────────────────────────────────── */
+  .a-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: #fff;
+  }
 
-.a-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--a-text-3);
-}
+  .a-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--a-text-3);
+  }
 
-.a-muted { color: var(--a-text-2); }
+  .a-muted {
+    color: var(--a-text-2);
+  }
 
-/* Tabular figures: counts in a column should line up digit for digit,
+  /* Tabular figures: counts in a column should line up digit for digit,
    otherwise a table of numbers reads as ragged. */
-.a-num {
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.01em;
-}
+  .a-num {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
 
-/* ── Form controls ────────────────────────────────────────────── */
-.a-field {
-  width: 100%;
-  padding: 0.6rem 0.85rem;
-  font-size: 14px;
-  color: var(--a-text);
-  background: var(--a-inset);
-  border: 1px solid var(--a-line);
-  border-radius: var(--a-radius-sm);
-  transition: border-color 0.15s ease, background-color 0.15s ease;
-}
+  /* ── Form controls ────────────────────────────────────────────── */
+  .a-field {
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    font-size: 14px;
+    color: var(--a-text);
+    background: var(--a-inset);
+    border: 1px solid var(--a-line);
+    border-radius: var(--a-radius-sm);
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
 
-.a-field::placeholder { color: var(--a-text-3); }
+  .a-field::placeholder {
+    color: var(--a-text-3);
+  }
 
-.a-field:hover:not(:disabled) { border-color: rgba(255, 255, 255, 0.13); }
+  .a-field:hover:not(:disabled) {
+    border-color: rgba(255, 255, 255, 0.13);
+  }
 
-/* A visible focus ring, not just a tinted border — this portal is worked
+  /* A visible focus ring, not just a tinted border — this portal is worked
    through with the keyboard and Tab has to be followable. */
-.a-field:focus,
-.a-field:focus-visible {
-  outline: none;
-  border-color: var(--a-accent-line);
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 0 3px var(--a-accent-soft);
-}
+  .a-field:focus,
+  .a-field:focus-visible {
+    outline: none;
+    border-color: var(--a-accent-line);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 0 3px var(--a-accent-soft);
+  }
 
-.a-field:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+  .a-field:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 
-.a-field option { background: #0A0E14; }
+  .a-field option {
+    background: #0A0E14;
+  }
 
-select.a-field {
-  cursor: pointer;
-  appearance: none;
-  padding-right: 2.25rem;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2393A1B4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.7rem center;
-}
+  select.a-field {
+    cursor: pointer;
+    appearance: none;
+    padding-right: 2.25rem;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2393A1B4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+  }
 
-textarea.a-field {
-  resize: vertical;
-  min-height: 90px;
-  line-height: 1.6;
-}
+  textarea.a-field {
+    resize: vertical;
+    min-height: 90px;
+    line-height: 1.6;
+  }
 
-/* ── Buttons ──────────────────────────────────────────────────── */
-.a-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.55rem 1.05rem;
-  font-size: 13px;
-  font-weight: 600;
-  white-space: nowrap;
-  border-radius: var(--a-radius-sm);
-  border: 1px solid transparent;
-  transition: background-color 0.15s ease, border-color 0.15s ease,
-    color 0.15s ease, opacity 0.15s ease;
-}
+  /* ── Buttons ──────────────────────────────────────────────────── */
+  .a-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.05rem;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    border-radius: var(--a-radius-sm);
+    border: 1px solid transparent;
+    transition: background-color 0.15s ease, border-color 0.15s ease,
+      color 0.15s ease, opacity 0.15s ease;
+  }
 
-.a-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--a-accent-soft);
-}
+  .a-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--a-accent-soft);
+  }
 
-.a-btn:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
+  .a-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
 
-.a-btn-primary {
-  color: #04202A;
-  background: var(--a-accent);
-  border-color: var(--a-accent);
-}
+  .a-btn-primary {
+    color: #04202A;
+    background: var(--a-accent);
+    border-color: var(--a-accent);
+  }
 
-.a-btn-primary:hover:not(:disabled) { background: #52E0FF; }
+  .a-btn-primary:hover:not(:disabled) {
+    background: #52E0FF;
+  }
 
-.a-btn-secondary {
-  color: var(--a-text);
-  background: var(--a-inset);
-  border-color: var(--a-line);
-}
+  .a-btn-secondary {
+    color: var(--a-text);
+    background: var(--a-inset);
+    border-color: var(--a-line);
+  }
 
-.a-btn-secondary:hover:not(:disabled) {
-  background: var(--a-surface-hover);
-  border-color: rgba(255, 255, 255, 0.16);
-}
+  .a-btn-secondary:hover:not(:disabled) {
+    background: var(--a-surface-hover);
+    border-color: rgba(255, 255, 255, 0.16);
+  }
 
-.a-btn-ghost {
-  color: var(--a-text-2);
-  background: transparent;
-}
+  .a-btn-ghost {
+    color: var(--a-text-2);
+    background: transparent;
+  }
 
-.a-btn-ghost:hover:not(:disabled) {
-  color: var(--a-text);
-  background: var(--a-surface-hover);
-}
+  .a-btn-ghost:hover:not(:disabled) {
+    color: var(--a-text);
+    background: var(--a-surface-hover);
+  }
 
-.a-btn-danger {
-  color: #FF8A8A;
-  background: rgba(239, 68, 68, 0.1);
-  border-color: rgba(239, 68, 68, 0.22);
-}
+  .a-btn-danger {
+    color: #FF8A8A;
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.22);
+  }
 
-.a-btn-danger:hover:not(:disabled) { background: rgba(239, 68, 68, 0.18); }
+  .a-btn-danger:hover:not(:disabled) {
+    background: rgba(239, 68, 68, 0.18);
+  }
 
-.a-btn-sm { padding: 0.35rem 0.7rem; font-size: 12px; }
+  .a-btn-sm {
+    padding: 0.35rem 0.7rem;
+    font-size: 12px;
+  }
 
-/* Square icon-only button, sized to stay a comfortable tap target. */
-.a-icon-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  color: var(--a-text-2);
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
+  /* Square icon-only button, sized to stay a comfortable tap target. */
+  .a-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    color: var(--a-text-2);
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
 
-.a-icon-btn:hover:not(:disabled) {
-  color: var(--a-text);
-  background: var(--a-surface-hover);
-}
+  .a-icon-btn:hover:not(:disabled) {
+    color: var(--a-text);
+    background: var(--a-surface-hover);
+  }
 
-.a-icon-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--a-accent-soft);
-}
+  .a-icon-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--a-accent-soft);
+  }
 
-.a-icon-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .a-icon-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 
-/* ── Badges ───────────────────────────────────────────────────── */
-.a-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.2rem 0.55rem;
-  font-size: 11.5px;
-  font-weight: 600;
-  line-height: 1.45;
-  white-space: nowrap;
-  border-radius: 999px;
-  border: 1px solid transparent;
-}
+  /* ── Badges ───────────────────────────────────────────────────── */
+  .a-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.55rem;
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.45;
+    white-space: nowrap;
+    border-radius: 999px;
+    border: 1px solid transparent;
+  }
 
-.a-badge-neutral { color: #A8B4C4; background: rgba(255,255,255,0.055); border-color: rgba(255,255,255,0.1); }
-.a-badge-success { color: #5FE3A1; background: rgba(34,197,94,0.1);  border-color: rgba(34,197,94,0.22); }
-.a-badge-warning { color: #FFD166; background: rgba(234,179,8,0.1);  border-color: rgba(234,179,8,0.24); }
-.a-badge-danger  { color: #FF8A8A; background: rgba(239,68,68,0.1);  border-color: rgba(239,68,68,0.22); }
-.a-badge-info    { color: #6FE4FF; background: var(--a-accent-soft); border-color: var(--a-accent-line); }
+  .a-badge-neutral {
+    color: #A8B4C4;
+    background: rgba(255, 255, 255, 0.055);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
 
-/* ── Tables ───────────────────────────────────────────────────── */
-.a-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13.5px; }
+  .a-badge-success {
+    color: #5FE3A1;
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.22);
+  }
 
-.a-table thead th {
-  padding: 0.7rem 1.25rem;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--a-text-3);
-  background: rgba(255, 255, 255, 0.012);
-  border-bottom: 1px solid var(--a-line);
-  white-space: nowrap;
-}
+  .a-badge-warning {
+    color: #FFD166;
+    background: rgba(234, 179, 8, 0.1);
+    border-color: rgba(234, 179, 8, 0.24);
+  }
 
-.a-table tbody td {
-  padding: 0.8rem 1.25rem;
-  border-bottom: 1px solid var(--a-line-soft);
-  vertical-align: middle;
-}
+  .a-badge-danger {
+    color: #FF8A8A;
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.22);
+  }
 
-.a-table tbody tr { transition: background-color 0.12s ease; }
-.a-table tbody tr:hover { background: rgba(255, 255, 255, 0.022); }
-.a-table tbody tr:last-child td { border-bottom: none; }
+  .a-badge-info {
+    color: #6FE4FF;
+    background: var(--a-accent-soft);
+    border-color: var(--a-accent-line);
+  }
 
-/* Actions column: keep the controls out of the way until the row is
+  /* ── Tables ───────────────────────────────────────────────────── */
+  .a-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 13.5px;
+  }
+
+  .a-table thead th {
+    padding: 0.7rem 1.25rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--a-text-3);
+    background: rgba(255, 255, 255, 0.012);
+    border-bottom: 1px solid var(--a-line);
+    white-space: nowrap;
+  }
+
+  .a-table tbody td {
+    padding: 0.8rem 1.25rem;
+    border-bottom: 1px solid var(--a-line-soft);
+    vertical-align: middle;
+  }
+
+  .a-table tbody tr {
+    transition: background-color 0.12s ease;
+  }
+
+  .a-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.022);
+  }
+
+  .a-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Actions column: keep the controls out of the way until the row is
    under the pointer, but never hide them from the keyboard. */
-.a-row-actions { opacity: 0.45; transition: opacity 0.15s ease; }
-.a-table tbody tr:hover .a-row-actions,
-.a-row-actions:focus-within { opacity: 1; }
+  .a-row-actions {
+    opacity: 0.45;
+    transition: opacity 0.15s ease;
+  }
 
-@media (hover: none) {
-  .a-row-actions { opacity: 1; }
-}
+  .a-table tbody tr:hover .a-row-actions,
+  .a-row-actions:focus-within {
+    opacity: 1;
+  }
 
-/* ── Sidebar navigation ───────────────────────────────────────── */
-.a-nav-item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.6rem 0.85rem;
-  font-size: 13.5px;
-  font-weight: 500;
-  border-radius: var(--a-radius-sm);
-  color: var(--a-text-2);
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
+  @media (hover: none) {
+    .a-row-actions {
+      opacity: 1;
+    }
+  }
 
-.a-nav-item:hover {
-  color: var(--a-text);
-  background: var(--a-surface-hover);
-}
+  /* ── Sidebar navigation ───────────────────────────────────────── */
+  .a-nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.85rem;
+    font-size: 13.5px;
+    font-weight: 500;
+    border-radius: var(--a-radius-sm);
+    color: var(--a-text-2);
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
 
-.a-nav-item:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--a-accent-soft);
-}
+  .a-nav-item:hover {
+    color: var(--a-text);
+    background: var(--a-surface-hover);
+  }
 
-.a-nav-item[data-active="true"] {
-  color: #fff;
-  background: var(--a-accent-soft);
-}
+  .a-nav-item:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--a-accent-soft);
+  }
 
-/* The active rail, rather than a filled pill: it marks position in the
+  .a-nav-item[data-active="true"] {
+    color: #fff;
+    background: var(--a-accent-soft);
+  }
+
+  /* The active rail, rather than a filled pill: it marks position in the
    list without turning the whole row into a block of colour. */
-.a-nav-item[data-active="true"]::before {
-  content: "";
-  position: absolute;
-  left: -0.85rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 18px;
-  border-radius: 0 3px 3px 0;
-  background: var(--a-accent);
-}
+  .a-nav-item[data-active="true"]::before {
+    content: "";
+    position: absolute;
+    left: -0.85rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 18px;
+    border-radius: 0 3px 3px 0;
+    background: var(--a-accent);
+  }
 
-/* ── Loading placeholder ──────────────────────────────────────── */
-.a-skeleton {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.035) 25%,
-    rgba(255, 255, 255, 0.07) 37%,
-    rgba(255, 255, 255, 0.035) 63%
-  );
-  background-size: 400% 100%;
-  animation: a-shimmer 1.4s ease-in-out infinite;
-  border-radius: 6px;
-}
+  /* ── Loading placeholder ──────────────────────────────────────── */
+  .a-skeleton {
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0.035) 25%,
+        rgba(255, 255, 255, 0.07) 37%,
+        rgba(255, 255, 255, 0.035) 63%);
+    background-size: 400% 100%;
+    animation: a-shimmer 1.4s ease-in-out infinite;
+    border-radius: 6px;
+  }
 
 
 
-@media (prefers-reduced-motion: reduce) {
-  .a-skeleton { animation: none; }
-}
+  @media (prefers-reduced-motion: reduce) {
+    .a-skeleton {
+      animation: none;
+    }
+  }
 
-/* The portal is a working tool — a custom cursor and page-level smooth
+  /* The portal is a working tool — a custom cursor and page-level smooth
    scrolling belong to the marketing site, not here. */
-.admin-root, .admin-root * { cursor: auto; }
-.admin-root button:not(:disabled),
-.admin-root a,
-.admin-root [role="button"] { cursor: pointer; }
+  .admin-root,
+  .admin-root * {
+    cursor: auto;
+  }
 
-/* The marketing site's cyan gradient scrollbar is a feature there and noise
+  .admin-root button:not(:disabled),
+  .admin-root a,
+  .admin-root [role="button"] {
+    cursor: pointer;
+  }
+
+  /* The marketing site's cyan gradient scrollbar is a feature there and noise
    here — inside a data table it reads as a filled progress bar. */
-.admin-root ::-webkit-scrollbar { width: 8px; height: 8px; }
-.admin-root ::-webkit-scrollbar-track { background: transparent; }
-.admin-root ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.13);
-  border-radius: 999px;
-}
-.admin-root ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.22); }
-.admin-root { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent; }
+  .admin-root ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .admin-root ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .admin-root ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.13);
+    border-radius: 999px;
+  }
+
+  .admin-root ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .admin-root {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  }
 }
 
 @keyframes a-shimmer {
-  from { background-position: 100% 50%; }
-  to { background-position: 0 50%; }
+  from {
+    background-position: 100% 50%;
+  }
+
+  to {
+    background-position: 0 50%;
+  }
 }

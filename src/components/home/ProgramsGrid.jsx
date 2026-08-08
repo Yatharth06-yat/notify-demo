@@ -1,49 +1,64 @@
+import React from "react";
 import { motion } from "framer-motion";
 import {
-  BrainCircuit, Wifi, Bot, GraduationCap, BookOpen, Trophy, ArrowUpRight, Cpu, Users, Lightbulb
+  BrainCircuit, Wifi, Bot, GraduationCap, BookOpen, Trophy, ArrowUpRight, Cpu, Users, Lightbulb, Clock, UserCheck, CheckCircle2
 } from "lucide-react";
 
 const PROGRAMS = [
   {
+    module: "M1",
     icon: Wifi,
-    title: "IoT Lab Setup",
-    desc: "Establishing hands-on IoT & sensor learning facilities in schools and colleges using specialized in-house CIoT kits.",
+    title: "School Student Hands-on Workshop",
+    desc: "Introduction to IoT, sensors, Arduino/ESP32, demonstrations and mini-projects.",
+    participants: "Students of Classes VI–XII",
+    duration: "One day (6 Hrs)",
+    deliverables: "Hands-on exposure and participation certificate",
   },
   {
-    icon: BrainCircuit,
-    title: "AI & Robotics Workshops",
-    desc: "Interactive training sessions on edge AI models, computer vision, and ROS2 autonomous mobile robotics.",
-  },
-  {
+    module: "M2",
     icon: Cpu,
-    title: "Embedded Systems Training",
-    desc: "Microcontroller firmware programming, RTOS, sensor telemetry, and hardware circuit debugging.",
+    title: "Short-Term IoT Training Programme",
+    desc: "IoT, electronics, sensors, programming, dashboards and project development.",
+    participants: "School students",
+    duration: "2–5 days",
+    deliverables: "Training certificate and mini-project",
   },
   {
+    module: "M3",
+    icon: Bot,
+    title: "Summer/Winter Technology Camp",
+    desc: "IoT, AI, Robotics, Embedded Systems and innovation projects.",
+    participants: "School students",
+    duration: "5–10 days",
+    deliverables: "Project demonstration and completion certificate",
+  },
+  {
+    module: "M4",
     icon: GraduationCap,
-    title: "Teacher Training (ToT)",
-    desc: "Capacity-building Train-the-Teacher workshops empowering school educators to lead STEM clubs.",
+    title: "Train-the-Teacher (ToT) Programme",
+    desc: "Teacher capacity building, practical activities and project development.",
+    participants: "Science, Math, Computer Science, STEM & Innovation teachers",
+    duration: "2–5 days",
+    deliverables: "Teacher certificate, training resources and mentoring",
   },
   {
-    icon: Lightbulb,
-    title: "In-House IoT Learning Kits",
-    desc: "Custom hardware kits developed by CIoT MITS for experiential, project-based STEM education.",
-  },
-  {
+    module: "M5",
     icon: Users,
-    title: "STEM & Innovation Clubs",
-    desc: "Supporting the establishment of school technology clubs and continuous innovation facilities.",
+    title: "School IoT/STEM Innovation Club Support",
+    desc: "Club establishment, activity planning and technical mentoring.",
+    participants: "Participating schools",
+    duration: "Annual / Continuous",
+    deliverables: "Functional school innovation club and student projects",
   },
   {
-    icon: Trophy,
-    title: "Student Project Mentoring",
-    desc: "Guiding technology-based solutions to real-life problems, tech camps, and innovation challenges.",
-  },
-  {
-    icon: BookOpen,
-    title: "Internship & Research Support",
-    desc: "Providing undergraduate & school student research mentorship under CIoT at MITS Gwalior.",
-  },
+    module: "M6",
+    icon: Lightbulb,
+    title: "School Project Mentoring Programme",
+    desc: "Problem identification, design thinking, prototype development and mentoring.",
+    participants: "School students and teachers",
+    duration: "Need-based",
+    deliverables: "Working prototype and project presentation",
+  }
 ];
 
 export default function ProgramsGrid({ onNavigate }) {
@@ -73,11 +88,11 @@ export default function ProgramsGrid({ onNavigate }) {
             PROGRAMS & INITIATIVES
           </span>
           <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-white mb-6">
-            Educational outreach for{" "}
+            Educational outreach modules for{" "}
             <span className="text-cyan-primary font-extrabold">schools & colleges.</span>
           </h2>
           <p className="text-muted text-base sm:text-lg leading-relaxed">
-            Exploration tracks, capacity building, and project mentoring designed by the Centre for Internet of Things (CIoT), MITS Gwalior.
+            Comprehensive training models, capacity building, and project mentoring designed by the Centre for Internet of Things (CIoT), MITS Gwalior.
           </p>
         </motion.div>
 
@@ -90,13 +105,13 @@ export default function ProgramsGrid({ onNavigate }) {
             hidden: {},
             show: { transition: { staggerChildren: 0.08 } },
           }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {PROGRAMS.map((prog) => {
             const Icon = prog.icon;
             return (
               <motion.div
-                key={prog.title}
+                key={prog.module}
                 variants={{
                   hidden: { opacity: 0, y: 30 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
@@ -105,10 +120,13 @@ export default function ProgramsGrid({ onNavigate }) {
                 className="glass-card spotlight-card shimmer-card group p-6 rounded-3xl border border-white/[0.09] bg-white/[0.03] cursor-pointer relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-cyan-primary/50 hover:shadow-[0_15px_40px_-10px_rgba(0,207,255,0.25)] flex flex-col justify-between"
               >
                 <div>
-                  {/* Icon Box */}
-                  <div className="mb-5 inline-flex">
+                  {/* Top Bar: Icon & Module Badge */}
+                  <div className="flex items-center justify-between mb-5">
                     <span className="flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-primary/15 to-cyan-primary/10 border border-cyan-primary/20 text-cyan-primary transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(0,207,255,0.4)]">
                       <Icon size={22} strokeWidth={1.8} />
+                    </span>
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-primary/10 text-cyan-primary border border-cyan-primary/30">
+                      {prog.module}
                     </span>
                   </div>
 
@@ -117,10 +135,27 @@ export default function ProgramsGrid({ onNavigate }) {
                     {prog.title}
                   </h3>
 
-                  {/* Description */}
-                  <p className="text-muted text-xs sm:text-sm leading-relaxed font-body">
+                  {/* Major Activities Description */}
+                  <p className="text-muted text-xs sm:text-sm leading-relaxed font-body mb-5">
+                    <strong className="text-white/90 font-semibold">Activities: </strong>
                     {prog.desc}
                   </p>
+
+                  {/* Metadata Specs with Clean Body Font */}
+                  <div className="space-y-2.5 pt-4 border-t border-white/[0.06] text-xs font-body text-white/80">
+                    <div className="flex items-start gap-2.5">
+                      <UserCheck size={14} className="text-cyan-primary shrink-0 mt-0.5" />
+                      <span><strong className="text-white font-semibold">Target:</strong> {prog.participants}</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Clock size={14} className="text-cyan-primary shrink-0" />
+                      <span><strong className="text-white font-semibold">Duration:</strong> {prog.duration}</span>
+                    </div>
+                    <div className="flex items-start gap-2.5">
+                      <CheckCircle2 size={14} className="text-cyan-primary shrink-0 mt-0.5" />
+                      <span><strong className="text-white font-semibold">Deliverables:</strong> {prog.deliverables}</span>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Arrow Link */}

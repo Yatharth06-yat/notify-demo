@@ -48,7 +48,7 @@ export default function DeveloperPage() {
     {
       name: "Dr. Dhananjay Bisen",
       title: "Assistant Professor",
-      img: "https://res.cloudinary.com/dwumernfk/image/upload/v1786084949/bc2b0ae0-187a-4e8c-96be-44130ca0c5bd.png",
+      img: "https://res.cloudinary.com/dwumernfk/image/upload/v1786205891/d932cab9-5fbe-4907-99b4-42819cef8880.png",
     },
   ];
 

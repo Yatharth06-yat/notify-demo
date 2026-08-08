@@ -90,7 +90,7 @@ export default function Hero({ onNavigate }) {
           {/* Heading */}
           <motion.h1
             variants={stagger.item}
-            className="font-display font-extrabold text-4xl sm:text-5xl lg:text-[3.6rem] xl:text-[4rem] leading-[1.06] tracking-tight text-white mb-4"
+            className="font-display font-extrabold text-3xl sm:text-4xl lg:text-[2.8rem] xl:text-[3.2rem] leading-[1.06] tracking-tight text-white mb-4"
           >
             <br className="hidden lg:block" />
             Future of{" "}
@@ -100,9 +100,10 @@ export default function Hero({ onNavigate }) {
           {/* Subhead */}
           <motion.p
             variants={stagger.item}
-            className="text-muted text-base sm:text-lg leading-relaxed max-w-[520px] mb-10"
+            className="text-muted text-sm sm:text-base leading-relaxed max-w-[520px] mb-10 text-justify"
           >
-            IoTify Lab is an Innovation, Outreach and Hands-on Technology Learning Initiative of MITS–Deemed to be University, Gwalior Powered by the Centre for Internet of Things (CIoT). Home to the <strong className="text-[#00bfff] font-semibold">MSCP (MITS school Connect Program)</strong>.
+            IoTify Lab is an Innovation, Outreach, and Hands-on Technology Learning Initiative of MITS–Deemed to be University, Gwalior, powered by the Centre for Internet of Things (CIoT). Through{" "}
+            <span className="text-cyan-primary font-semibold">MSCP - MITS school Connect Program</span>, the initiative aims to connect school students with emerging technologies through experiential learning, practical exposure, innovation, and hands-on IoT activities, providing students with opportunities to learn, explore, and apply technology through real-world experiences.
           </motion.p>
 
           {/* CTA buttons */}
@@ -130,7 +131,7 @@ export default function Hero({ onNavigate }) {
               onClick={() => onNavigate("about")}
               className="btn-outline-cyan text-sm"
             >
-              About the Lab
+              About IoTify Lab
             </motion.button>
           </motion.div>
         </motion.div>

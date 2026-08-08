@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
@@ -32,9 +33,16 @@ const PRODUCTS = [
   },
 ];
 
+const TICKER_ITEMS = [
+  "IoRT + AI Systems",
+  "AIoT Compatible Kits",
+  "MSCP (MITS Student Connect Program)",
+  "MITS Gwalior Initiative",
+];
+
 export default function HardwareSection({ onNavigate }) {
   return (
-    <section className="relative px-6 py-20 lg:py-28 bg-black text-white overflow-hidden">
+    <section className="relative px-6 pt-20 lg:pt-28 bg-black text-white overflow-hidden">
       {/* Background Grid */}
       <div className="absolute inset-0 circuit-bg opacity-30 pointer-events-none" />
 
@@ -44,7 +52,7 @@ export default function HardwareSection({ onNavigate }) {
         className="pointer-events-none absolute -bottom-32 -right-32 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(0,207,255,0.12)_0%,_rgba(0,207,255,0.05)_50%,_transparent_70%)] blur-[140px]"
       />
 
-      <div className="mx-auto max-w-7xl relative z-10">
+      <div className="mx-auto max-w-7xl relative z-10 mb-20">
         
         {/* Header with Top-Right Button */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -137,6 +145,28 @@ export default function HardwareSection({ onNavigate }) {
             </motion.div>
           ))}
         </motion.div>
+      </div>
+
+      {/* Scrolling Marquee Ticker at the Bottom */}
+      <div className="relative w-full overflow-hidden border-t border-b border-cyan-primary/20 bg-black/60 py-4 backdrop-blur-md">
+        <style>{`
+          @keyframes hardwareTicker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .hardware-ticker-track {
+            animation: hardwareTicker 28s linear infinite;
+            will-change: transform;
+          }
+        `}</style>
+        <div className="flex w-max hardware-ticker-track whitespace-nowrap items-center text-xs sm:text-sm font-mono text-cyan-primary/90">
+          {[...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => (
+            <div key={idx} className="flex items-center mx-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-primary mr-3 shadow-[0_0_8px_#00CFFF]" />
+              <span className="tracking-widest uppercase font-semibold text-white/90">{item}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
