@@ -25,8 +25,27 @@ export default function LabPreview() {
       />
 
       <div className="mx-auto max-w-7xl relative z-10">
+
+        {/* TOP SECTION HEADER TAG */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <span className="eyebrow-badge mb-5 text-xs sm:text-sm tracking-[0.25em] font-mono">
+          <span className="glow-dot" />
+              EXPERIENCE THE FUTURE // CIoT MITS LABS
+            </span>
+         
+          <p className="text-sm text-slate-400 font-mono">
+            Bridging theoretical STEM education with physical modular engineering and live telemetry.
+          </p>
+        </motion.div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* LEFT: Text & Pill Badges */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -99,7 +118,7 @@ export default function LabPreview() {
               <div className="absolute inset-0 circuit-bg opacity-20 pointer-events-none" />
 
               <div className="relative z-10 flex flex-col gap-5">
-                
+
                 {/* Top Node Bar with Live Pulse */}
                 <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
                   <div className="flex items-center gap-3">
@@ -124,7 +143,7 @@ export default function LabPreview() {
                   />
                   {/* Subtle dark gradient overlay for contrast */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  
+
                   {/* Floating Caption inside Image */}
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-2 rounded-xl bg-black/60 backdrop-blur-md border border-white/10">
                     <span className="text-xs font-mono text-cyan-300 font-medium">AquaCare: Surface Cleaning Skimmer</span>

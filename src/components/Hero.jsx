@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
 import NeuralNetSVG from "./shared/NeuralNetSVG";
 
 const jetson = "https://res.cloudinary.com/dwumernfk/image/upload/v1785952346/jetson_gwza9h.png";
@@ -79,6 +79,14 @@ export default function Hero({ onNavigate }) {
           animate="show"
           className="flex flex-col items-start"
         >
+          {/* MSCP Highlight Badge */}
+          <motion.div variants={stagger.item} className="mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00bfff]/10 border border-[#00bfff]/30 text-[#00bfff] text-xs font-mono font-bold tracking-wide shadow-[0_0_15px_rgba(0,191,255,0.2)]">
+              <Sparkles size={13} className="animate-pulse" />
+              <span>Featuring MSCP - MITS school Connect Program</span>
+            </div>
+          </motion.div>
+
           {/* Heading */}
           <motion.h1
             variants={stagger.item}
@@ -94,8 +102,7 @@ export default function Hero({ onNavigate }) {
             variants={stagger.item}
             className="text-muted text-base sm:text-lg leading-relaxed max-w-[520px] mb-10"
           >
-            IoTify Lab
-            An Innovation, Outreach and Hands-on Technology Learning Initiative of MITS–Deemed to be University, Gwalior Powered by the Centre for Internet of Things (CIoT)
+            IoTify Lab is an Innovation, Outreach and Hands-on Technology Learning Initiative of MITS–Deemed to be University, Gwalior Powered by the Centre for Internet of Things (CIoT). Home to the <strong className="text-[#00bfff] font-semibold">MSCP (MITS school Connect Program)</strong>.
           </motion.p>
 
           {/* CTA buttons */}
@@ -103,10 +110,10 @@ export default function Hero({ onNavigate }) {
             <motion.button
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => onNavigate("research")}
+              onClick={() => onNavigate("Iot")}
               className="btn-primary text-sm"
             >
-              Explore Research
+              Explore IoT
               <ArrowRight size={15} />
             </motion.button>
             <motion.button
@@ -125,21 +132,6 @@ export default function Hero({ onNavigate }) {
             >
               About the Lab
             </motion.button>
-          </motion.div>
-
-          {/* Stats row */}
-          <motion.div variants={stagger.item} className="flex flex-wrap items-center gap-8">
-            {[
-              { val: "50+", label: "Live Projects" },
-              { val: "120+", label: "Researchers" },
-              { val: "18+", label: "Publications" },
-              { val: "8", label: "Domain Areas" },
-            ].map((s, i) => (
-              <div key={i} className="flex flex-col items-start">
-                <span className="font-mono font-bold text-2xl text-white">{s.val}</span>
-                <span className="text-xs text-muted font-body tracking-wide mt-0.5">{s.label}</span>
-              </div>
-            ))}
           </motion.div>
         </motion.div>
 

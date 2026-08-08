@@ -105,42 +105,94 @@ const CLIENT_SLIDES = [
   },
 ];
 
-const TEAM_MEMBERS = [
-  {
-    name: "Dr. Praveen Bansal",
-    role: "Head of Centre for IoT & Dean",
-    description: "Power Quality, Grid Connected Systems, Multilevel Inverters, IoT",
-    image: "https://res.cloudinary.com/dwumernfk/image/upload/v1785521483/PIC_u3q9ur.png",
-  },
+// --- HIERARCHICAL TEAM DATA ---
+const LEADERSHIP = {
+  name: "Dr. Praveen Bansal",
+  role: "HEAD OF CENTRE FOR IOT & DEAN",
+  image: "https://res.cloudinary.com/dwumernfk/image/upload/v1785521483/PIC_u3q9ur.png",
+};
+
+const FACULTY_COORDINATORS = [
   {
     name: "Dr. Bhavna Rathore",
-    role: "Assistant Professor & coordinator",
-    description: "Impact of renewable energy source integration on power system stability",
+    role: "Faculty Coordinator / Assistant Professor",
     image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786084905/2681f153-4d9d-446e-8f19-9ca53806d352.png",
   },
   {
     name: "Dr. Priyanka Garg",
-    role: "Assistant Professor & coordinator",
-    description: "Metamaterial-based microwave absorbers, antennas, sensors, IoT/Robotics.",
+    role: "Faculty Coordinator / Assistant Professor",
     image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786084923/20fc50ad-939a-4088-a2b5-b84004018612.png",
   },
+];
+
+const FACULTY_MEMBERS = [
   {
     name: "Dr. Dhananjay Bisen",
-    role: "Assistant Professor",
-    description: "Computer Programming, Data Science, Machine Learning, Deep Learning",
+    role: "Faculty Member / Resource Person",
     image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786084949/bc2b0ae0-187a-4e8c-96be-44130ca0c5bd.png",
   },
   {
-    name: "Dr. Saurabh Kumar Rajput",
-    role: "Assistant Professor",
-    description: "Performance and Economic Analysis of Rooftop PV integrated Low Voltage Distribution Power System, Industrial Energy Auditing & Management.",
-    image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786084875/ea970fb9-29af-419c-8c6e-b3ddaac1be79.png",
+    name: "Dr. Namita Arya",
+    role: "Faculty Member / Resource Person",
+    image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786177507/6eb598eb-0a9c-4f37-a522-e29d2bf6803e.png",
   },
   {
-    name: "Dr. Aftab Ahmed Ansari",
-    role: "Assistant Professor",
-    description: "Model Predictive Control, Grid Connected Systems, IoT",
-    image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786084975/41ce9ec7-5084-41f1-8bb7-a6a482b70c0e.png",
+    name: "Dr. Abhishek Sharma",
+    role: "Faculty Member / Resource Person",
+    image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786177524/df816717-ac2c-4e22-9f2f-1c8ee7669622.png",
+  },
+  {
+    name: "Prof. Anuj Lodhi",
+    role: "Faculty Member / Resource Person",
+    image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786177536/d78a7fdb-2ac8-42bb-8e4f-ba261a5ecc51.png",
+  },
+];
+
+const OPERATIONAL_FRAMEWORK = [
+  {
+    stage: 1,
+    activity: "School Expression of Interest/Request",
+    outcome: "School submits EOI/request.",
+  },
+  {
+    stage: 2,
+    activity: "Identification of Training Model and Programme Requirements",
+    outcome: "Training model and requirements are finalized.",
+  },
+  {
+    stage: 3,
+    activity: "Approval of Programme, Schedule and Fee Structure",
+    outcome: "Programme, schedule and fee structure are approved.",
+  },
+  {
+    stage: 4,
+    activity: "Deposit of Approved Programme Fee in the Designated MITS Account, Wherever Applicable",
+    outcome: "Approved fee is deposited through the prescribed MITS mechanism.",
+  },
+  {
+    stage: 5,
+    activity: "Conduct of Training Using In-house IoT Learning and Training Kits Developed by CIoT",
+    outcome: "Training is conducted using CIoT-developed IoT kits.",
+  },
+  {
+    stage: 6,
+    activity: "Hands-on Activities and Project Development",
+    outcome: "Practical activities/ mini-projects are completed.",
+  },
+  {
+    stage: 7,
+    activity: "Assessment, Feedback and Programme Documentation",
+    outcome: "Learning outcomes, feedback and programme records are documented.",
+  },
+  {
+    stage: 8,
+    activity: "Issuance of Certificates through the Approved MITS Mechanism",
+    outcome: "Certificates are issued to eligible participants.",
+  },
+  {
+    stage: 9,
+    activity: "Post-Training Mentoring and School Innovation Support",
+    outcome: "Follow-up mentoring and innovation support are provided.",
   },
 ];
 
@@ -157,7 +209,7 @@ function Carousel({ items }) {
     >
       <style>{`
         @keyframes aboutGalleryMarquee {
-          0%   { transform: translateX(0); }
+          0% { transform: translateX(0); }
           100% { transform: translateX(-33.3333%); }
         }
         .about-gallery-track {
@@ -228,41 +280,43 @@ function Carousel({ items }) {
   );
 }
 
-// --- COMPONENT: TEAM CARD (Full Color Images by Default) ---
-function TeamCard({ name, role, description, image, index = 0 }) {
+// --- COMPONENT: TEAM CARD WITH ANIMATION AND WHITE IMAGE BACKGROUND ---
+function TeamCard({ name, role, image, index = 0, isLeader = false }) {
   return (
     <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 40 },
-        show: {
-          opacity: 1,
-          y: 0,
-          transition: {
-            duration: 0.6,
-            ease: [0.22, 1, 0.36, 1],
-            delay: index * 0.08,
-          },
-        },
+      initial={{ opacity: 0, y: 40, scale: 0.92 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+        delay: index * 0.08,
       }}
-      className="glass-card spotlight-card shimmer-card group p-0 overflow-hidden flex flex-col h-full"
+      whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.3 } }}
+      className={`glass-card spotlight-card shimmer-card group p-0 overflow-hidden flex flex-col h-full ${
+        isLeader ? "border-cyan-primary/50 shadow-glow" : ""
+      }`}
     >
-      <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#07090D] flex items-center justify-center p-3">
-        <img
+      {/* Image Container with White Background */}
+      <div className="relative w-full aspect-[4/3] overflow-hidden bg-white flex items-center justify-center p-4">
+        <motion.img
           src={image}
           alt={name}
-          className="w-full h-full object-contain object-center scale-100 group-hover:scale-105 transition-all duration-700 ease-out"
+          initial={{ scale: 0.95 }}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="w-full h-full object-contain object-center"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/90 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
         <div className="absolute -top-px -right-px w-16 h-16 rounded-tr-3xl bg-gradient-to-bl from-cyan-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
       </div>
 
-      <div className="p-6 sm:p-7 flex flex-col flex-grow relative z-10">
-        <span className="section-label mb-2">{role}</span>
-        <h3 className="font-display font-bold text-xl sm:text-2xl text-white mb-3 group-hover:text-cyan-bright transition-colors duration-300 leading-snug">
+      <div className="p-5 sm:p-6 flex flex-col flex-grow relative z-10 text-center items-center">
+        <h3 className="font-display font-bold text-lg sm:text-xl text-white mb-2 group-hover:text-cyan-bright transition-colors duration-300 leading-snug">
           {name}
         </h3>
-        <p className="text-muted text-sm leading-relaxed font-body">{description}</p>
+        <span className="section-label text-center">{role}</span>
       </div>
     </motion.div>
   );
@@ -283,10 +337,8 @@ function AboutSection() {
           filter: "blur(60px)",
         }}
       />
- 
       <div className="mx-auto max-w-6xl relative z-10 mt-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-14 sm:mb-20">
-          
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -296,10 +348,9 @@ function AboutSection() {
           >
             <span className="eyebrow-badge mb-5 text-xs sm:text-sm tracking-[0.25em]">
               <span className="glow-dot" />
-              ABOUT US
+              About IoTify Lab
             </span>
 
-            <span className="section-label mb-3">About IoTify Lab</span>
 
             <h1 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-[42px] text-white leading-[1.15] tracking-tight mb-7">
               A{" "}
@@ -331,7 +382,6 @@ function AboutSection() {
           >
             <div className="glass-card spotlight-card p-3 rounded-3xl overflow-hidden border-cyan-primary/30 shadow-2xl relative group">
               <div className="absolute inset-0 bg-gradient-to-tr from-cyan-primary/10 via-transparent to-transparent pointer-events-none" />
-              
               <img
                 src={teamGroupImage}
                 alt="CIoT MITS Outreach Initiative"
@@ -466,13 +516,13 @@ function ClientsSection() {
   );
 }
 
-// --- SECTION 3: TEAM SECTION ---
+// --- SECTION 3: TEAM HIERARCHY TREE SECTION WITH ANIMATIONS ---
 function TeamSection() {
   return (
     <section className="relative px-6 pt-6 pb-14 sm:pt-8 sm:pb-20 overflow-hidden">
       <div className="gradient-mesh pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl relative z-10">
+      <div className="mx-auto max-w-6xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -480,36 +530,177 @@ function TeamSection() {
           transition={{ duration: 0.7 }}
           className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="section-label mb-4">— OUR TEAM</span>
+          <span className="section-label mb-4">— OUR TEAM HIERARCHY</span>
           <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-white mb-5">
-            Experts united by{" "}
-            <span className="text-gradient">creativity</span> and a vision for the future.
+             Team <span className="text-gradient"> Behind The Lab</span>
           </h2>
           <p className="text-muted text-base sm:text-lg leading-relaxed">
-            The minds behind Arc Labs — engineers, researchers, and innovators driving the next wave of IoT, AI, and embedded systems education.
+          </p>
+        </motion.div>
+
+        {/* TREE STRUCTURE CONTAINER */}
+        <div className="flex flex-col items-center relative">
+          
+          {/* ROOT: Head & Dean */}
+          <div className="w-full max-w-sm z-10 mb-2">
+            <TeamCard
+              name={LEADERSHIP.name}
+              role={LEADERSHIP.role}
+              image={LEADERSHIP.image}
+              isLeader={true}
+              index={0}
+            />
+          </div>
+
+          {/* Animated Connector Line down */}
+          <motion.div
+            initial={{ scaleY: 0, opacity: 0 }}
+            whileInView={{ scaleY: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-0.5 h-12 bg-gradient-to-b from-cyan-primary to-cyan-primary/40 relative origin-top"
+          >
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-cyan-primary animate-pulse" />
+          </motion.div>
+
+          {/* LEVEL 1: Faculty Coordinators */}
+          <div className="w-full mt-4 mb-2 text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="inline-block mb-6"
+            >
+              <span className="section-label px-4 py-1.5 rounded-full bg-cyan-primary/10 border border-cyan-primary/30 text-cyan-bright shadow-glow">
+                Faculty Coordinator(s)
+              </span>
+            </motion.div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+              {FACULTY_COORDINATORS.map((member, idx) => (
+                <TeamCard
+                  key={member.name}
+                  index={idx + 1}
+                  name={member.name}
+                  role={member.role}
+                  image={member.image}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Animated Connector Line down */}
+          <motion.div
+            initial={{ scaleY: 0, opacity: 0 }}
+            whileInView={{ scaleY: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="w-0.5 h-12 bg-gradient-to-b from-cyan-primary/40 to-cyan-primary/40 my-2 origin-top"
+          />
+
+          {/* LEVEL 2: Faculty Members / Resource Persons */}
+          <div className="w-full mt-4 mb-2 text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="inline-block mb-6"
+            >
+              <span className="section-label px-4 py-1.5 rounded-full bg-cyan-primary/10 border border-cyan-primary/30 text-cyan-bright shadow-glow">
+                Faculty Members / Resource Persons 
+              </span>
+            </motion.div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+              {FACULTY_MEMBERS.map((member, idx) => (
+                <TeamCard
+                  key={member.name}
+                  index={idx + 1}
+                  name={member.name}
+                  role={member.role}
+                  image={member.image}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Animated Connector Line down */}
+          <motion.div
+            initial={{ scaleY: 0, opacity: 0 }}
+            whileInView={{ scaleY: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="w-0.5 h-12 bg-gradient-to-b from-cyan-primary/40 to-cyan-primary/20 my-2 origin-top"
+          />
+
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// --- SECTION 4: OPERATIONAL FRAMEWORK SECTION ---
+function OperationalFrameworkSection() {
+  return (
+    <section className="relative px-6 py-12 sm:py-20 overflow-hidden">
+      <div className="absolute inset-0 circuit-bg opacity-30 pointer-events-none" />
+      <div className="mx-auto max-w-6xl relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7 }}
+          className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12"
+        >
+          <span className="section-label mb-4">— PROCESS & WORKFLOW</span>
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-white mb-5">
+            Proposed <span className="text-gradient">Operational Framework</span>
+          </h2>
+          <p className="text-muted text-base sm:text-lg leading-relaxed">
+            Step-by-step workflow governing school outreach, training execution, and post-training support.
           </p>
         </motion.div>
 
         <motion.div
-          initial="hidden"
-          whileInView="show"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.08 } },
-          }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="glass-card rounded-2xl overflow-hidden border-cyan-primary/20 shadow-2xl"
         >
-          {TEAM_MEMBERS.map((member, idx) => (
-            <TeamCard
-              key={member.name}
-              index={idx}
-              name={member.name}
-              role={member.role}
-              description={member.description}
-              image={member.image}
-            />
-          ))}
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-cyan-primary/20 bg-cyan-primary/10">
+                  <th className="py-4 px-6 font-display font-bold text-cyan-primary text-xs sm:text-sm tracking-wider uppercase w-20 text-center">
+                    Stage
+                  </th>
+                  <th className="py-4 px-6 font-display font-bold text-cyan-primary text-xs sm:text-sm tracking-wider uppercase">
+                    Operational Activity
+                  </th>
+                  <th className="py-4 px-6 font-display font-bold text-cyan-primary text-xs sm:text-sm tracking-wider uppercase">
+                    Major Action / Outcome
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-cyan-primary/10 font-body text-sm sm:text-base">
+                {OPERATIONAL_FRAMEWORK.map((item) => (
+                  <tr key={item.stage} className="hover:bg-cyan-primary/5 transition-colors">
+                    <td className="py-4 px-6 font-mono font-bold text-cyan-bright text-center">
+                      {item.stage}
+                    </td>
+                    <td className="py-4 px-6 text-white font-medium">
+                      {item.activity}
+                    </td>
+                    <td className="py-4 px-6 text-muted">
+                      {item.outcome}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </motion.div>
       </div>
     </section>
@@ -580,6 +771,7 @@ export default function AboutPage() {
       <AboutSection />
       <ClientsSection />
       <TeamSection />
+      <OperationalFrameworkSection />
     </main>
   );
 }

@@ -4,10 +4,12 @@ import { createPortal } from "react-dom";
 // ===== COMPLETE KITS DATA (PRICES REMOVED) =====
 const KITS = [
   {
+    id: "smart-attendance",
+    tier: "BEGINNER",
+    badge: "FOUNDATIONAL",
+    category: "Smart Systems",
     title: "IoT Smart Attendance System using Raspberry Pi 4",
-
     desc: "A Raspberry Pi 4 based IoT Smart Attendance System that enables automated attendance management using RFID authentication, motion detection, environmental sensing, and real-time data processing. The kit demonstrates secure access control, smart attendance logging, and IoT-based monitoring for educational institutions and workplaces.",
-
     tags: [
       "Raspberry Pi 4",
       "Smart Attendance",
@@ -18,36 +20,30 @@ const KITS = [
       "Touchscreen",
       "Embedded Systems"
     ],
-
     thumbnails: [
       "https://res.cloudinary.com/dwumernfk/image/upload/v1786096716/k4-1_oajpqk.png",
       "https://res.cloudinary.com/dwumernfk/image/upload/v1786096717/k4-2_bhqde3.png",
       "https://res.cloudinary.com/dwumernfk/image/upload/v1786096718/k4-3_kqfqiw.png"
     ],
-
     specs: {
       controllers: [
         "Raspberry Pi 4"
       ],
-
       sensors: [
         "RFID Reader (MFRC522)",
         "Ultrasonic Sensor",
         "PIR Motion Sensor",
         "DHT22 Temperature & Humidity Sensor"
       ],
-
       display: [
         "7-inch Touchscreen Display"
       ],
-
       actuators: [
         "Relay Module",
         "Red Status LED",
         "Blue Status LED",
         "Buzzer"
       ],
-
       connectivity: [
         "Wi-Fi",
         "Bluetooth",
@@ -55,7 +51,6 @@ const KITS = [
         "USB"
       ]
     },
-
     included: [
       {
         code: "RP4",
@@ -70,7 +65,6 @@ const KITS = [
         title: "7-inch Touchscreen Display"
       }
     ],
-
     useCases: [
       {
         id: "01",
@@ -84,19 +78,12 @@ const KITS = [
   },
   {
     id: "communication-kit-transmitter",
-
-    tier: "TIER 02",
-
+    tier: "ADVANCED",
     badge: "ADVANCED",
-
     category: "Communication",
-
     badgeColor: "#3b82f6",
-
     title: "IoT Communication Kit – Transmitter",
-
     desc: "A comprehensive wireless communication development kit designed for learning and prototyping IoT communication systems. It integrates multiple RF technologies including LoRa, ZigBee, GSM, GPS, Bluetooth, NRF24L01, and RFID with Arduino UNO and ESP32, enabling students to build long-range, short-range, and internet-connected IoT applications.",
-
     tags: [
       "Arduino UNO",
       "ESP32",
@@ -108,51 +95,32 @@ const KITS = [
       "RFID",
       "NRF24L01"
     ],
-
     thumbnails: [
-
-
-
       "https://res.cloudinary.com/dwumernfk/image/upload/v1785959726/kit3-1_zfdued.png",
-
-
-
       "https://res.cloudinary.com/dwumernfk/image/upload/v1785959728/kit3-2_gak5l5.png",
-
-
-
       "https://res.cloudinary.com/dwumernfk/image/upload/v1785959727/kit3-3_u005qg.png"
-
-
-
     ],
-
     specs: {
-
       controllers: [
         "Arduino UNO",
         "ESP32 Development Board"
       ],
-
       sensors: [
         "DHT22 Temperature & Humidity Sensor",
         "MQ Air Quality Sensor",
         "RFID RC522 Reader",
         "Push Button Interface"
       ],
-
       display: [
         "Status LEDs",
         "On-board Indicator LEDs"
       ],
-
       actuators: [
         "RF-433 Transmitter Module",
         "LoRa SX1278 Module",
         "ZigBee Module",
         "Bluetooth Module"
       ],
-
       connectivity: [
         "GSM Module",
         "GPS Module",
@@ -164,64 +132,54 @@ const KITS = [
         "UART / SPI / I2C",
         "USB"
       ]
-
     },
-
     included: [
-
       {
         code: "HW",
         title: "Communication Trainer Board",
         desc: "Pre-assembled wireless communication development platform."
       },
-
       {
         code: "CD",
         title: "Sample Programs",
         desc: "Example codes for GSM, GPS, LoRa, ZigBee, RFID, Bluetooth, and ESP32."
       },
-
       {
         code: "SP",
         title: "Technical Support",
         desc: "Documentation, tutorials, and technical assistance."
       }
-
     ],
-
     useCases: [
-
       {
         id: "01",
         title: "Wireless Communication Experiments",
         desc: "Learn RF433, LoRa, ZigBee, Bluetooth, and NRF24L01 based communication."
       },
-
       {
         id: "02",
         title: "IoT Network Development",
         desc: "Build long-range and short-range IoT communication systems using multiple wireless protocols."
       },
-
       {
         id: "03",
         title: "GPS & GSM Tracking",
         desc: "Develop vehicle tracking, asset monitoring, and location-based IoT applications."
       },
-
       {
         id: "04",
         title: "Embedded Communication Projects",
         desc: "Prototype smart agriculture, industrial monitoring, and remote sensing applications."
       }
-
     ]
   },
   {
+    id: "wildlife-detection",
+    tier: "AI & VISION",
+    badge: "AI EXPERT",
+    category: "AI & ML",
     title: "IoT Wildlife Animal Detection Kit using Raspberry Pi 5",
-
     desc: "An advanced AI-powered IoT development kit designed for real-time wildlife animal detection and monitoring using Raspberry Pi 5. The kit integrates computer vision, environmental sensors, GPS tracking, and wireless connectivity to identify animals, monitor surroundings, and support forest surveillance, smart conservation, and human-wildlife conflict prevention.",
-
     tags: [
       "Raspberry Pi 5",
       "Computer Vision",
@@ -232,18 +190,15 @@ const KITS = [
       "Forest Monitoring",
       "Animal Recognition"
     ],
-
     thumbnails: [
       "https://res.cloudinary.com/dwumernfk/image/upload/v1786096719/k5-1_cbbbqb.png",
       "https://res.cloudinary.com/dwumernfk/image/upload/v1786096719/k5-2_pf95ud.png",
       "https://res.cloudinary.com/dwumernfk/image/upload/v1786096718/k5-3_vzglzk.png"
     ],
-
     specs: {
       controllers: [
         "Raspberry Pi 5"
       ],
-
       sensors: [
         "Camera Module",
         "Ultrasonic Sensor",
@@ -252,17 +207,14 @@ const KITS = [
         "LDR Light Sensor",
         "GPS Module"
       ],
-
       display: [
         "7-inch Touchscreen Display"
       ],
-
       actuators: [
         "Relay Module",
         "Blue Status LED",
         "Buzzer"
       ],
-
       connectivity: [
         "Wi-Fi",
         "Bluetooth",
@@ -271,7 +223,6 @@ const KITS = [
         "USB"
       ]
     },
-
     included: [
       {
         code: "RP5",
@@ -286,7 +237,6 @@ const KITS = [
         title: "7-inch Touchscreen Display"
       }
     ],
-
     useCases: [
       {
         id: "01",
@@ -300,251 +250,230 @@ const KITS = [
   },
   {
     id: "innovator-kit",
-
-tier: "TIER 03",
-
-badge: "INTERMEDIATE",
-
-category: "Innovation",
-
-badgeColor: "#06b6d4",
-
-isBestSeller: true,
-
-title: "IoT Innovator Kit",
-
-desc: "A comprehensive IoT learning and prototyping kit featuring Raspberry Pi Pico and ESP32 with a wide range of sensors, displays, relays, and communication interfaces. Designed for hands-on embedded systems, IoT application development, and rapid prototyping.",
-
-tags: [
-  "Raspberry Pi Pico",
-  "ESP32",
-  "IoT",
-  "Embedded Systems",
-  "Sensor Interfacing",
-  "Automation"
-],
-
-thumbnails: [
-  "https://res.cloudinary.com/dwumernfk/image/upload/v1786096721/k6-1_j0ub0f.png",
-  "https://res.cloudinary.com/dwumernfk/image/upload/v1786096719/k6-2_atvdpa.png",
-  "https://res.cloudinary.com/dwumernfk/image/upload/v1786096720/k6-3_xzw4e7.png"
-],
-
-specs: {
-
-  controllers: [
-    "Raspberry Pi Pico",
-    "ESP32 Development Board"
-  ],
-
-  sensors: [
-    "HC-SR04 Ultrasonic Sensor",
-    "Flame Sensor",
-    "PIR Motion Sensor",
-    "Soil Moisture Sensor",
-    "Water Level Sensor",
-    "MAX30102 Pulse Oximeter & Heart Rate Sensor",
-    "LDR Light Sensor",
-    "DHT11 Temperature & Humidity Sensor",
-    "Sound Sensor",
-    "MQ-2 Gas Sensor"
-  ],
-
-  display: [
-    "0.96-inch OLED Display",
-    "RGB Status LEDs"
-  ],
-
-  actuators: [
-    "Dual Relay Module",
-    "Active Buzzer"
-  ],
-
-  connectivity: [
-    "USB Programming",
-    "Wi-Fi (ESP32)",
-    "Bluetooth (ESP32)",
-    "GPIO Headers",
-    "I2C",
-    "SPI",
-    "UART",
-    "Breadboard Prototyping Area"
-  ]
-
-},
-
-included: [
-
-  {
-    code: "HW",
-    title: "IoT Innovator Trainer Board",
-    desc: "Integrated Raspberry Pi Pico and ESP32 development platform."
-  },
-
-  {
-    code: "CD",
-    title: "Sample Programs",
-    desc: "Ready-to-use examples for sensors, displays, relays, and IoT applications."
-  },
-
-  {
-    code: "SP",
-    title: "Technical Support",
-    desc: "Documentation, tutorials, and technical assistance."
-  }
-
-],
-
-useCases: [
-
-  {
-    id: "01",
-    title: "Embedded Systems Training",
-    desc: "Learn Raspberry Pi Pico and ESP32 programming with practical hardware experiments."
-  },
-
-  {
-    id: "02",
-    title: "IoT Sensor Integration",
-    desc: "Develop smart monitoring systems using environmental, motion, gas, and water sensors."
-  },
-
-  {
-    id: "03",
-    title: "Automation Projects",
-    desc: "Build relay-controlled automation, alarm systems, and smart control applications."
-  },
-
-  {
-    id: "04",
-    title: "Rapid Prototyping",
-    desc: "Prototype IoT products quickly using the integrated breadboard and onboard peripherals."
-  }
-
-]
+    tier: "INTERMEDIATE",
+    badge: "INTERMEDIATE",
+    category: "Innovation",
+    badgeColor: "#06b6d4",
+    isBestSeller: true,
+    title: "IoT Innovator Kit",
+    desc: "A comprehensive IoT learning and prototyping kit featuring Raspberry Pi Pico and ESP32 with a wide range of sensors, displays, relays, and communication interfaces. Designed for hands-on embedded systems, IoT application development, and rapid prototyping.",
+    tags: [
+      "Raspberry Pi Pico",
+      "ESP32",
+      "IoT",
+      "Embedded Systems",
+      "Sensor Interfacing",
+      "Automation"
+    ],
+    thumbnails: [
+      "https://res.cloudinary.com/dwumernfk/image/upload/v1786096721/k6-1_j0ub0f.png",
+      "https://res.cloudinary.com/dwumernfk/image/upload/v1786096719/k6-2_atvdpa.png",
+      "https://res.cloudinary.com/dwumernfk/image/upload/v1786096720/k6-3_xzw4e7.png"
+    ],
+    specs: {
+      controllers: [
+        "Raspberry Pi Pico",
+        "ESP32 Development Board"
+      ],
+      sensors: [
+        "HC-SR04 Ultrasonic Sensor",
+        "Flame Sensor",
+        "PIR Motion Sensor",
+        "Soil Moisture Sensor",
+        "Water Level Sensor",
+        "MAX30102 Pulse Oximeter & Heart Rate Sensor",
+        "LDR Light Sensor",
+        "DHT11 Temperature & Humidity Sensor",
+        "Sound Sensor",
+        "MQ-2 Gas Sensor"
+      ],
+      display: [
+        "0.96-inch OLED Display",
+        "RGB Status LEDs"
+      ],
+      actuators: [
+        "Dual Relay Module",
+        "Active Buzzer"
+      ],
+      connectivity: [
+        "USB Programming",
+        "Wi-Fi (ESP32)",
+        "Bluetooth (ESP32)",
+        "GPIO Headers",
+        "I2C",
+        "SPI",
+        "UART",
+        "Breadboard Prototyping Area"
+      ]
+    },
+    included: [
+      {
+        code: "HW",
+        title: "IoT Innovator Trainer Board",
+        desc: "Integrated Raspberry Pi Pico and ESP32 development platform."
+      },
+      {
+        code: "CD",
+        title: "Sample Programs",
+        desc: "Ready-to-use examples for sensors, displays, relays, and IoT applications."
+      },
+      {
+        code: "SP",
+        title: "Technical Support",
+        desc: "Documentation, tutorials, and technical assistance."
+      }
+    ],
+    useCases: [
+      {
+        id: "01",
+        title: "Embedded Systems Training",
+        desc: "Learn Raspberry Pi Pico and ESP32 programming with practical hardware experiments."
+      },
+      {
+        id: "02",
+        title: "IoT Sensor Integration",
+        desc: "Develop smart monitoring systems using environmental, motion, gas, and water sensors."
+      },
+      {
+        id: "03",
+        title: "Automation Projects",
+        desc: "Build relay-controlled automation, alarm systems, and smart control applications."
+      },
+      {
+        id: "04",
+        title: "Rapid Prototyping",
+        desc: "Prototype IoT products quickly using the integrated breadboard and onboard peripherals."
+      }
+    ]
   },
   {
     id: "pro",
-
-tier: "TIER 04",
-
-badge: "ADVANCED",
-
-category: "Advanced",
-
-badgeColor: "#8b5cf6",
-
-title: "IoT Innovator Pro Kit",
-
-desc: "An advanced multi-controller IoT development kit featuring Raspberry Pi Pico, STM32, and Raspberry Pi development platform support with a rich collection of sensors, actuators, and communication interfaces. Designed for advanced embedded systems, robotics, industrial IoT, and rapid product prototyping.",
-
-tags: [
-  "Raspberry Pi Pico",
-  "STM32",
-  "Raspberry Pi",
-  "Embedded Systems",
-  "Industrial IoT",
-  "Automation"
-],
-
-thumbnails: [
-  "https://res.cloudinary.com/dwumernfk/image/upload/v1786096721/k7-1_ye7zix.png",
-  "https://res.cloudinary.com/dwumernfk/image/upload/v1786096722/k7-2_s4ziqa.png",
-  "https://res.cloudinary.com/dwumernfk/image/upload/v1786096722/k7-3_npt0xt.png"
-],
-
-specs: {
-
-  controllers: [
-    "Raspberry Pi Pico",
-    "STM32 Development Board",
-    "Raspberry Pi Interface"
-  ],
-
-  sensors: [
-    "HC-SR04 Ultrasonic Sensor",
-    "Flame Sensor",
-    "PIR Motion Sensor",
-    "IR Sensor",
-    "DHT11 Temperature & Humidity Sensor",
-    "MQ-2 Gas Sensor",
-    "DS18B20 Temperature Sensor",
-    "Soil Moisture Sensor",
-    "Rain Sensor"
-  ],
-
-  display: [
-    "0.96-inch OLED Display",
-    "Multi-color Status LEDs"
-  ],
-
-  actuators: [
-    "Relay Module",
-    "Servo Motor",
-    "DC Fan",
-    "Active Buzzer"
-  ],
-
-  connectivity: [
-    "USB Programming",
-    "GPIO Headers",
-    "UART",
-    "SPI",
-    "I2C",
-    "Breadboard Prototyping Area"
-  ]
-
-},
-
-included: [
-
-  {
-    code: "HW",
-    title: "IoT Innovator Pro Trainer",
-    desc: "Integrated Raspberry Pi Pico, STM32, and Raspberry Pi compatible development platform."
-  },
-
-  {
-    code: "CD",
-    title: "Complete Source Codes",
-    desc: "Ready-to-use examples for sensors, actuators, and embedded applications."
-  },
-
-  {
-    code: "SP",
-    title: "Technical Support",
-    desc: "Documentation, tutorials, and engineering assistance."
+    tier: "ADVANCED",
+    badge: "ADVANCED",
+    category: "Advanced",
+    badgeColor: "#8b5cf6",
+    title: "IoT Innovator Pro Kit",
+    desc: "An advanced multi-controller IoT development kit featuring Raspberry Pi Pico, STM32, and Raspberry Pi development platform support with a rich collection of sensors, actuators, and communication interfaces. Designed for advanced embedded systems, robotics, industrial IoT, and rapid product prototyping.",
+    tags: [
+      "Raspberry Pi Pico",
+      "STM32",
+      "Raspberry Pi",
+      "Embedded Systems",
+      "Industrial IoT",
+      "Automation"
+    ],
+    thumbnails: [
+      "https://res.cloudinary.com/dwumernfk/image/upload/v1786096721/k7-1_ye7zix.png",
+      "https://res.cloudinary.com/dwumernfk/image/upload/v1786096722/k7-2_s4ziqa.png",
+      "https://res.cloudinary.com/dwumernfk/image/upload/v1786096722/k7-3_npt0xt.png"
+    ],
+    specs: {
+      controllers: [
+        "Raspberry Pi Pico",
+        "STM32 Development Board",
+        "Raspberry Pi Interface"
+      ],
+      sensors: [
+        "HC-SR04 Ultrasonic Sensor",
+        "Flame Sensor",
+        "PIR Motion Sensor",
+        "IR Sensor",
+        "DHT11 Temperature & Humidity Sensor",
+        "MQ-2 Gas Sensor",
+        "DS18B20 Temperature Sensor",
+        "Soil Moisture Sensor",
+        "Rain Sensor"
+      ],
+      display: [
+        "0.96-inch OLED Display",
+        "Multi-color Status LEDs"
+      ],
+      actuators: [
+        "Relay Module",
+        "Servo Motor",
+        "DC Fan",
+        "Active Buzzer"
+      ],
+      connectivity: [
+        "USB Programming",
+        "GPIO Headers",
+        "UART",
+        "SPI",
+        "I2C",
+        "Breadboard Prototyping Area"
+      ]
+    },
+    included: [
+      {
+        code: "HW",
+        title: "IoT Innovator Pro Trainer",
+        desc: "Integrated Raspberry Pi Pico, STM32, and Raspberry Pi compatible development platform."
+      },
+      {
+        code: "CD",
+        title: "Complete Source Codes",
+        desc: "Ready-to-use examples for sensors, actuators, and embedded applications."
+      },
+      {
+        code: "SP",
+        title: "Technical Support",
+        desc: "Documentation, tutorials, and engineering assistance."
+      }
+    ],
+    useCases: [
+      {
+        id: "01",
+        title: "Advanced Embedded Systems",
+        desc: "Develop applications using Raspberry Pi Pico, STM32, and Raspberry Pi platforms."
+      },
+      {
+        id: "02",
+        title: "Industrial IoT Projects",
+        desc: "Build smart monitoring, automation, and industrial sensing applications."
+      },
+      {
+        id: "03",
+        title: "Robotics & Automation",
+        desc: "Control relays, servo motors, fans, and multiple sensors for robotic systems."
+      },
+      {
+        id: "04",
+        title: "Rapid Product Prototyping",
+        desc: "Prototype embedded and IoT solutions quickly using the integrated hardware modules."
+      }
+    ]
   }
+];
 
-],
-
-useCases: [
-
+// ===== COMPARISON DATA CORRESPONDING TO KITS ARRAY =====
+const COMPARISON_DATA = [
   {
-    id: "01",
-    title: "Advanced Embedded Systems",
-    desc: "Develop applications using Raspberry Pi Pico, STM32, and Raspberry Pi platforms."
+    category: "Platform & Controllers",
+    features: [
+      { name: "Raspberry Pi 4", checks: [true, false, false, false, false] },
+      { name: "Raspberry Pi 5", checks: [false, false, true, false, false] },
+      { name: "ESP32", checks: [false, true, false, true, false] },
+      { name: "Raspberry Pi Pico", checks: [false, false, false, true, true] },
+      { name: "STM32", checks: [false, false, false, false, true] },
+    ]
   },
-
   {
-    id: "02",
-    title: "Industrial IoT Projects",
-    desc: "Build smart monitoring, automation, and industrial sensing applications."
+    category: "Connectivity",
+    features: [
+      { name: "Wi-Fi / Bluetooth", checks: [true, true, true, true, false] },
+      { name: "GSM / GPS", checks: [false, true, true, false, false] },
+      { name: "LoRa / ZigBee", checks: [false, true, false, false, false] },
+      { name: "Ethernet", checks: [true, false, true, false, false] },
+    ]
   },
-
   {
-    id: "03",
-    title: "Robotics & Automation",
-    desc: "Control relays, servo motors, fans, and multiple sensors for robotic systems."
-  },
-
-  {
-    id: "04",
-    title: "Rapid Product Prototyping",
-    desc: "Prototype embedded and IoT solutions quickly using the integrated hardware modules."
-  }
-
-]
+    category: "Sensors & Actuators",
+    features: [
+      { name: "Camera / Vision", checks: [false, false, true, false, false] },
+      { name: "Touchscreen", checks: [true, false, true, false, false] },
+      { name: "Relays", checks: [true, false, true, true, true] },
+      { name: "Environmental (DHT/Gas/Soil)", checks: [true, true, true, true, true] },
+    ]
   }
 ];
 
@@ -610,7 +539,7 @@ export function KitModal({ selectedKit, closeModal }) {
       >
         <button
           onClick={closeModal}
-          className="absolute top-3 right-3 z-20 p-1.5 rounded-full border border-white/10 text-slate-400 hover:text-white transition-all bg-slate-950/80"
+          className="absolute top-3 right-3 z-20 p-1.5 rounded-full border border-white/10 text-slate-400 hover:text-white transition-all bg-slate-950/85"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -676,7 +605,7 @@ export function KitModal({ selectedKit, closeModal }) {
             </div>
 
             <div className="flex flex-wrap gap-1.5">
-              {["School Students", "Foundational Training", "Arduino Labs", "Classic Edition"].map((tag, i) => (
+              {selectedKit.tags.map((tag, i) => (
                 <span key={i} className="text-[11px] px-2.5 py-0.5 rounded-md border border-white/10 text-slate-300 bg-white/5">
                   {tag}
                 </span>
@@ -747,32 +676,36 @@ export function KitModal({ selectedKit, closeModal }) {
             )}
 
             {activeTab === "compare" && (
-              <div className="overflow-x-auto rounded-xl border border-white/10">
-                <table className="w-full text-left text-xs text-slate-300">
-                  <thead className="text-slate-400 uppercase tracking-wider border-b border-white/10 bg-slate-950/40">
+              <div className="overflow-x-auto rounded-xl border border-white/10 bg-slate-950/40">
+                <table className="w-full text-left text-xs text-slate-300 border-collapse">
+                  <thead className="text-slate-400 uppercase tracking-wider border-b border-white/10">
                     <tr>
-                      <th className="p-2.5">Feature</th>
-                      <th className="p-2.5">LEGACY</th>
-                      <th className="p-2.5">ESSENTIAL</th>
-                      <th className="p-2.5">LITE</th>
-                      <th className="p-2.5">EXPERIENCE</th>
-                      <th className="p-2.5">PRO</th>
+                      <th className="p-3">Feature</th>
+                      {KITS.map((kit, idx) => (
+                        <th key={idx} className="p-3 text-[10px] whitespace-nowrap">
+                          {kit.title.split(" ").slice(0, 2).join(" ")}...
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/10">
                     {COMPARISON_DATA.map((section, sIdx) => (
                       <React.Fragment key={sIdx}>
-                        <tr className="text-sky-400 font-bold uppercase text-[9px] tracking-widest border-b border-white/10 bg-slate-950/20">
-                          <td colSpan="6" className="p-2 px-3">{section.category}</td>
+                        <tr className="text-sky-400 font-bold uppercase text-[9px] tracking-widest bg-slate-900/50">
+                          <td colSpan={KITS.length + 1} className="p-2 px-3">{section.category}</td>
                         </tr>
-                        {section.items.map((row, rIdx) => (
-                          <tr key={rIdx} className="hover:bg-white/5">
-                            <td className="p-2.5 font-medium text-white">{row.name}</td>
-                            <td className="p-2.5">{row.legacy ? <span className="text-slate-300 font-bold">✓</span> : <span className="text-slate-600">—</span>}</td>
-                            <td className="p-2.5">{row.essential ? <span className="text-sky-400 font-bold">✓</span> : <span className="text-slate-600">—</span>}</td>
-                            <td className="p-2.5">{row.lite ? <span className="text-sky-400 font-bold">✓</span> : <span className="text-slate-600">—</span>}</td>
-                            <td className="p-2.5">{row.experience ? <span className="text-sky-400 font-bold">✓</span> : <span className="text-slate-600">—</span>}</td>
-                            <td className="p-2.5">{row.pro ? <span className="text-sky-400 font-bold">✓</span> : <span className="text-slate-600">—</span>}</td>
+                        {section.features.map((feature, fIdx) => (
+                          <tr key={fIdx} className="hover:bg-white/5 transition-colors">
+                            <td className="p-3 font-medium text-white border-r border-white/5">{feature.name}</td>
+                            {feature.checks.map((hasFeature, kitIdx) => (
+                              <td key={kitIdx} className="p-3 text-center">
+                                {hasFeature ? (
+                                  <span className="text-sky-400 font-bold text-lg">✓</span>
+                                ) : (
+                                  <span className="text-slate-700">—</span>
+                                )}
+                              </td>
+                            ))}
                           </tr>
                         ))}
                       </React.Fragment>
@@ -812,7 +745,7 @@ export default function App() {
           </span>
         </h1>
         <p className="max-w-2xl mx-auto text-sm sm:text-base text-slate-400 mb-8 leading-relaxed">
-          Classic legacy boards to advanced multi-controller stations. Designed in Hyderabad for Indian classrooms and labs.
+          Beginner legacy boards to advanced AI and multi-controller stations. Designed for classrooms and labs.
         </p>
 
         <div className="inline-flex flex-wrap justify-center gap-2 p-1.5 rounded-full border border-white/10">
@@ -833,9 +766,9 @@ export default function App() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-          {filteredKits.map((kit) => (
+          {filteredKits.map((kit, index) => (
             <div
-              key={kit.id}
+              key={kit.id || index}
               onClick={() => openModal(kit)}
               className="group relative rounded-2xl border border-white/10 hover:border-sky-500/40 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 cursor-pointer bg-slate-900/40 shadow-xl"
             >
@@ -897,4 +830,3 @@ export default function App() {
     </div>
   );
 }
-

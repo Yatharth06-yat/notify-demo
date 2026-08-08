@@ -4,13 +4,13 @@ import { Menu, X, ChevronRight, Sparkles } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Home", page: "home" },
-  { label: "About us", page: "about" },
-  { label: "IoTKIT", page: "iotkit" },
+  { label: "About", page: "about" },
+  { label: "IoT KITS", page: "iotkit" },
   { label: "Modules", page: "projects" },
-  { label: "AboutIoT", page: "Iot" },
+  { label: "Explore IoT", page: "Iot" },
   { label: "Gallery", page: "gallery" },
   { label: "Book a Workshop", page: "book" },
-  { label: "developer", page: "developer" },
+  { label: "Developer", page: "developer" },
   { label: "Admin Login", page: "admin-login" },
 ];
 

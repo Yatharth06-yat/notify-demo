@@ -17,7 +17,7 @@ export default function DeveloperPage() {
   const developers = [
     {
       name: "Yatharth Gupta",
-      role: "Full Stack & IoT Developer",
+      role: "Full Stack Developer - DSA Enthusiast - cp - AI/ML Enthusiast",
       dept: "Internet of Things",
       cgpa: "9.2/10",
       enrolment: "0901AD2310xx",
@@ -28,7 +28,7 @@ export default function DeveloperPage() {
     },
     {
       name: "Divyansh Rajput",
-      role: "Embedded Systems & AI Engineer",
+      role: "Full Stack Developer - DSA Enthusiast - cp - AI/ML Enthusiast",
       dept: "Internet of Things",
       cgpa: "9.4/10",
       enrolment: "0901AD2310xx",
@@ -43,13 +43,11 @@ export default function DeveloperPage() {
     {
       name: "Dr. Praveen Bansal",
       title: "Head of Centre for IoT & Dean",
-      description: "Power Quality, Grid Connected Systems, Multilevel Inverters, IoT",
       img: "https://res.cloudinary.com/dwumernfk/image/upload/v1785521483/PIC_u3q9ur.png",
     },
     {
       name: "Dr. Dhananjay Bisen",
       title: "Assistant Professor",
-      description: "Computer Programming, Data Science, Machine Learning, Deep Learning",
       img: "https://res.cloudinary.com/dwumernfk/image/upload/v1786084949/bc2b0ae0-187a-4e8c-96be-44130ca0c5bd.png",
     },
   ];
@@ -80,7 +78,7 @@ export default function DeveloperPage() {
           </div>
         </motion.div>
 
-        {/* DEVELOPERS HERO CARDS */}
+        {/* DEVELOPERS HERO CARDS WITH INTEGRATED EDUCATION */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {developers.map((dev, i) => (
             <motion.div
@@ -112,6 +110,28 @@ export default function DeveloperPage() {
                 <p className="text-muted text-xs mb-6">
                   {dev.role}
                 </p>
+
+                {/* Integrated Education Details Box */}
+                <div className="w-full p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-left mb-6 space-y-2">
+                  <div className="flex items-center gap-2 text-cyan-primary mb-1">
+                    <GraduationCap size={16} />
+                    <span className="font-display font-bold text-xs uppercase tracking-wider text-white">Education</span>
+                  </div>
+                  <div>
+                    <h3 className="font-display font-bold text-white text-xs sm:text-sm">
+                      Madhav Institute of Technology & Science, Gwalior
+                    </h3>
+                    <p className="text-cyan-bright font-display text-xs font-medium mt-0.5">
+                      B.Tech in Internet of Things (IoT)
+                    </p>
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-muted font-display pt-1.5">
+                      <span>📅 Aug 2024 - Jun 2028</span>
+                    </div>
+                    <div className="text-[11px] text-muted font-body pt-1">
+                      Department: Centre for Internet of Things (CIoT), MITS Gwalior
+                    </div>
+                  </div>
+                </div>
 
                 {/* Social Links */}
                 <div className="flex flex-wrap items-center justify-center gap-2.5">
@@ -145,40 +165,6 @@ export default function DeveloperPage() {
             </motion.div>
           ))}
         </div>
-
-        {/* EDUCATION SECTION */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="glass-card p-8 rounded-3xl border border-white/[0.08]"
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-cyan-primary/10 border border-cyan-primary/20 flex items-center justify-center text-cyan-primary">
-              <GraduationCap size={20} />
-            </div>
-            <h2 className="font-display font-bold text-xl text-white">
-              Education
-            </h2>
-          </div>
-
-          <div className="space-y-4">
-            <h3 className="font-display font-bold text-white text-base">
-              Madhav Institute of Technology & Science, Gwalior
-            </h3>
-            <p className="text-cyan-bright font-display text-sm font-medium">
-              B.Tech in Internet of Things (IoT)
-            </p>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted font-mono pt-2">
-              <span>📅 Aug 2024 - Jun 2028</span>
-              
-            </div>
-            <div className="text-xs text-muted font-body pt-1">
-              Department: Centre for Internet of Things (CIoT), MITS Gwalior
-            </div>
-          </div>
-        </motion.div>
 
         {/* UNDER THE GUIDANCE OF SECTION */}
         <motion.div

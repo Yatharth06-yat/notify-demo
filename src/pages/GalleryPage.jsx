@@ -124,10 +124,10 @@ const ALL_IMAGES = [
   { id: 24, src: "https://res.cloudinary.com/dwumernfk/image/upload/v1786096719/k6-2_atvdpa.png", title: "CNC Digital Twin", category: "Industry 4.0", desc: "Real-time CNC machine digital twin interface", specs: "OPC-UA • Unity 3D Engine" },
 ];
 
-const CATEGORIES = ["All", "Computer Vision", "IoT", "Robotics", "Industry 4.0", "Edge AI", "AI", "Lab"];
+const CATEGORIES = ["All"];
 
 export default function GalleryPage() {
-  const [viewMode, setViewMode] = useState("globe"); // 'globe' (3D animation) or 'bento'
+  const [viewMode, setViewMode] = useState("bento"); // 'globe' (3D animation) or 'bento'
   const [activeFilter, setActiveFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [lightboxIdx, setLightboxIdx] = useState(null);
@@ -189,7 +189,7 @@ export default function GalleryPage() {
             Interactive Lab Visual Showcase
           </span>
           <h1 className="font-extrabold text-4xl sm:text-6xl tracking-tight mb-2">
-            Inside the <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-purple-500">Nexus Lab</span>
+            Inside the <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-purple-500">IoTify Lab</span>
           </h1>
           <p className="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto font-light">
             Explore live deployments, hardware setups, and research prototypes in real-time.
