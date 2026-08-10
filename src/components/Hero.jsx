@@ -102,8 +102,7 @@ export default function Hero({ onNavigate }) {
             variants={stagger.item}
             className="text-muted text-sm sm:text-base leading-relaxed max-w-[520px] mb-10 text-justify"
           >
-            IoTify Lab is an Innovation, Outreach, and Hands-on Technology Learning Initiative of MITS–Deemed to be University, Gwalior, powered by the Centre for Internet of Things (CIoT). Through{" "}
-            <span className="text-cyan-primary font-semibold">MSCP - MITS school Connect Program</span>, the initiative aims to connect school students with emerging technologies through experiential learning, practical exposure, innovation, and hands-on IoT activities, providing students with opportunities to learn, explore, and apply technology through real-world experiences.
+           IoTify Lab is an Innovation, Outreach, and Hands-on Technology Learning Initiative of MITS–Deemed to be University, Gwalior, powered by the Centre for Internet of Things (CIoT). The initiative aims to connect school students with emerging technologies through experiential learning, practical exposure, innovation, and hands-on IoT activities, providing students with opportunities to learn, explore, and apply technology through real-world experiences.
           </motion.p>
 
           {/* CTA buttons */}
