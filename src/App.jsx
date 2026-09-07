@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import BackgroundField from "./components/BackgroundField";
 
-// Updated loaderVideo to use the optimized Cloudinary URL
+// Optimized Cloudinary loader video
 const loaderVideo = "https://res.cloudinary.com/w1uqr8sy/video/upload/q_auto,f_auto/v1785951309/loader1_san3kv.mp4";
 
 import HomePage from "./pages/HomePage";
@@ -170,9 +170,9 @@ function Loader({ onComplete, onNavigateHome }) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#05070B] overflow-hidden select-none"
+          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center overflow-hidden select-none"
         >
-          {/* Background Cinematic Video */}
+          {/* Loader background video */}
           <video
             ref={videoRef}
             src={loaderVideo}
@@ -180,20 +180,14 @@ function Loader({ onComplete, onNavigateHome }) {
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-[0.8] pointer-events-none z-0"
+            className="absolute inset-0 w-full h-full object-cover z-0"
           />
 
-          {/* Vignette Overlay */}
-          <div
-            className="absolute inset-0 pointer-events-none z-10"
-            style={{ background: "radial-gradient(circle, rgba(5,7,11,0.1) 0%, rgba(5,7,11,0.85) 90%)" }}
-          />
+          {/* Dark overlay so text stays readable */}
+          <div className="absolute inset-0 bg-black/40 z-[1] pointer-events-none" />
 
-          {/* Futuristic ambient backdrops */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-signal/5 rounded-full blur-[120px] pointer-events-none z-10" />
-
-          {/* Grid lines pattern */}
-          <div className="absolute inset-0 bg-grid-lines bg-[size:35px_35px] opacity-[0.08] z-10 pointer-events-none" />
+          {/* Subtle glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent-light/10 rounded-full blur-[100px] pointer-events-none z-[2]" />
 
           {/* Loader Elements Overlay Container */}
           <div className="relative z-20 flex flex-col items-center justify-between w-full h-full max-w-2xl px-8 py-14 md:py-20 text-center">
@@ -206,35 +200,32 @@ function Loader({ onComplete, onNavigateHome }) {
               className="flex flex-col items-center gap-5 mt-4"
             >
 
-
               {/* Enhanced Interactive MITS - DU School C Program Button */}
               <motion.button
                 onClick={onNavigateHome}
                 whileHover={{ scale: 1.03, y: -3 }}
                 whileTap={{ scale: 0.97 }}
-                className="group relative inline-flex items-center gap-4 px-6 py-4 rounded-2xl bg-gradient-to-r from-cyan-950/40 via-[#0B0B0F] to-blue-950/40 border border-cyan-500/40 shadow-[0_0_30px_rgba(0,184,255,0.2)] hover:shadow-[0_0_50px_rgba(0,184,255,0.4)] hover:border-cyan-400 transition-all duration-300 cursor-pointer overflow-hidden"
+                className="group relative inline-flex items-center gap-4 px-6 py-4 rounded-2xl border border-[#E6D5C3] shadow-sm hover:shadow-md hover:border-accent-light transition-all duration-300 cursor-pointer overflow-hidden"
+                style={{ backgroundColor: "#F5EFE6" }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-blue-500/15 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-accent-light/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <span className="relative z-10 font-display font-black text-lg md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-cyan-400 to-blue-400 tracking-wide drop-shadow-[0_2px_15px_rgba(0,184,255,0.4)]">
+                <span className="relative z-10 font-display font-black text-lg md:text-xl text-gray-900 tracking-wide">
                   MITS School Connect Program
                 </span>
 
-                <span className="relative z-10 flex items-center justify-center w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 group-hover:bg-cyan-400 group-hover:text-black group-hover:shadow-[0_0_15px_rgba(0,229,255,0.8)] transition-all duration-300">
+                <span className="relative z-10 flex items-center justify-center w-8 h-8 rounded-xl bg-accent/10 border border-accent/20 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
                   <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </span>
-
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-50" />
-                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent scale-x-50 group-hover:scale-x-100 transition-transform duration-500" />
               </motion.button>
 
               <div>
                 <h1 className="font-display font-bold text-lg tracking-[0.1em] text-white">
                   IoTify Lab
                 </h1>
-                <div className="h-[1.5px] w-8 bg-gradient-to-r from-transparent via-cyan-signal to-transparent mx-auto mt-1" />
+                <div className="h-[1.5px] w-8 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mt-1" />
               </div>
             </motion.div>
 
@@ -242,32 +233,25 @@ function Loader({ onComplete, onNavigateHome }) {
 
             {/* Bottom: Modern progress bar & status text */}
             <div className="w-full space-y-4 mb-6">
-              <div className="flex items-baseline justify-between font-body text-xs tracking-wider text-mist">
-                <span className="text-cyan-bright font-medium uppercase tracking-[0.18em] text-[10px]">
-                  Initializing AI Edge Platform...
+              <div className="flex items-baseline justify-between font-body text-xs tracking-wider text-white/70">
+                <span className="text-accent font-semibold uppercase tracking-[0.18em] text-[10px]">
+                  Initializing Platform...
                 </span>
                 <span className="font-mono text-sm font-semibold text-white tracking-wider">
                   {progress}%
                 </span>
               </div>
 
-              <div className="h-[4px] w-full bg-white/5 rounded-full overflow-hidden relative shadow-[inset_0_1px_2px_rgba(0,0,0,0.6)] border border-white/5">
+              <div className="h-[4px] w-full bg-white/20 rounded-full overflow-hidden relative shadow-inner">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-cyan-signal via-cyan-bright to-violet-accent shadow-[0_0_12px_rgba(0,229,255,0.8)]"
+                  className="h-full bg-gradient-to-r from-accent via-accent-light to-blue-500"
                   style={{ width: `${progress}%` }}
                   transition={{ ease: "easeInOut" }}
                 />
-                <motion.div
-                  className="absolute top-0 bottom-0 w-20 bg-gradient-to-r from-transparent via-cyan-bright/50 to-transparent blur-[2px]"
-                  style={{
-                    left: `calc(${progress}% - 80px)`,
-                    display: progress > 10 ? 'block' : 'none'
-                  }}
-                />
               </div>
 
-              <p className="text-[9px] tracking-[0.3em] text-white/40 font-body uppercase">
-                Enterprise IoT Edge Node
+              <p className="text-[10px] tracking-[0.2em] text-white/50 font-body uppercase font-medium">
+                MITS Gwalior
               </p>
             </div>
           </div>
@@ -324,13 +308,13 @@ export default function App() {
 
   return (
     <AuthProvider>
-      <div className="relative min-h-screen bg-black text-white font-body antialiased">
+      <div className="relative min-h-screen bg-cream-primary text-gray-900 font-body antialiased selection:bg-accent/20 selection:text-gray-900">
         <Toaster position="top-right" toastOptions={{
           style: {
-            background: 'rgba(10,14,20,0.9)',
-            color: '#fff',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255,255,255,0.1)'
+            background: '#2f73a4ff',
+            color: '#111827',
+            border: '1px solid #E5E7EB',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
           }
         }} />
 
@@ -388,18 +372,11 @@ export default function App() {
 
             {!isLoading && (
               <div className="fixed bottom-6 right-6 z-[99999] flex flex-col items-end gap-3 pointer-events-auto">
-                <button
-                  className="flex items-center gap-2 px-4 py-2.5 bg-black/80 border border-cyan-400/50 rounded-full text-cyan-200 font-medium text-sm shadow-[0_0_20px_rgba(0,184,255,0.25)] hover:shadow-[0_0_30px_rgba(0,184,255,0.5)] transition-all duration-300 backdrop-blur-md cursor-pointer"
-                >
-                  <span className="text-cyan-400">✦</span>
-                  <span>Iotify Lab</span>
-                </button>
-
                 <a
                   href={whatsappLink(WHATSAPP_GENERAL)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-14 h-14 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:scale-110 transition-all duration-300"
+                  className="w-14 h-14 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-all duration-300"
                   aria-label="Contact on WhatsApp"
                 >
                   <svg className="w-7 h-7 fill-current" viewBox="0 0 24 24">

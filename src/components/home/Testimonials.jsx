@@ -42,9 +42,9 @@ export default function Testimonials() {
   const marqueeReviews = [...REVIEWS, ...REVIEWS, ...REVIEWS];
 
   return (
-    <section className="relative py-20 lg:py-28 bg-black text-white overflow-hidden">
+    <section className="relative py-20 lg:py-28 bg-cream-primary text-gray-900 overflow-hidden">
       {/* Background Dot Grid */}
-      <div className="absolute inset-0 circuit-bg opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-lines opacity-[0.4] pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         
@@ -56,15 +56,15 @@ export default function Testimonials() {
           transition={{ duration: 0.7 }}
           className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="eyebrow-badge mb-4 text-xs sm:text-sm tracking-[0.25em] font-mono">
-            <span className="glow-dot" />
+          <span className="eyebrow-badge mb-4 text-xs sm:text-sm tracking-[0.25em] font-mono text-accent">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block mr-2" />
             PARTICIPANT FEEDBACK
           </span>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-white mb-6">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-gray-900 mb-6">
             What educators & participants say about{" "}
-            <span className="text-cyan-primary">IoTify Lab.</span>
+            <span className="text-accent">IoTify Lab.</span>
           </h2>
-          <p className="text-muted text-base sm:text-lg leading-relaxed">
+          <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
             Real feedback from school students, teachers, and workshop participants who experienced hands-on learning with CIoT MITS.
           </p>
         </motion.div>
@@ -96,7 +96,7 @@ export default function Testimonials() {
           aria-hidden="true"
           className="absolute left-0 top-0 bottom-0 w-16 sm:w-44 z-20 pointer-events-none"
           style={{
-            background: "linear-gradient(to right, #000000 0%, rgba(0,0,0,0.6) 60%, transparent 100%)",
+            background: "linear-gradient(to right, rgba(255,242,229,1) 0%, rgba(255,242,229,0.8) 60%, transparent 100%)",
           }}
         />
 
@@ -105,7 +105,7 @@ export default function Testimonials() {
           aria-hidden="true"
           className="absolute right-0 top-0 bottom-0 w-16 sm:w-44 z-20 pointer-events-none"
           style={{
-            background: "linear-gradient(to left, #000000 0%, rgba(0,0,0,0.6) 60%, transparent 100%)",
+            background: "linear-gradient(to left, rgba(255,242,229,1) 0%, rgba(255,242,229,0.8) 60%, transparent 100%)",
           }}
         />
 
@@ -118,33 +118,33 @@ export default function Testimonials() {
           {marqueeReviews.map((rev, idx) => (
             <div
               key={`${rev.name}-${idx}`}
-              className="glass-card spotlight-card group relative w-[320px] sm:w-[420px] p-8 rounded-3xl border border-white/[0.09] bg-white/[0.03] flex-shrink-0 flex flex-col justify-between transition-all duration-500 hover:border-cyan-primary/50 hover:shadow-[0_15px_40px_-10px_rgba(0,207,255,0.2)] hover:-translate-y-1 text-justify"
+              className="group relative w-[320px] sm:w-[420px] p-8 rounded-3xl border border-gray-200 bg-white shadow-sm flex-shrink-0 flex flex-col justify-between transition-all duration-300 hover:border-accent hover:shadow-md hover:-translate-y-1 text-justify"
             >
               <div>
                 {/* 5 Stars */}
-                <div className="flex items-center gap-1 mb-4 text-cyan-primary">
+                <div className="flex items-center gap-1 mb-4 text-accent">
                   {[...Array(5)].map((_, s) => (
                     <Star key={s} size={16} fill="currentColor" />
                   ))}
                 </div>
 
                 {/* Quote */}
-                <p className="text-muted text-sm sm:text-base leading-relaxed font-body mb-6 italic">
+                <p className="text-gray-700 text-sm sm:text-base leading-relaxed font-body mb-6 italic">
                   "{rev.quote}"
                 </p>
               </div>
 
               {/* Author Details */}
-              <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
+              <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
                 <div>
-                  <h4 className="font-display font-bold text-white text-base group-hover:text-cyan-primary transition-colors">
+                  <h4 className="font-display font-bold text-gray-900 text-base group-hover:text-accent transition-colors">
                     {rev.name}
                   </h4>
-                  <p className="text-xs text-muted font-body">
-                    {rev.role} • <span className="text-white/80">{rev.institution}</span>
+                  <p className="text-xs text-gray-500 font-body">
+                    {rev.role} • <span className="text-gray-700">{rev.institution}</span>
                   </p>
                 </div>
-                <Quote size={24} className="text-cyan-primary/30 flex-shrink-0" />
+                <Quote size={24} className="text-accent/20 flex-shrink-0" />
               </div>
             </div>
           ))}

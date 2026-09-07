@@ -46,7 +46,7 @@ const PROJECTS = [
 
 const STATUS_COLORS = {
   Live: "text-emerald-400 border-emerald-400/30 bg-emerald-400/[0.07]",
-  Research: "text-cyan-primary border-cyan-primary/30 bg-cyan-primary/[0.07]",
+  Research: "text-accent border-accent/30 bg-accent/[0.07]",
   Deployed: "text-blue-accent border-blue-accent/30 bg-blue-accent/[0.07]",
 };
 
@@ -64,7 +64,7 @@ export default function FeaturedProjects({ onNavigate }) {
             transition={{ duration: 0.6 }}
           >
             <span className="section-label block mb-3">Featured Work</span>
-            <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+            <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-gray-900 leading-tight">
               Projects That{" "}
               <span className="text-gradient">Matter</span>
             </h2>
@@ -92,7 +92,7 @@ export default function FeaturedProjects({ onNavigate }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="glass-card group overflow-hidden cursor-pointer"
+              className="bg-white border-gray-200 shadow-sm group overflow-hidden cursor-pointer"
               style={{ borderRadius: "24px" }}
             >
               {/* Image */}
@@ -108,7 +108,7 @@ export default function FeaturedProjects({ onNavigate }) {
                   {proj.status}
                 </span>
                 {/* Category */}
-                <span className="absolute top-4 right-4 text-[10px] font-display tracking-widest uppercase px-3 py-1 rounded-full border border-white/10 bg-black/40 text-white/70">
+                <span className="absolute top-4 right-4 text-[10px] font-display tracking-widest uppercase px-3 py-1 rounded-full border border-gray-200 bg-cream-primary/40 text-gray-900/70">
                   {proj.category}
                 </span>
               </div>
@@ -116,10 +116,10 @@ export default function FeaturedProjects({ onNavigate }) {
               {/* Content */}
               <div className="p-7">
                 <div className="flex items-start justify-between gap-4 mb-3">
-                  <h3 className="font-display font-bold text-lg text-white group-hover:text-cyan-bright transition-colors duration-300 leading-snug">
+                  <h3 className="font-display font-bold text-lg text-gray-900 group-hover:text-cyan-bright transition-colors duration-300 leading-snug">
                     {proj.title}
                   </h3>
-                  <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-white/10 text-muted group-hover:border-cyan-primary/50 group-hover:text-cyan-primary transition-all duration-300">
+                  <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-muted group-hover:border-accent/50 group-hover:text-accent transition-all duration-300">
                     <ExternalLink size={13} />
                   </span>
                 </div>

@@ -63,14 +63,14 @@ const PROGRAMS = [
 
 export default function ProgramsGrid({ onNavigate }) {
   return (
-    <section className="relative px-6 py-20 lg:py-28 bg-black text-white overflow-hidden">
-      {/* Dot Grid */}
-      <div className="absolute inset-0 circuit-bg opacity-30 pointer-events-none" />
+    <section className="relative px-6 py-20 lg:py-28 bg-[#FFF2E5] text-gray-900 overflow-hidden">
+      {/* Background Accent Lines */}
+      <div className="absolute inset-0 bg-grid-lines opacity-[0.4] pointer-events-none" />
 
       {/* Radial Glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[radial-gradient(circle,_rgba(0,207,255,0.08)_0%,_rgba(0,207,255,0.04)_40%,_transparent_70%)] blur-[140px]"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[radial-gradient(circle,_rgba(15,118,110,0.04)_0%,_rgba(15,118,110,0.01)_40%,_transparent_70%)] blur-[100px]"
       />
 
       <div className="mx-auto max-w-7xl relative z-10">
@@ -83,15 +83,15 @@ export default function ProgramsGrid({ onNavigate }) {
           transition={{ duration: 0.7 }}
           className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="eyebrow-badge mb-4 text-xs sm:text-sm tracking-[0.25em] font-mono">
-            <span className="glow-dot" />
+          <span className="eyebrow-badge mb-4 text-xs sm:text-sm tracking-[0.25em] font-mono text-accent">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent mr-2 inline-block" />
             PROGRAMS & INITIATIVES
           </span>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-white mb-6">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-gray-900 mb-6">
             Educational outreach modules for{" "}
-            <span className="text-cyan-primary font-extrabold">schools & colleges.</span>
+            <span className="text-accent font-extrabold">schools & colleges.</span>
           </h2>
-          <p className="text-muted text-base sm:text-lg leading-relaxed">
+          <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
             Comprehensive training models, capacity building, and project mentoring designed by the Centre for Internet of Things (CIoT), MITS Gwalior.
           </p>
         </motion.div>
@@ -117,49 +117,49 @@ export default function ProgramsGrid({ onNavigate }) {
                   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
                 }}
                 onClick={() => onNavigate && onNavigate("projects")}
-                className="glass-card spotlight-card shimmer-card group p-6 rounded-3xl border border-white/[0.09] bg-white/[0.03] cursor-pointer relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-cyan-primary/50 hover:shadow-[0_15px_40px_-10px_rgba(0,207,255,0.25)] flex flex-col justify-between"
+                className="group p-6 rounded-3xl border border-gray-200 bg-white shadow-sm cursor-pointer relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:shadow-md flex flex-col justify-between"
               >
                 <div>
                   {/* Top Bar: Icon & Module Badge */}
                   <div className="flex items-center justify-between mb-5">
-                    <span className="flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-primary/15 to-cyan-primary/10 border border-cyan-primary/20 text-cyan-primary transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(0,207,255,0.4)]">
+                    <span className="flex items-center justify-center w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 text-accent transition-all duration-300 group-hover:scale-105 group-hover:bg-accent group-hover:text-white">
                       <Icon size={22} strokeWidth={1.8} />
                     </span>
-                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-primary/10 text-cyan-primary border border-cyan-primary/30">
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-gray-100 text-gray-700 border border-gray-200">
                       {prog.module}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-display font-bold text-lg text-white mb-2 group-hover:text-cyan-primary transition-colors duration-300">
+                  <h3 className="font-display font-bold text-lg text-gray-900 mb-2 group-hover:text-accent transition-colors duration-300">
                     {prog.title}
                   </h3>
 
                   {/* Major Activities Description */}
-                  <p className="text-muted text-xs sm:text-sm leading-relaxed font-body mb-5">
-                    <strong className="text-white/90 font-semibold">Activities: </strong>
+                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed font-body mb-5">
+                    <strong className="text-gray-900 font-semibold">Activities: </strong>
                     {prog.desc}
                   </p>
 
                   {/* Metadata Specs with Clean Body Font */}
-                  <div className="space-y-2.5 pt-4 border-t border-white/[0.06] text-xs font-body text-white/80">
+                  <div className="space-y-2.5 pt-4 border-t border-gray-100 text-xs font-body text-gray-600">
                     <div className="flex items-start gap-2.5">
-                      <UserCheck size={14} className="text-cyan-primary shrink-0 mt-0.5" />
-                      <span><strong className="text-white font-semibold">Target:</strong> {prog.participants}</span>
+                      <UserCheck size={14} className="text-accent shrink-0 mt-0.5" />
+                      <span><strong className="text-gray-900 font-semibold">Target:</strong> {prog.participants}</span>
                     </div>
                     <div className="flex items-center gap-2.5">
-                      <Clock size={14} className="text-cyan-primary shrink-0" />
-                      <span><strong className="text-white font-semibold">Duration:</strong> {prog.duration}</span>
+                      <Clock size={14} className="text-accent shrink-0" />
+                      <span><strong className="text-gray-900 font-semibold">Duration:</strong> {prog.duration}</span>
                     </div>
                     <div className="flex items-start gap-2.5">
-                      <CheckCircle2 size={14} className="text-cyan-primary shrink-0 mt-0.5" />
-                      <span><strong className="text-white font-semibold">Deliverables:</strong> {prog.deliverables}</span>
+                      <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
+                      <span><strong className="text-gray-900 font-semibold">Deliverables:</strong> {prog.deliverables}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Arrow Link */}
-                <div className="mt-6 pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs text-cyan-primary font-mono font-semibold">
+                <div className="mt-6 pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-accent font-mono font-bold">
                   <span>Learn More</span>
                   <ArrowUpRight size={15} className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </div>

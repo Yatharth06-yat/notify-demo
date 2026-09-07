@@ -42,14 +42,14 @@ const TICKER_ITEMS = [
 
 export default function HardwareSection({ onNavigate }) {
   return (
-    <section className="relative px-6 pt-20 lg:pt-28 bg-black text-white overflow-hidden">
+    <section className="relative px-6 pt-20 lg:pt-28 bg-[#FFF2E5] text-gray-900 overflow-hidden">
       {/* Background Grid */}
-      <div className="absolute inset-0 circuit-bg opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-lines opacity-[0.4] pointer-events-none" />
 
       {/* Radial Glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-32 -right-32 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(0,207,255,0.12)_0%,_rgba(0,207,255,0.05)_50%,_transparent_70%)] blur-[140px]"
+        className="pointer-events-none absolute -bottom-32 -right-32 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(15,118,110,0.06)_0%,_rgba(15,118,110,0.02)_50%,_transparent_70%)] blur-[100px]"
       />
 
       <div className="mx-auto max-w-7xl relative z-10 mb-20">
@@ -63,13 +63,13 @@ export default function HardwareSection({ onNavigate }) {
             transition={{ duration: 0.7 }}
             className="max-w-2xl text-left"
           >
-            <span className="eyebrow-badge mb-4 text-xs sm:text-sm tracking-[0.25em] font-mono">
-              <span className="glow-dot" />
+            <span className="eyebrow-badge mb-4 text-xs sm:text-sm tracking-[0.25em] font-mono text-accent">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent mr-2 inline-block" />
               IN-HOUSE LEARNING KITS
             </span>
-            <h2 className="font-display font-extrabold text-3xl sm:text-5xl leading-tight text-white">
+            <h2 className="font-display font-extrabold text-3xl sm:text-5xl leading-tight text-gray-900">
               Designed at CIoT.{" "}
-              <span className="text-cyan-primary">Built for hands-on learning.</span>
+              <span className="text-accent">Built for hands-on learning.</span>
             </h2>
           </motion.div>
 
@@ -78,7 +78,7 @@ export default function HardwareSection({ onNavigate }) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             onClick={() => onNavigate && onNavigate("iotkit")}
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/[0.03] border border-cyan-primary/30 hover:border-cyan-primary text-white hover:text-cyan-primary font-body font-semibold text-sm transition-all duration-300 shadow-[0_0_20px_rgba(0,207,255,0.15)] self-start md:self-auto"
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white border border-gray-200 hover:border-accent text-gray-800 hover:text-accent font-body font-semibold text-sm transition-all duration-300 shadow-sm self-start md:self-auto"
           >
             Explore Kits & Modules
             <ArrowRight size={16} />
@@ -103,11 +103,11 @@ export default function HardwareSection({ onNavigate }) {
                 hidden: { opacity: 0, y: 30 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
               }}
-              className="glass-card spotlight-card group rounded-3xl border border-white/[0.09] overflow-hidden flex flex-col justify-between transition-all duration-500 hover:-translate-y-2 hover:border-cyan-primary/50 hover:shadow-[0_15px_40px_-10px_rgba(0,207,255,0.25)]"
+              className="group rounded-3xl border border-gray-200 overflow-hidden flex flex-col justify-between transition-all duration-500 hover:-translate-y-1 hover:border-accent hover:shadow-md bg-white shadow-sm"
             >
               <div>
                 {/* Product Image with Hover Zoom */}
-                <div className="relative w-full aspect-[4/3] overflow-hidden bg-black/60">
+                <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-50 border-b border-gray-100">
                   <img
                     src={prod.image}
                     alt={prod.title}
@@ -115,7 +115,7 @@ export default function HardwareSection({ onNavigate }) {
                     loading="lazy"
                   />
                   <div className="absolute top-3 left-3">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-mono font-semibold uppercase tracking-wider bg-black/80 backdrop-blur-md text-cyan-primary border border-cyan-primary/30">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-white/90 backdrop-blur-md text-accent border border-gray-200 shadow-sm">
                       {prod.category}
                     </span>
                   </div>
@@ -123,20 +123,20 @@ export default function HardwareSection({ onNavigate }) {
 
                 {/* Card Content */}
                 <div className="p-6">
-                  <h3 className="font-display font-bold text-lg text-white mb-2 group-hover:text-cyan-primary transition-colors">
+                  <h3 className="font-display font-bold text-lg text-gray-900 mb-2 group-hover:text-accent transition-colors">
                     {prod.title}
                   </h3>
-                  <p className="text-muted text-xs sm:text-sm leading-relaxed mb-4">
+                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
                     {prod.desc}
                   </p>
                 </div>
               </div>
 
               {/* Specs Pills */}
-              <div className="px-6 pb-6 pt-0 border-t border-white/[0.06] mt-auto">
+              <div className="px-6 pb-6 pt-0 border-t border-gray-100 mt-auto">
                 <div className="flex flex-wrap gap-1.5 pt-4">
                   {prod.specs.map((spec) => (
-                    <span key={spec} className="text-[10px] font-mono px-2.5 py-1 rounded-md bg-white/[0.04] text-white/80 border border-white/[0.08]">
+                    <span key={spec} className="text-[10px] font-mono font-medium px-2.5 py-1 rounded-md bg-gray-50 text-gray-700 border border-gray-200">
                       {spec}
                     </span>
                   ))}
@@ -148,7 +148,7 @@ export default function HardwareSection({ onNavigate }) {
       </div>
 
       {/* Scrolling Marquee Ticker at the Bottom */}
-      <div className="relative w-full overflow-hidden border-t border-b border-cyan-primary/20 bg-black/60 py-4 backdrop-blur-md">
+      <div className="relative w-full overflow-hidden border-t border-b border-gray-200 bg-[#FAECE1] py-4">
         <style>{`
           @keyframes hardwareTicker {
             0% { transform: translateX(0); }
@@ -159,11 +159,11 @@ export default function HardwareSection({ onNavigate }) {
             will-change: transform;
           }
         `}</style>
-        <div className="flex w-max hardware-ticker-track whitespace-nowrap items-center text-xs sm:text-sm font-mono text-cyan-primary/90">
+        <div className="flex w-max hardware-ticker-track whitespace-nowrap items-center text-xs sm:text-sm font-mono text-accent">
           {[...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => (
             <div key={idx} className="flex items-center mx-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-primary mr-3 shadow-[0_0_8px_#00CFFF]" />
-              <span className="tracking-widest uppercase font-semibold text-white/90">{item}</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-accent mr-3" />
+              <span className="tracking-widest uppercase font-bold text-gray-800">{item}</span>
             </div>
           ))}
         </div>

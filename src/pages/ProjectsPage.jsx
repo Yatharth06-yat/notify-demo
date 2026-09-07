@@ -1,151 +1,118 @@
 import React, { useState } from 'react';
-import { 
-  BookOpen, 
-  DollarSign, 
-  CheckCircle2, 
-  Clock, 
-  Users, 
+import {
+  BookOpen,
+  IndianRupee,
+  CheckCircle2,
+  Clock,
+  Users,
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  Download,
+  FileText,
 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { HARD_COPY_FORM_URL } from '../lib/forms';
 
-const trainingModules = [
+export { HARD_COPY_FORM_URL };
+
+export const programModules = [
   {
     id: "M1",
     model: "School Student Hands-on Workshop",
     participants: "Students of Classes VI–XII",
-    duration: "One day (6 Hrs)",
-    activities: "Introduction to IoT, sensors, Arduino/ESP32, demonstrations and mini-projects",
-    deliverables: "Hands-on exposure and participation certificate"
+    duration: "01/02 Day workshop (06 hrs/day)",
+    lastDate: "20.Sep.2026",
+    location: "At school premises Or MITS-Labs",
+    tracks: [
+      {
+        title: "Code & Create with Arduino",
+        description: "IoT • Sensors • Smart Devices • Robot",
+      },
+      {
+        title: "Connect & Create with Embedded Electronics",
+        description: "IoT • Wi-Fi • Smart Applications",
+      },
+      {
+        title: "Code, Control & Innovate with Pico Python",
+        description: "Python • IoT • AI • Automation",
+      },
+    ],
+    deliverables: "Hands-on exposure and participation certificate",
   },
   {
     id: "M2",
-    model: "Short-Term IoT Training Programme",
-    participants: "School students",
-    duration: "2–5 days",
-    activities: "IoT, electronics, sensors, programming, dashboards and project development",
-    deliverables: "Training certificate and mini-project"
+    model: "Train-the-Teacher (ToT) Programme",
+    participants: "Science, Mathematics, Computer Science, STEM & Innovation teachers",
+    duration: "03 Days",
+    lastDate: "Mutually Decided",
+    location: "At MITS Labs Or School Premises",
+    activities: "Teacher capacity building, practical activities and project development",
+    deliverables: "Teacher certificate, training resources and mentoring",
   },
   {
     id: "M3",
-    model: "Summer/Winter Technology Camp",
-    participants: "School students",
-    duration: "5–10 days",
-    activities: "IoT, AI, Robotics, Embedded Systems and innovation projects",
-    deliverables: "Project demonstration and completion certificate"
+    model: "School-Level Competitions and Hackathon",
+    participants: "Classes 7th - 12th",
+    duration: "02 Days",
+    lastDate: "December / June",
+    location: "At MITS Labs Or School Premises",
+    activities: "Problem Statement Prototype Idea Pitch, team formation, problem identification, hardware development, testing, presentation and jury evaluation",
+    deliverables: "Recognition, certificates and project showcase",
   },
-  {
-    id: "M4",
-    model: "Train-the-Teacher (ToT) Programme",
-    participants: "Science, Math, Computer Science, STEM & Innovation teachers",
-    duration: "2–5 days",
-    activities: "Teacher capacity building, practical activities and project development",
-    deliverables: "Teacher certificate, training resources and mentoring"
-  },
-  {
-    id: "M5",
-    model: "School IoT/STEM Innovation Club Support",
-    participants: "Participating schools",
-    duration: "Annual / Continuous",
-    activities: "Club establishment, activity planning and technical mentoring",
-    deliverables: "Functional school innovation club and student projects"
-  },
-  {
-    id: "M6",
-    model: "School Project Mentoring Programme",
-    participants: "School students and teachers",
-    duration: "Need-based",
-    activities: "Problem identification, design thinking, prototype development and mentoring",
-    deliverables: "Working prototype and project presentation"
-  },
-  {
-    id: "M7",
-    model: "MITS Laboratory Exposure Programme",
-    participants: "School students and teachers",
-    duration: "Half day / One day",
-    activities: "IoT laboratory visit and demonstrations",
-    deliverables: "Technology exposure and participation certificate"
-  },
-  {
-    id: "M8",
-    model: "IoTify School Innovation Challenge",
-    participants: "Participating schools",
-    duration: "Annual",
-    activities: "Project competition, prototype demonstration and expert evaluation",
-    deliverables: "Recognition, certificates and project showcase"
-  },
-  {
-    id: "M9",
-    model: "Government School Technology Outreach Programme",
-    participants: "Students & teachers of selected Gov. Schools",
-    duration: "Half day to two days",
-    activities: "Technology awareness, demonstrations and hands-on activities",
-    deliverables: "Free technology exposure and outreach support"
-  }
 ];
 
-const financialModels = [
+export const pricingModels = [
   {
     sno: "1",
-    model: "Student-wise Hands-on Training Model",
-    fee: "₹200 per student",
+    model: "Student Workshop (At School Premises)",
+    fee: "₹350/- per student",
     mechanism: "Fee collected by the participating school/institute and deposited in the designated MITS account.",
-    modules: "M1"
+    batchSize: "50 Students per Workshop for One day",
+    modules: "M1",
   },
   {
     sno: "2",
-    model: "School-wise Workshop Model",
-    fee: "₹8,000–₹12,000 per school",
-    mechanism: "Participating school deposits the approved programme fee directly into the MITS account.",
-    modules: "M2, M3"
+    model: "Student Workshop (At MITS Labs)",
+    fee: "₹250/- per student",
+    mechanism: "Individual have to deposited the Fee in the MITS-Account",
+    batchSize: "30 Students per Workshop for One day",
+    modules: "M1",
   },
   {
     sno: "3",
-    model: "Basic Train-the-Teacher Model",
-    fee: "₹10,000 per school",
-    mechanism: "School deposits the approved amount into the designated MITS account.",
-    modules: "M2, M4"
+    model: "Train-the-Teacher (ToT) Programme (At School Premises)",
+    fee: "₹15,000/- per Training program",
+    mechanism: "Fee collected by the participating school/institute and deposited in the designated MITS account.",
+    batchSize: "Min. 05- Max.15 Faculty Per program For 2-3 days Workshop",
+    modules: "M2",
   },
   {
     sno: "4",
-    model: "Standard Train-the-Teacher Model",
-    fee: "₹15,000 per school",
-    mechanism: "School deposits the approved amount into the designated MITS account.",
-    modules: "M2, M4"
+    model: "Train-the-Teacher (ToT) Programme (At MITS Labs)",
+    fee: "₹10,000/- per Training Program",
+    mechanism: "Fee collected by the participating school/institute and deposited in the designated MITS account.",
+    batchSize: "Min. 05- Max.15 Faculty Per program For 2-3 days Workshop",
+    modules: "M2",
   },
   {
     sno: "5",
-    model: "Advanced Train-the-Teacher Model",
-    fee: "₹25,000–₹35,000 per school",
-    mechanism: "School deposits the approved amount into the designated MITS account.",
-    modules: "M4"
+    model: "School-Level Competitions and Hackathon (At School Premises)",
+    fee: "₹500/- Registration per Student",
+    mechanism: "Fee collected by the participating school/institute and deposited in the designated MITS account.",
+    batchSize: "Classes 7th-12th",
+    modules: "M3",
   },
   {
     sno: "6",
-    model: "Annual IoTfy Partner School Model",
-    fee: "₹15,000–₹50,000 per year",
-    mechanism: "Annual institutional contribution through approved MITS financial mechanism.",
-    modules: "-"
+    model: "School-Level Competitions and Hackathon (At MITS Labs)",
+    fee: "₹400/- Registration per Student",
+    mechanism: "Individual have to deposited the Fee in the MITS-Account",
+    batchSize: "Classes 7th-12th",
+    modules: "M3",
   },
-  {
-    sno: "7",
-    model: "Hybrid Model",
-    fee: "Student + School + CSR support",
-    mechanism: "All institutional receipts routed through the designated MITS account.",
-    modules: "M1–M9"
-  },
-  {
-    sno: "8",
-    model: "Government School Social Outreach Model",
-    fee: "Nil / Free of Cost",
-    mechanism: "Supported through institutional outreach provisions, CSR, sponsorships, and grants.",
-    modules: "M1"
-  }
 ];
 
 export default function TrainingAndFinancialModels({ onNavigate }) {
-  const [activeTab, setActiveTab] = useState('training');
-
   const handleBookClick = () => {
     if (onNavigate) {
       onNavigate('book');
@@ -154,104 +121,138 @@ export default function TrainingAndFinancialModels({ onNavigate }) {
   };
 
   return (
-    <section className="text-gray-100 py-16 px-4 sm:px-6 lg:px-8 relative font-sans">
+    <section
+      className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative"
+      style={{ background: "#FFF2E5" }}
+    >
+      {/* Subtle dot grid */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(15,118,110,0.09) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          opacity: 0.5,
+        }}
+        aria-hidden="true"
+      />
+
       <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* Section Header */}
+
+        {/* ── Section Header ── */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold tracking-wider uppercase mb-4 mt-24">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase mb-5 mt-24" style={{ background: "rgba(15,118,110,0.08)", border: "1px solid rgba(15,118,110,0.22)", color: "#0F766E" }}>
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Framework & Offerings</span>
+            Framework & Offerings
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
-            Proposed <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Training & Financial Models</span>
-          </h2>
-          <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-gray-900 mb-4">
+            Training &amp;{" "}
+            <span className="text-accent">Financial Models</span>
+          </h1>
+          <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
             Comprehensive skill development modules and flexible financial structures designed for academic institutions and stakeholders.
           </p>
-
-          {/* Pill Switcher */}
-          <div className="flex justify-center mt-8">
-            <div className="bg-[#090d16]/80 p-1.5 rounded-full border border-cyan-500/20 inline-flex shadow-[0_0_25px_rgba(6,182,212,0.07)] backdrop-blur-md">
-              <button
-                onClick={() => setActiveTab('training')}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeTab === 'training'
-                    ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-bold shadow-[0_0_20px_rgba(6,182,212,0.4)]'
-                    : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                <BookOpen className="w-4 h-4" />
-                Training Models
-              </button>
-              <button
-                onClick={() => setActiveTab('financial')}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeTab === 'financial'
-                    ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-bold shadow-[0_0_20px_rgba(6,182,212,0.4)]'
-                    : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                <DollarSign className="w-4 h-4" />
-                Financial Models
-              </button>
-            </div>
-          </div>
         </div>
 
-        {/* Content Box Container */}
-        <div className="bg-[#090d16]/60 border border-cyan-500/20 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl">
-          
-          {/* TRAINING MODELS TAB */}
-          {activeTab === 'training' && (
+        {/* ── 1. Training Models Table ── */}
+        <div className="mb-12">
+          <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-accent" />
+            <span>Training Models</span>
+          </h3>
+          <div
+            className="rounded-2xl overflow-hidden"
+            style={{
+              background: "#FFFFFF",
+              border: "1px solid rgba(17,24,39,0.10)",
+              boxShadow: "0 8px 24px rgba(17,24,39,0.06)",
+            }}
+          >
+            <div className="px-5 py-3.5 text-xs text-gray-700 leading-relaxed bg-[#FFFAF5] border-b border-gray-200/80 flex items-start gap-2.5">
+              <FileText className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+              <div>
+                <span className="font-semibold text-accent">Instruction: </span>
+                <span className="hidden sm:inline">Download the common registration form, take a printout, fill it manually, scan the completed form, and upload the scanned copy while completing the Google Registration Form.</span>
+                <span className="sm:hidden inline">Download, print and fill the form. Scan the completed form and upload it in the Google Registration Form.</span>
+              </div>
+            </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
+              <table className="w-full text-left border-collapse" role="table" aria-label="Training modules">
                 <thead>
-                  <tr className="border-b border-cyan-500/20 bg-[#0d1322]/80 text-cyan-400 text-xs sm:text-sm uppercase tracking-wider">
-                    <th className="py-4 px-6 font-bold">Module</th>
-                    <th className="py-4 px-6 font-bold">Training Model</th>
-                    <th className="py-4 px-6 font-bold">Target Participants</th>
-                    <th className="py-4 px-6 font-bold">Duration</th>
-                    <th className="py-4 px-6 font-bold">Major Activities</th>
-                    <th className="py-4 px-6 font-bold">Expected Deliverables</th>
-                    <th className="py-4 px-6 font-bold text-right">Action</th>
+                  <tr style={{ borderBottom: "1px solid rgba(17,24,39,0.08)", background: "#FFFAF5" }}>
+                    {["Module", "Training Model", "Target Participants", "Duration", "Major Activities", "Expected Deliverables", "Hard Copy Form Download", ""].map((h) => (
+                      <th
+                        key={h}
+                        className="py-3.5 px-5 text-[11px] font-bold tracking-[0.08em] uppercase"
+                        style={{ color: "#0F766E" }}
+                      >
+                        {h}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-cyan-500/10 text-sm text-gray-300">
-                  {trainingModules.map((item, idx) => (
-                    <tr key={idx} className="hover:bg-cyan-950/20 transition-colors">
-                      <td className="py-4 px-6 font-bold text-cyan-400 whitespace-nowrap">
-                        <span className="inline-block px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/30 text-xs font-mono">
+                <tbody>
+                  {programModules.map((item, idx) => (
+                    <tr
+                      key={idx}
+                      className="transition-colors duration-150"
+                      style={{ borderBottom: "1px solid rgba(17,24,39,0.06)" }}
+                      onMouseEnter={(e) => e.currentTarget.style.background = "#FFFAF5"}
+                      onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
+                    >
+                      <td className="py-4 px-5 whitespace-nowrap">
+                        <span
+                          className="inline-flex items-center justify-center px-2.5 py-1 rounded-md text-xs font-bold font-mono"
+                          style={{ background: "rgba(15,118,110,0.08)", color: "#0F766E", border: "1px solid rgba(15,118,110,0.20)" }}
+                        >
                           {item.id}
                         </span>
                       </td>
-                      <td className="py-4 px-6 font-semibold text-white">{item.model}</td>
-                      <td className="py-4 px-6 text-gray-400">
+                      <td className="py-4 px-5 font-semibold text-sm text-gray-900">{item.model}</td>
+                      <td className="py-4 px-5 text-sm text-gray-600">
                         <div className="flex items-center gap-2">
-                          <Users className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                          <Users className="w-3.5 h-3.5 text-accent flex-shrink-0" />
                           <span>{item.participants}</span>
                         </div>
                       </td>
-                      <td className="py-4 px-6 whitespace-nowrap">
-                        <div className="flex items-center gap-1.5 text-cyan-300">
-                          <Clock className="w-3.5 h-3.5 shrink-0" />
+                      <td className="py-4 px-5 whitespace-nowrap">
+                        <div className="flex items-center gap-1.5 text-sm font-medium" style={{ color: "#0F766E" }}>
+                          <Clock className="w-3.5 h-3.5 flex-shrink-0" />
                           <span>{item.duration}</span>
                         </div>
                       </td>
-                      <td className="py-4 px-6 text-gray-400 leading-relaxed">{item.activities}</td>
-                      <td className="py-4 px-6 text-gray-300">
+                      <td className="py-4 px-5 text-sm text-gray-600 leading-relaxed max-w-[220px]">
+                        {item.activities}
+                      </td>
+                      <td className="py-4 px-5 text-sm text-gray-700">
                         <div className="flex items-start gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
                           <span>{item.deliverables}</span>
                         </div>
                       </td>
-                      <td className="py-4 px-6 text-right whitespace-nowrap">
+                      <td className="py-4 px-5 whitespace-nowrap">
+                        <a
+                          href={HARD_COPY_FORM_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                          style={{ background: "rgba(15,118,110,0.08)", color: "#0F766E", border: "1px solid rgba(15,118,110,0.22)" }}
+                          onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(15,118,110,0.15)"; }}
+                          onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(15,118,110,0.08)"; }}
+                        >
+                          <Download className="w-3.5 h-3.5" />
+                          Download Form
+                        </a>
+                      </td>
+                      <td className="py-4 px-5 whitespace-nowrap">
                         <button
                           onClick={handleBookClick}
-                          className="px-3 py-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 text-xs font-semibold transition-all inline-flex items-center gap-1.5 group/btn shadow-[0_0_10px_rgba(6,182,212,0.1)] hover:shadow-[0_0_15px_rgba(6,182,212,0.3)]"
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                          style={{ background: "rgba(15,118,110,0.08)", color: "#0F766E", border: "1px solid rgba(15,118,110,0.22)" }}
+                          onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(15,118,110,0.15)"; }}
+                          onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(15,118,110,0.08)"; }}
                         >
-                          <span>Book</span>
-                          <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" />
+                          Book
+                          <ChevronRight className="w-3.5 h-3.5" />
                         </button>
                       </td>
                     </tr>
@@ -259,55 +260,87 @@ export default function TrainingAndFinancialModels({ onNavigate }) {
                 </tbody>
               </table>
             </div>
-          )}
+          </div>
+        </div>
 
-          {/* FINANCIAL MODELS TAB */}
-          {activeTab === 'financial' && (
-            <div>
-              <div className="p-4 sm:p-6 bg-[#0d1322]/50 border-b border-cyan-500/20 text-xs sm:text-sm text-gray-400 leading-relaxed">
-                <span className="text-cyan-400 font-semibold">Note:</span> The applicable model may be selected based on the nature, duration, number of participants, use of laboratory facilities, and scope of the programme.
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="border-b border-cyan-500/20 bg-[#0d1322]/80 text-cyan-400 text-xs sm:text-sm uppercase tracking-wider">
-                      <th className="py-4 px-6 font-bold w-16">S.No.</th>
-                      <th className="py-4 px-6 font-bold">Financial Model</th>
-                      <th className="py-4 px-6 font-bold">Proposed Fee / Contribution</th>
-                      <th className="py-4 px-6 font-bold">Proposed Payment Mechanism</th>
-                      <th className="py-4 px-6 font-bold text-center">Modules Cover</th>
-                      <th className="py-4 px-6 font-bold text-right">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-cyan-500/10 text-sm text-gray-300">
-                    {financialModels.map((item, idx) => (
-                      <tr key={idx} className="hover:bg-cyan-950/20 transition-colors">
-                        <td className="py-4 px-6 font-bold text-cyan-400 font-mono">{item.sno}.</td>
-                        <td className="py-4 px-6 font-semibold text-white">{item.model}</td>
-                        <td className="py-4 px-6 font-bold text-cyan-300 whitespace-nowrap">{item.fee}</td>
-                        <td className="py-4 px-6 text-gray-400 leading-relaxed">{item.mechanism}</td>
-                        <td className="py-4 px-6 text-center whitespace-nowrap">
-                          <span className="inline-block px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 text-xs font-semibold font-mono">
-                            {item.modules}
-                          </span>
-                        </td>
-                        <td className="py-4 px-6 text-right whitespace-nowrap">
-                          <button
-                            onClick={handleBookClick}
-                            className="px-3 py-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 text-xs font-semibold transition-all inline-flex items-center gap-1.5 group/btn shadow-[0_0_10px_rgba(6,182,212,0.1)] hover:shadow-[0_0_15px_rgba(6,182,212,0.3)]"
-                          >
-                            <span>Book</span>
-                            <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5" />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+        {/* ── 2. Financial Models Table ── */}
+        <div>
+          <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <IndianRupee className="w-5 h-5 text-accent" />
+            <span>Financial Models</span>
+          </h3>
+          <div
+            className="rounded-2xl overflow-hidden"
+            style={{
+              background: "#FFFFFF",
+              border: "1px solid rgba(17,24,39,0.10)",
+              boxShadow: "0 8px 24px rgba(17,24,39,0.06)",
+            }}
+          >
+            <div className="px-5 py-3.5 text-xs text-gray-600 leading-relaxed" style={{ background: "#FFFAF5", borderBottom: "1px solid rgba(17,24,39,0.08)" }}>
+              <span className="font-semibold text-accent">Note:</span>{" "}
+              The applicable model may be selected based on the nature, duration, number of participants, use of laboratory facilities, and scope of the programme.
             </div>
-          )}
-
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse" role="table" aria-label="Financial models">
+                <thead>
+                  <tr style={{ borderBottom: "1px solid rgba(17,24,39,0.08)", background: "#FFFAF5" }}>
+                    {["S.No.", "Financial Model", "Proposed Fee", "Payment Mechanism", "Modules", ""].map((h) => (
+                      <th
+                        key={h}
+                        className="py-3.5 px-5 text-[11px] font-bold tracking-[0.08em] uppercase"
+                        style={{ color: "#0F766E" }}
+                      >
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {pricingModels.map((item, idx) => (
+                    <tr
+                      key={idx}
+                      className="transition-colors duration-150"
+                      style={{ borderBottom: "1px solid rgba(17,24,39,0.06)" }}
+                      onMouseEnter={(e) => e.currentTarget.style.background = "#FFFAF5"}
+                      onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
+                    >
+                      <td className="py-4 px-5 font-bold font-mono text-sm" style={{ color: "#0F766E" }}>
+                        {item.sno}.
+                      </td>
+                      <td className="py-4 px-5 font-semibold text-sm text-gray-900">{item.model}</td>
+                      <td className="py-4 px-5 font-bold text-sm whitespace-nowrap" style={{ color: "#0F766E" }}>
+                        {item.fee}
+                      </td>
+                      <td className="py-4 px-5 text-sm text-gray-600 leading-relaxed max-w-[240px]">
+                        {item.mechanism}
+                      </td>
+                      <td className="py-4 px-5 text-center whitespace-nowrap">
+                        <span
+                          className="inline-block px-3 py-1 rounded-full text-xs font-semibold font-mono"
+                          style={{ background: "rgba(15,118,110,0.08)", color: "#0F766E", border: "1px solid rgba(15,118,110,0.20)" }}
+                        >
+                          {item.modules}
+                        </span>
+                      </td>
+                      <td className="py-4 px-5 whitespace-nowrap">
+                        <button
+                          onClick={handleBookClick}
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                          style={{ background: "rgba(15,118,110,0.08)", color: "#0F766E", border: "1px solid rgba(15,118,110,0.22)" }}
+                          onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(15,118,110,0.15)"; }}
+                          onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(15,118,110,0.08)"; }}
+                        >
+                          Book
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
       </div>

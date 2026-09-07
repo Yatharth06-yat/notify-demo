@@ -3,11 +3,8 @@ import { Megaphone, X } from "lucide-react";
 import { publicApi } from "../lib/api";
 
 /**
- * Public-facing notices posted from the admin portal (Announcements).
+ * Public-facing notices posted from the admin portal.
  * Renders nothing when there is nothing live to show.
- *
- * The endpoint already applies "published" and the admin's "visible till"
- * date, so an unpublished or expired notice never reaches the browser.
  */
 export default function AnnouncementsBanner() {
   const [items, setItems] = useState([]);
@@ -17,36 +14,33 @@ export default function AnnouncementsBanner() {
     let cancelled = false;
     publicApi
       .announcements()
-      .then((data) => {
-        if (!cancelled) setItems(data);
-      })
-      .catch((error) => console.warn("Announcements unavailable", error));
-
-    return () => {
-      cancelled = true;
-    };
+      .then((data) => { if (!cancelled) setItems(data); })
+      .catch((err) => console.warn("Announcements unavailable", err));
+    return () => { cancelled = true; };
   }, []);
 
   const visible = items.filter((a) => !dismissed.includes(a.id));
   if (visible.length === 0) return null;
 
   return (
-    <div className="flex flex-col gap-3 mb-8">
+    <div className="flex flex-col gap-3 mb-7" role="region" aria-label="Announcements">
       {visible.map((a) => (
         <div
           key={a.id}
-          className="border border-cyan-500/25 bg-cyan-500/[0.04] rounded-2xl p-4 flex items-start gap-3"
+          className="flex items-start gap-3 p-4 rounded-2xl"
+          style={{
+            background: "rgba(15,118,110,0.06)",
+            border: "1px solid rgba(15,118,110,0.22)",
+          }}
         >
-          <Megaphone className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
+          <Megaphone className="w-4 h-4 text-accent mt-0.5 shrink-0" aria-hidden="true" />
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-bold text-white">{a.title}</p>
-            <p className="text-xs text-slate-400 mt-1 leading-relaxed whitespace-pre-wrap">
-              {a.body}
-            </p>
+            <p className="text-sm font-semibold text-gray-900">{a.title}</p>
+            <p className="text-xs text-gray-600 mt-1 leading-relaxed whitespace-pre-wrap">{a.body}</p>
           </div>
           <button
             onClick={() => setDismissed((d) => [...d, a.id])}
-            className="text-slate-500 hover:text-white transition-colors shrink-0"
+            className="text-gray-400 hover:text-gray-700 transition-colors shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
             aria-label="Dismiss announcement"
           >
             <X className="w-4 h-4" />

@@ -1,11 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
-import NeuralNetSVG from "./shared/NeuralNetSVG";
+import { ArrowRight, ChevronDown, GraduationCap, Award, Users } from "lucide-react";
 
 const jetson = "https://res.cloudinary.com/dwumernfk/image/upload/v1785952346/jetson_gwza9h.png";
 
-const WORDS = ["Embedded Systems", "IoT Kits", "AIoT", "Computer Vision", "Edge Intelligence"];
+const WORDS = ["IoT", "AI", "Robotics", "Embedded Systems", "Innovation"];
 
 function TypewriterText() {
   const [idx, setIdx] = useState(0);
@@ -18,7 +17,7 @@ function TypewriterText() {
     if (!deleting && displayed.length < word.length) {
       timeout = setTimeout(() => setDisplayed(word.slice(0, displayed.length + 1)), 80);
     } else if (!deleting && displayed.length === word.length) {
-      timeout = setTimeout(() => setDeleting(true), 2000);
+      timeout = setTimeout(() => setDeleting(true), 2200);
     } else if (deleting && displayed.length > 0) {
       timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 45);
     } else if (deleting && displayed.length === 0) {
@@ -29,26 +28,41 @@ function TypewriterText() {
   }, [displayed, deleting, idx]);
 
   return (
-    <span className="text-gradient">
+    <span className="text-accent">
       {displayed}
-      <span className="typing-cursor" />
+      <span className="typing-cursor" aria-hidden="true" />
     </span>
   );
 }
+
+const stagger = {
+  container: {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.10 } },
+  },
+  item: {
+    hidden: { opacity: 0, y: 28 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  },
+};
+
+const TRUST_BADGES = [
+  { icon: GraduationCap, text: "MITS Deemed University" },
+  { icon: Award, text: "NEP 2020 Aligned" },
+  { icon: Users, text: "50+ Schools Reached" },
+];
 
 export default function Hero({ onNavigate }) {
   const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef(null);
 
-  // Mouse coordinates for gentle interactive tilt & pan effect
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Subtle rotation and pan values based on cursor position
-  const rotateX = useTransform(mouseY, [-200, 200], [8, -8]);
-  const rotateY = useTransform(mouseX, [-200, 200], [-8, 8]);
-  const translateX = useTransform(mouseX, [-200, 200], [-12, 12]);
-  const translateY = useTransform(mouseY, [-200, 200], [-12, 12]);
+  const rotateX = useTransform(mouseY, [-200, 200], [7, -7]);
+  const rotateY = useTransform(mouseX, [-200, 200], [-7, 7]);
+  const translateX = useTransform(mouseX, [-200, 200], [-10, 10]);
+  const translateY = useTransform(mouseY, [-200, 200], [-10, 10]);
 
   const handleMouseMove = (e) => {
     if (!containerRef.current) return;
@@ -59,18 +73,34 @@ export default function Hero({ onNavigate }) {
     mouseY.set(e.clientY - centerY);
   };
 
-  const stagger = {
-    container: { hidden: {}, show: { transition: { staggerChildren: 0.12 } } },
-    item: {
-      hidden: { opacity: 0, y: 30 },
-      show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
-    },
-  };
-
   return (
-    <section id="home" className="relative min-h-screen w-full flex flex-col items-center justify-center pt-28 pb-16 overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center pt-28 pb-16 overflow-hidden"
+      style={{ backgroundColor: "#F5EFE6" }}
+      aria-label="Hero — MITS School Connect Programme"
+    >
+      {/* Subtle dot grid */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(15,118,110,0.09) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          opacity: 0.6,
+        }}
+        aria-hidden="true"
+      />
 
-      <div className="mx-auto max-w-7xl w-full px-6 grid grid-cols-1 lg:grid-cols-[52%_48%] gap-16 items-center relative z-10">
+      {/* Warm radial glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse 70% 60% at 60% 40%, rgba(15,118,110,0.05) 0%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="mx-auto max-w-7xl w-full px-5 sm:px-6 grid grid-cols-1 lg:grid-cols-[54%_46%] gap-12 lg:gap-16 items-center relative z-10">
 
         {/* ── LEFT COLUMN ── */}
         <motion.div
@@ -79,63 +109,116 @@ export default function Hero({ onNavigate }) {
           animate="show"
           className="flex flex-col items-start"
         >
-          {/* MSCP Highlight Badge */}
-          <motion.div variants={stagger.item} className="mb-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00bfff]/10 border border-[#00bfff]/30 text-[#00bfff] text-xs font-mono font-bold tracking-wide shadow-[0_0_15px_rgba(0,191,255,0.2)]">
-              <Sparkles size={13} className="animate-pulse" />
-              <span>Featuring MSCP - MITS school Connect Program</span>
-            </div>
+          {/* Eyebrow label */}
+          <motion.div variants={stagger.item} className="mb-5">
+            <span className="eyebrow-badge">
+              <span className="glow-dot" aria-hidden="true" />
+              MITS School Connect Programme
+            </span>
           </motion.div>
 
-          {/* Heading */}
+          {/* Main heading */}
           <motion.h1
             variants={stagger.item}
-            className="font-display font-extrabold text-3xl sm:text-4xl lg:text-[2.8rem] xl:text-[3.2rem] leading-[1.06] tracking-tight text-white mb-4"
+            className="font-bold text-[2.4rem] sm:text-[2.8rem] lg:text-[3.2rem] leading-[1.07] tracking-[-0.025em] text-gray-900 mb-5"
           >
-            <br className="hidden lg:block" />
-            Future of{" "}
-            <TypewriterText />
+            IoTify Lab
+            <br />
+            <span className="text-gray-600 font-semibold text-[1.6rem] sm:text-[1.9rem] lg:text-[2.1rem] block mt-1">
+              From Knowledge to Innovation
+            </span>
           </motion.h1>
 
-          {/* Subhead */}
+          {/* Typewriter sub-line */}
           <motion.p
             variants={stagger.item}
-            className="text-muted text-sm sm:text-base leading-relaxed max-w-[520px] mb-10 text-justify"
+            className="text-lg sm:text-xl font-medium text-gray-700 mb-3"
           >
-           IoTify Lab is an Innovation, Outreach, and Hands-on Technology Learning Initiative of MITS–Deemed to be University, Gwalior, powered by the Centre for Internet of Things (CIoT). The initiative aims to connect school students with emerging technologies through experiential learning, practical exposure, innovation, and hands-on IoT activities, providing students with opportunities to learn, explore, and apply technology through real-world experiences.
+            Hands-on learning in{" "}<TypewriterText />
+          </motion.p>
+
+          {/* Description */}
+          <motion.p
+            variants={stagger.item}
+            className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-[520px] mb-10"
+          >
+            An innovation, outreach and hands-on technology learning initiative powered by the{" "}
+            <span className="font-semibold text-gray-800">Centre for Internet of Things (CIoT)</span>,
+            MITS–Deemed University, Gwalior. Connecting school students with emerging technologies
+            through experiential learning and real-world projects.
           </motion.p>
 
           {/* CTA buttons */}
-          <motion.div variants={stagger.item} className="flex flex-wrap items-center gap-4 mb-14">
+          <motion.div
+            variants={stagger.item}
+            className="flex flex-wrap items-center gap-3 mb-10"
+          >
             <motion.button
-              whileHover={{ scale: 1.04, y: -2 }}
+              whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => onNavigate("Iot")}
-              className="btn-primary text-sm"
+              onClick={() => onNavigate("projects")}
+              className="flex items-center gap-2 px-6 py-3 rounded-xl text-white text-sm font-semibold transition-all duration-250 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              style={{
+                background: "#0F766E",
+                border: "1px solid #0D6860",
+                boxShadow: "0 2px 10px rgba(15,118,110,0.25)",
+              }}
             >
-              Explore IoT
+              Explore Programs
               <ArrowRight size={15} />
             </motion.button>
+
             <motion.button
-              whileHover={{ scale: 1.04, y: -2 }}
+              whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => onNavigate("iotkit")}
-              className="btn-glass text-sm"
+              onClick={() => onNavigate("book")}
+              className="flex items-center gap-2 px-6 py-3 rounded-xl text-gray-800 text-sm font-semibold transition-all duration-250 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              style={{
+                background: "rgba(255,255,255,0.85)",
+                border: "1px solid rgba(17,24,39,0.14)",
+                backdropFilter: "blur(4px)",
+              }}
             >
-              View Kit
+              Register Now
             </motion.button>
+
             <motion.button
-              whileHover={{ scale: 1.04, y: -2 }}
+              whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => onNavigate("about")}
-              className="btn-outline-cyan text-sm"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-250 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              style={{
+                background: "transparent",
+                border: "1px solid rgba(15,118,110,0.30)",
+                color: "#0F766E",
+              }}
             >
               About IoTify Lab
             </motion.button>
           </motion.div>
+
+          {/* Trust badges */}
+          <motion.div
+            variants={stagger.item}
+            className="flex flex-wrap gap-3"
+          >
+            {TRUST_BADGES.map(({ icon: Icon, text }) => (
+              <div
+                key={text}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-medium text-gray-600"
+                style={{
+                  background: "rgba(255,255,255,0.7)",
+                  border: "1px solid rgba(17,24,39,0.09)",
+                }}
+              >
+                <Icon size={12} className="text-accent" />
+                <span>{text}</span>
+              </div>
+            ))}
+          </motion.div>
         </motion.div>
 
-        {/* ── RIGHT COLUMN ── */}
+        {/* ── RIGHT COLUMN — interactive product visual ── */}
         <motion.div
           ref={containerRef}
           onMouseMove={handleMouseMove}
@@ -145,45 +228,52 @@ export default function Hero({ onNavigate }) {
             mouseX.set(0);
             mouseY.set(0);
           }}
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 36 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-          className="relative flex items-center justify-center cursor-pointer"
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
+          className="relative flex items-center justify-center"
         >
-          {/* Teal radial glow behind board */}
+          {/* Soft glow behind board */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
-              background:
-                "radial-gradient(ellipse at 55% 55%, rgba(0,180,220,0.22) 0%, rgba(0,100,180,0.1) 45%, transparent 70%)",
-              filter: "blur(20px)",
+              background: "radial-gradient(ellipse at 55% 55%, rgba(15,118,110,0.10) 0%, rgba(3,105,161,0.04) 45%, transparent 70%)",
+              filter: "blur(30px)",
             }}
+            aria-hidden="true"
           />
 
-          {/* Floating particles */}
+          {/* Floating accent dots */}
           {[
-            { size: "w-2 h-2", pos: "top-[8%] left-[10%]", delay: "0s" },
-            { size: "w-1.5 h-1.5", pos: "bottom-[15%] right-[8%]", delay: "1.8s" },
-            { size: "w-1 h-1", pos: "top-[55%] right-[5%]", delay: "3.2s" },
-            { size: "w-2.5 h-2.5", pos: "bottom-[30%] left-[5%]", delay: "0.8s" },
+            { size: "7px", top: "8%", left: "10%", delay: "0s" },
+            { size: "5px", bottom: "15%", right: "8%", delay: "1.8s" },
+            { size: "4px", top: "55%", right: "5%", delay: "3.2s" },
+            { size: "8px", bottom: "30%", left: "5%", delay: "0.8s" },
           ].map((dot, i) => (
             <span
               key={i}
-              className={`absolute ${dot.size} ${dot.pos} rounded-full bg-cyan-primary animate-float`}
+              className="absolute rounded-full bg-accent/35 animate-float"
               style={{
-                boxShadow: "0 0 10px rgba(0,207,255,0.8)",
+                width: dot.size,
+                height: dot.size,
+                top: dot.top,
+                bottom: dot.bottom,
+                left: dot.left,
+                right: dot.right,
                 animationDelay: dot.delay,
+                boxShadow: "0 0 8px rgba(15,118,110,0.20)",
               }}
+              aria-hidden="true"
             />
           ))}
 
-          {/* Interactive Jetson image with cursor-follow tilt and scale */}
+          {/* Interactive product image */}
           <motion.div
-            className="relative w-full max-w-[480px]"
+            className="relative w-full max-w-[460px]"
             animate={
               isHovered
-                ? { y: 0, scale: 1.12 }
-                : { y: [0, -16, 0], scale: 1 }
+                ? { y: 0, scale: 1.08 }
+                : { y: [0, -14, 0], scale: 1 }
             }
             transition={
               isHovered
@@ -201,29 +291,50 @@ export default function Hero({ onNavigate }) {
           >
             <motion.img
               src={jetson}
-              alt="NVIDIA Jetson embedded AI platform"
-              className="w-full h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,207,255,0.3)]"
+              alt="NVIDIA Jetson — AI and IoT embedded platform used in IoTify Lab"
+              className="w-full h-auto object-contain drop-shadow-xl"
               draggable="false"
               style={{
-                mixBlendMode: "screen",
                 WebkitTouchCallout: "none",
                 WebkitUserSelect: "none",
                 userSelect: "none",
                 pointerEvents: "none",
               }}
             />
-            {/* Glow beneath */}
+
+            {/* Shadow beneath board */}
             <motion.div
-              className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[55%] h-10 bg-cyan-primary/25 blur-3xl rounded-full"
-              animate={{ scale: isHovered ? 1.2 : 1, opacity: isHovered ? 0.8 : 0.5 }}
+              className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[50%] h-8 rounded-full"
+              style={{ background: "rgba(15,118,110,0.12)", filter: "blur(16px)" }}
+              animate={{ scale: isHovered ? 1.2 : 1, opacity: isHovered ? 0.7 : 0.4 }}
+              aria-hidden="true"
             />
           </motion.div>
 
-
-          {/* Neural net overlay (subtle, bottom) */}
-          <div className="absolute bottom-0 left-0 right-0 h-48 opacity-20 pointer-events-none">
-            <NeuralNetSVG className="w-full h-full" />
-          </div>
+          {/* Floating info card */}
+          <motion.div
+            initial={{ opacity: 0, x: 20, y: 10 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ delay: 1.1, duration: 0.6 }}
+            className="absolute top-4 right-0 sm:-right-4"
+            style={{
+              background: "rgba(255,255,255,0.92)",
+              border: "1px solid rgba(17,24,39,0.10)",
+              borderRadius: "14px",
+              boxShadow: "0 4px 16px rgba(17,24,39,0.08)",
+              backdropFilter: "blur(8px)",
+              padding: "10px 14px",
+              maxWidth: "180px",
+            }}
+          >
+            <div className="flex items-center gap-2 mb-1">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" aria-hidden="true" />
+              <span className="text-[10px] font-semibold text-gray-700 uppercase tracking-wider">CIoT Initiative</span>
+            </div>
+            <p className="text-[11px] text-gray-600 leading-tight">
+              Hands-on IoT kits developed at MITS, Gwalior
+            </p>
+          </motion.div>
         </motion.div>
       </div>
 
@@ -231,15 +342,18 @@ export default function Hero({ onNavigate }) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted"
+        transition={{ delay: 2.2, duration: 0.8 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
+        aria-hidden="true"
       >
-        <span className="text-[10px] font-display tracking-[0.3em] uppercase">Scroll to explore</span>
+        <span className="text-[10px] font-medium tracking-[0.25em] uppercase text-gray-400">
+          Scroll to explore
+        </span>
         <motion.div
-          animate={{ y: [0, 6, 0] }}
+          animate={{ y: [0, 5, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
         >
-          <ChevronDown size={16} className="text-cyan-primary" />
+          <ChevronDown size={15} className="text-gray-400" />
         </motion.div>
       </motion.div>
     </section>

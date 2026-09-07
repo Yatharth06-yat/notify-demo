@@ -530,16 +530,16 @@ export function KitModal({ selectedKit, closeModal }) {
 
   return createPortal(
     <div
-      className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto"
+      className="fixed inset-0 bg-white/90 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto"
       onClick={closeModal}
     >
       <div
-        className="relative w-full max-w-4xl max-h-[90vh] border border-sky-500/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col my-auto mt-16 bg-slate-950"
+        className="relative w-full max-w-4xl max-h-[90vh] border border-accent/20 rounded-2xl shadow-2xl overflow-hidden flex flex-col my-auto mt-16 bg-cream-primary"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={closeModal}
-          className="absolute top-3 right-3 z-20 p-1.5 rounded-full border border-white/10 text-slate-400 hover:text-white transition-all bg-slate-950/85"
+          className="absolute top-3 right-3 z-20 p-1.5 rounded-full border border-gray-200 text-gray-600 hover:text-gray-900 transition-all bg-cream-primary/85"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -552,7 +552,7 @@ export function KitModal({ selectedKit, closeModal }) {
               {selectedKit.thumbnails.map((img, idx) => (
                 <button
                   key={idx}
-                  className={`relative rounded-lg overflow-hidden border transition-all ${activeThumb === idx ? "border-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.3)]" : "border-white/10 opacity-60 hover:opacity-100"
+                  className={`relative rounded-lg overflow-hidden border transition-all ${activeThumb === idx ? "border-accent shadow-[0_0_12px_rgba(15,118,110,0.3)]" : "border-gray-200 opacity-60 hover:opacity-100"
                     }`}
                   onClick={() => handleThumbSelect(idx)}
                 >
@@ -562,7 +562,7 @@ export function KitModal({ selectedKit, closeModal }) {
             </div>
 
             <div
-              className="md:col-span-10 relative overflow-hidden cursor-crosshair rounded-xl border border-white/10 h-56 sm:h-72 order-1 md:order-2 flex items-center justify-center bg-white"
+              className="md:col-span-10 relative overflow-hidden cursor-crosshair rounded-xl border border-gray-200 h-56 sm:h-72 order-1 md:order-2 flex items-center justify-center bg-white"
               ref={viewportRef}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
@@ -579,7 +579,7 @@ export function KitModal({ selectedKit, closeModal }) {
 
               {cursorPos.visible && (
                 <div
-                  className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-sky-400 bg-sky-500/20 flex items-center justify-center text-sky-500 shadow-md"
+                  className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-2 border-accent bg-accent/20 flex items-center justify-center text-accent shadow-md"
                   style={{
                     left: `${cursorPos.x}px`,
                     top: `${cursorPos.y}px`
@@ -596,29 +596,29 @@ export function KitModal({ selectedKit, closeModal }) {
 
           <div className="space-y-4">
             <div>
-              <span className="text-[10px] font-bold tracking-widest uppercase text-sky-400 px-2.5 py-0.5 rounded-full border border-sky-500/30">
+              <span className="text-[10px] font-bold tracking-widest uppercase text-accent px-2.5 py-0.5 rounded-full border border-accent/30">
                 {selectedKit.tier}
               </span>
               <div className="flex flex-wrap items-baseline justify-between gap-3 mt-2">
-                <h1 className="text-xl sm:text-2xl font-extrabold text-white">{selectedKit.title}</h1>
+                <h1 className="text-xl sm:text-2xl font-extrabold text-gray-900">{selectedKit.title}</h1>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5">
               {selectedKit.tags.map((tag, i) => (
-                <span key={i} className="text-[11px] px-2.5 py-0.5 rounded-md border border-white/10 text-slate-300 bg-white/5">
+                <span key={i} className="text-[11px] px-2.5 py-0.5 rounded-md border border-gray-200 text-gray-700 bg-gray-100">
                   {tag}
                 </span>
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-1.5 border-b border-white/10 pb-2">
+            <div className="flex flex-wrap gap-1.5 border-b border-gray-200 pb-2">
               {["specifications", "included", "usecases", "compare"].map((tab) => (
                 <button
                   key={tab}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-bold tracking-wide transition-all ${activeTab === tab
-                      ? "bg-sky-500 text-slate-950 shadow-[0_0_12px_rgba(56,189,248,0.4)]"
-                      : "text-slate-400 hover:text-white hover:bg-white/5"
+                      ? "bg-accent text-white shadow-[0_0_12px_rgba(15,118,110,0.4)]"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                     }`}
                   onClick={() => setActiveTab(tab)}
                 >
@@ -633,12 +633,12 @@ export function KitModal({ selectedKit, closeModal }) {
             {activeTab === "specifications" && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {Object.entries(selectedKit.specs).map(([key, list], idx) => (
-                  <div key={idx} className="p-3 rounded-xl border border-white/10 bg-slate-900/30">
-                    <h3 className="text-xs font-bold text-sky-400 capitalize mb-2 tracking-wider">{key}</h3>
-                    <ul className="space-y-1 text-xs text-slate-300">
+                  <div key={idx} className="p-3 rounded-xl border border-gray-200 bg-white/30">
+                    <h3 className="text-xs font-bold text-accent capitalize mb-2 tracking-wider">{key}</h3>
+                    <ul className="space-y-1 text-xs text-gray-700">
                       {list.map((item, i) => (
                         <li key={i} className="flex items-center gap-1.5">
-                          <span className="text-sky-400 font-bold">›</span> {item}
+                          <span className="text-accent font-bold">›</span> {item}
                         </li>
                       ))}
                     </ul>
@@ -650,13 +650,13 @@ export function KitModal({ selectedKit, closeModal }) {
             {activeTab === "included" && (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {selectedKit.included?.map((item, i) => (
-                  <div key={i} className="p-3 rounded-xl border border-white/10 bg-slate-900/30 flex items-start gap-3">
-                    <div className="px-2.5 py-1 rounded-md border border-sky-500/30 text-sky-400 font-mono font-bold text-[11px]">
+                  <div key={i} className="p-3 rounded-xl border border-gray-200 bg-white/30 flex items-start gap-3">
+                    <div className="px-2.5 py-1 rounded-md border border-accent/30 text-accent font-mono font-bold text-[11px]">
                       {item.code}
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold text-white">{item.title}</h4>
-                      <p className="text-[11px] text-slate-400 mt-0.5">{item.desc}</p>
+                      <h4 className="text-xs font-bold text-gray-900">{item.title}</h4>
+                      <p className="text-[11px] text-gray-600 mt-0.5">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -666,19 +666,19 @@ export function KitModal({ selectedKit, closeModal }) {
             {activeTab === "usecases" && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {selectedKit.useCases?.map((uc, i) => (
-                  <div key={i} className="p-3 rounded-xl border border-white/10 bg-slate-900/30">
-                    <span className="text-[9px] font-bold text-sky-400 tracking-wider">USE CASE {uc.id}</span>
-                    <h4 className="text-xs font-bold text-white mt-0.5 mb-1">{uc.title}</h4>
-                    <p className="text-[11px] text-slate-400 leading-relaxed">{uc.desc}</p>
+                  <div key={i} className="p-3 rounded-xl border border-gray-200 bg-white/30">
+                    <span className="text-[9px] font-bold text-accent tracking-wider">USE CASE {uc.id}</span>
+                    <h4 className="text-xs font-bold text-gray-900 mt-0.5 mb-1">{uc.title}</h4>
+                    <p className="text-[11px] text-gray-600 leading-relaxed">{uc.desc}</p>
                   </div>
                 ))}
               </div>
             )}
 
             {activeTab === "compare" && (
-              <div className="overflow-x-auto rounded-xl border border-white/10 bg-slate-950/40">
-                <table className="w-full text-left text-xs text-slate-300 border-collapse">
-                  <thead className="text-slate-400 uppercase tracking-wider border-b border-white/10">
+              <div className="overflow-x-auto rounded-xl border border-gray-200 bg-cream-primary/40">
+                <table className="w-full text-left text-xs text-gray-700 border-collapse">
+                  <thead className="text-gray-600 uppercase tracking-wider border-b border-gray-200">
                     <tr>
                       <th className="p-3">Feature</th>
                       {KITS.map((kit, idx) => (
@@ -691,18 +691,18 @@ export function KitModal({ selectedKit, closeModal }) {
                   <tbody className="divide-y divide-white/10">
                     {COMPARISON_DATA.map((section, sIdx) => (
                       <React.Fragment key={sIdx}>
-                        <tr className="text-sky-400 font-bold uppercase text-[9px] tracking-widest bg-slate-900/50">
+                        <tr className="text-accent font-bold uppercase text-[9px] tracking-widest bg-gray-1000">
                           <td colSpan={KITS.length + 1} className="p-2 px-3">{section.category}</td>
                         </tr>
                         {section.features.map((feature, fIdx) => (
-                          <tr key={fIdx} className="hover:bg-white/5 transition-colors">
-                            <td className="p-3 font-medium text-white border-r border-white/5">{feature.name}</td>
+                          <tr key={fIdx} className="hover:bg-gray-100 transition-colors">
+                            <td className="p-3 font-medium text-gray-900 border-r border-gray-200">{feature.name}</td>
                             {feature.checks.map((hasFeature, kitIdx) => (
                               <td key={kitIdx} className="p-3 text-center">
                                 {hasFeature ? (
-                                  <span className="text-sky-400 font-bold text-lg">✓</span>
+                                  <span className="text-accent font-bold text-lg">✓</span>
                                 ) : (
-                                  <span className="text-slate-700">—</span>
+                                  <span className="text-gray-400">—</span>
                                 )}
                               </td>
                             ))}
@@ -736,25 +736,25 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen text-slate-100 font-sans selection:bg-sky-500 selection:text-slate-950 relative overflow-x-hidden">
+    <div className="min-h-screen text-gray-900 font-sans selection:bg-accent selection:text-white relative overflow-x-hidden">
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 text-center relative z-10 mt-24">
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight">
           IoT & Robotics Development Kits <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-sky-300 to-blue-500">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">
             for Innovation
           </span>
         </h1>
-        <p className="max-w-2xl mx-auto text-sm sm:text-base text-slate-400 mb-8 leading-relaxed">
+        <p className="max-w-2xl mx-auto text-sm sm:text-base text-gray-600 mb-8 leading-relaxed">
           Beginner legacy boards to advanced AI and multi-controller stations. Designed for classrooms and labs.
         </p>
 
-        <div className="inline-flex flex-wrap justify-center gap-2 p-1.5 rounded-full border border-white/10">
+        <div className="inline-flex flex-wrap justify-center gap-2 p-1.5 rounded-full border border-gray-200">
           {["All Kits"].map((filter) => (
             <button
               key={filter}
               className={`px-5 py-2 rounded-full text-xs font-semibold tracking-wider transition-all duration-300 ${activeFilter === filter
-                  ? "bg-gradient-to-r from-sky-400 to-blue-500 text-slate-950 font-bold shadow-[0_0_15px_rgba(56,189,248,0.4)]"
-                  : "text-slate-400 hover:text-white hover:bg-white/5"
+                  ? "bg-gradient-to-r from-accent to-accent-light text-white font-bold shadow-[0_0_15px_rgba(15,118,110,0.4)]"
+                  : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 }`}
               onClick={() => setActiveFilter(filter)}
             >
@@ -770,9 +770,9 @@ export default function App() {
             <div
               key={kit.id || index}
               onClick={() => openModal(kit)}
-              className="group relative rounded-2xl border border-white/10 hover:border-sky-500/40 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 cursor-pointer bg-slate-900/40 shadow-xl"
+              className="group relative rounded-2xl border border-gray-200 hover:border-accent/40 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 cursor-pointer bg-white/40 shadow-xl"
             >
-              <div className="relative w-full h-40 bg-slate-950/60 overflow-hidden border-b border-white/10 flex items-center justify-center">
+              <div className="relative w-full h-40 bg-cream-primary/60 overflow-hidden border-b border-gray-200 flex items-center justify-center">
                 <img
                   src={kit.thumbnails[2]}
                   alt={kit.title}
@@ -780,7 +780,7 @@ export default function App() {
                   loading="lazy"
                 />
                 <div className="absolute top-3 left-3">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-sky-400 px-2.5 py-1 rounded-full bg-slate-950/80 border border-sky-500/30 backdrop-blur-md">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-accent px-2.5 py-1 rounded-full bg-cream-primary/80 border border-accent/30 backdrop-blur-md">
                     {kit.tier}
                   </span>
                 </div>
@@ -788,16 +788,16 @@ export default function App() {
 
               <div className="p-4 flex flex-col flex-grow justify-between">
                 <div>
-                  <h2 className="text-base font-bold text-white mb-1.5 group-hover:text-sky-300 transition-colors">
+                  <h2 className="text-base font-bold text-gray-900 mb-1.5 group-hover:text-accent-light transition-colors">
                     {kit.title}
                   </h2>
-                  <p className="text-slate-400 text-xs mb-3 leading-relaxed line-clamp-2">
+                  <p className="text-gray-600 text-xs mb-3 leading-relaxed line-clamp-2">
                     {kit.desc}
                   </p>
 
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {kit.tags.map((tag, idx) => (
-                      <span key={idx} className="text-[10px] px-2 py-0.5 rounded text-slate-300 border border-white/10 bg-white/5">
+                      <span key={idx} className="text-[10px] px-2 py-0.5 rounded text-gray-700 border border-gray-200 bg-gray-100">
                         {tag}
                       </span>
                     ))}
@@ -805,15 +805,15 @@ export default function App() {
                 </div>
 
                 <div>
-                  <div className="grid grid-cols-2 gap-2 pt-3 border-t border-white/10">
+                  <div className="grid grid-cols-2 gap-2 pt-3 border-t border-gray-200">
                     <button
-                      className="py-1.5 px-2 rounded-xl border border-white/10 text-slate-200 text-xs font-semibold transition-all hover:border-sky-500/30 hover:bg-white/5"
+                      className="py-1.5 px-2 rounded-xl border border-gray-200 text-slate-200 text-xs font-semibold transition-all hover:border-accent/30 hover:bg-gray-100"
                       onClick={(e) => { e.stopPropagation(); openModal(kit); }}
                     >
                       Specs
                     </button>
                     <button
-                      className="py-1.5 px-2 rounded-xl bg-gradient-to-r from-sky-400 to-blue-500 hover:from-sky-300 hover:to-blue-400 text-slate-950 text-xs font-bold shadow-[0_0_15px_rgba(56,189,248,0.3)] transition-all"
+                      className="py-1.5 px-2 rounded-xl bg-gradient-to-r from-accent to-accent-light hover:from-sky-300 hover:to-blue-400 text-white text-xs font-bold shadow-[0_0_15px_rgba(15,118,110,0.3)] transition-all"
                       onClick={(e) => { e.stopPropagation(); openModal(kit); }}
                     >
                       View

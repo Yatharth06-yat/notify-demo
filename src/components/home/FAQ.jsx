@@ -45,14 +45,14 @@ export default function FAQ() {
   };
 
   return (
-    <section className="relative px-6 py-20 lg:py-28 bg-black text-white overflow-hidden">
+    <section className="relative px-6 py-20 lg:py-28 bg-cream-primary text-gray-900 overflow-hidden">
       {/* Background Dot Grid */}
-      <div className="absolute inset-0 circuit-bg opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-lines opacity-[0.4] opacity-30 pointer-events-none" />
 
       {/* Radial Glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-32 -left-32 w-[550px] h-[550px] bg-[radial-gradient(circle,_rgba(0,207,255,0.1)_0%,_transparent_70%)] blur-[130px]"
+        className="pointer-events-none absolute -bottom-32 -left-32 w-[550px] h-[550px] bg-[radial-gradient(circle,_rgba(15,118,110,0.1)_0%,_transparent_70%)] blur-[130px]"
       />
 
       <div className="mx-auto max-w-6xl relative z-10">
@@ -69,9 +69,9 @@ export default function FAQ() {
             <span className="glow-dot" />
             FREQUENTLY ASKED QUESTIONS
           </span>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-white mb-6">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-gray-900 mb-6">
             Clear answers for schools,{" "}
-            <span className="text-cyan-primary">teachers & institutions.</span>
+            <span className="text-accent">teachers & institutions.</span>
           </h2>
           <p className="text-muted text-base sm:text-lg leading-relaxed">
             Everything you need to know about IoTify Lab initiatives, in-house kits, workshops, and school outreach programs.
@@ -89,9 +89,9 @@ export default function FAQ() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (idx % 2) * 0.1 }}
-                className={`glass-card rounded-2xl border transition-all duration-300 overflow-hidden bg-white/[0.03] ${
+                className={`bg-white border-gray-200 shadow-sm rounded-2xl border transition-all duration-300 overflow-hidden bg-white/[0.03] ${
                   isOpen
-                    ? "border-cyan-primary/50 shadow-[0_10px_30px_rgba(0,207,255,0.15)]"
+                    ? "border-accent/50 shadow-[0_10px_30px_rgba(15,118,110,0.15)]"
                     : "border-white/[0.09] hover:border-white/20"
                 }`}
               >
@@ -101,15 +101,15 @@ export default function FAQ() {
                   className="w-full p-6 text-left flex items-start justify-between gap-4 cursor-pointer focus:outline-none"
                 >
                   <div className="flex items-start gap-3">
-                    <HelpCircle size={18} className={`mt-0.5 flex-shrink-0 transition-colors ${isOpen ? "text-cyan-primary" : "text-muted"}`} />
-                    <span className="font-display font-semibold text-base sm:text-lg text-white leading-snug">
+                    <HelpCircle size={18} className={`mt-0.5 flex-shrink-0 transition-colors ${isOpen ? "text-accent" : "text-muted"}`} />
+                    <span className="font-display font-semibold text-base sm:text-lg text-gray-900 leading-snug">
                       {faq.q}
                     </span>
                   </div>
                   <ChevronDown
                     size={20}
                     className={`flex-shrink-0 text-muted transition-transform duration-300 ${
-                      isOpen ? "rotate-180 text-cyan-primary" : ""
+                      isOpen ? "rotate-180 text-accent" : ""
                     }`}
                   />
                 </button>

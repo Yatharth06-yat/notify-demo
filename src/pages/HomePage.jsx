@@ -10,7 +10,7 @@ import CTASection from "../components/home/CTASection";
 
 export default function HomePage({ onNavigate }) {
   return (
-    <div className="page-enter bg-[#0B0B0F]">
+    <div className="page-enter bg-cream-primary">
       {/* 1. Hero Section */}
       <Hero onNavigate={onNavigate} />
 

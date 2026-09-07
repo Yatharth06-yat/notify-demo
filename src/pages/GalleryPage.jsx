@@ -175,88 +175,99 @@ export default function GalleryPage() {
   }, [lightboxIdx, filteredImages.length]);
 
   return (
-    <div className="min-h-screen bg-[#07090e] text-white overflow-x-hidden pt-24 pb-20 selection:bg-cyan-500 selection:text-black relative">
+    <div className="min-h-screen bg-[#FFF2E5] text-gray-900 overflow-x-hidden pt-24 pb-20 selection:bg-accent/20 selection:text-gray-900 relative">
       
-      {/* Ambient Background Glows */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[350px] bg-cyan-500/10 blur-[140px] pointer-events-none rounded-full" />
-      <div className="absolute top-1/3 right-10 w-[500px] h-[400px] bg-purple-600/10 blur-[150px] pointer-events-none rounded-full" />
+      {/* Subtle background pattern */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(15,118,110,0.08) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          opacity: 0.5,
+        }}
+        aria-hidden="true"
+      />
 
       {/* ── HEADER SECTION ── */}
       <section className="relative px-6 pt-4 pb-4 text-center z-10 max-w-4xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <span className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest text-cyan-400 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/40 backdrop-blur-xl mb-3 shadow-[0_0_20px_rgba(0,207,255,0.2)]">
-            <Sparkles size={13} className="text-cyan-400 animate-pulse" />
-            Interactive Lab Visual Showcase
+          <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full border mb-3" style={{ background: "rgba(15,118,110,0.08)", borderColor: "rgba(15,118,110,0.22)", color: "#0F766E" }}>
+            <Sparkles size={13} className="text-accent" />
+            Lab Visual Showcase
           </span>
-          <h1 className="font-extrabold text-4xl sm:text-6xl tracking-tight mb-2">
-            Inside the <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-purple-500">IoTify Lab</span>
+          <h1 className="font-extrabold text-4xl sm:text-5xl tracking-tight text-gray-900 mb-2">
+            Inside the{" "}
+            <span className="text-accent">IoTify Lab</span>
           </h1>
-          <p className="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto font-light">
-            Explore live deployments, hardware setups, and research prototypes in real-time.
+          <p className="text-gray-600 text-xs sm:text-sm max-w-lg mx-auto">
+            Explore hardware setups, research prototypes and IoT kit deployments developed at CIoT, MITS Gwalior.
           </p>
         </motion.div>
 
-        {/* Live Telemetry Bar */}
+        {/* Status Bar */}
         <motion.div 
           initial={{ opacity: 0, y: 10 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-6 flex flex-wrap items-center justify-center gap-6 py-2.5 px-5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl max-w-md mx-auto text-xs font-mono text-slate-400"
+          className="mt-5 flex flex-wrap items-center justify-center gap-5 py-2.5 px-5 rounded-2xl max-w-sm mx-auto text-xs font-medium text-gray-600"
+          style={{ background: "rgba(255,255,255,0.7)", border: "1px solid rgba(17,24,39,0.09)" }}
         >
           <div className="flex items-center gap-2">
-            <Activity size={13} className="text-emerald-400 animate-pulse" />
-            <span>STATUS: <strong className="text-white">ONLINE</strong></span>
+            <Activity size={13} className="text-emerald-500" />
+            <span>STATUS: <strong className="text-gray-900">ONLINE</strong></span>
           </div>
-          <div className="w-px h-3.5 bg-white/10 hidden sm:block" />
-          <div>ACTIVE DEPLOYMENTS: <strong className="text-cyan-400">{filteredImages.length}</strong></div>
+          <div className="w-px h-3.5 bg-gray-200" />
+          <div>ITEMS: <strong className="text-accent">{filteredImages.length}</strong></div>
         </motion.div>
       </section>
 
       {/* ── CONTROL PANEL & BAR ── */}
-      <section className="sticky top-20 z-30 px-6 py-4 backdrop-blur-2xl bg-[#07090e]/85 border-y border-white/10 shadow-xl">
+      <section className="sticky top-20 z-30 px-6 py-3" style={{ background: "rgba(255,242,229,0.96)", backdropFilter: "blur(12px)", borderTop: "1px solid rgba(17,24,39,0.08)", borderBottom: "1px solid rgba(17,24,39,0.08)" }}>
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4">
           
           {/* View Switcher & Search */}
           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-between md:justify-start">
             
             {/* View Mode Toggle */}
-            <div className="flex bg-white/5 border border-white/10 rounded-full p-1 backdrop-blur-md">
+            <div className="flex rounded-xl p-1" style={{ background: "rgba(255,255,255,0.8)", border: "1px solid rgba(17,24,39,0.10)" }}>
               <button
                 onClick={() => setViewMode("globe")}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                   viewMode === "globe"
-                    ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_15px_rgba(0,207,255,0.4)]"
-                    : "text-slate-400 hover:text-white"
+                    ? "bg-accent text-white shadow-sm"
+                    : "text-gray-600 hover:text-gray-900"
                 }`}
               >
                 <Globe size={13} />
-                <span>3D Globe View</span>
+                <span>3D View</span>
               </button>
               <button
                 onClick={() => setViewMode("bento")}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                   viewMode === "bento"
-                    ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_15px_rgba(0,207,255,0.4)]"
-                    : "text-slate-400 hover:text-white"
+                    ? "bg-accent text-white shadow-sm"
+                    : "text-gray-600 hover:text-gray-900"
                 }`}
               >
                 <Grid size={13} />
-                <span>Bento Grid</span>
+                <span>Grid View</span>
               </button>
             </div>
 
             {/* Search Bar */}
             <div className="relative flex-grow max-w-xs">
-              <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search projects or tags..."
+                placeholder="Search kits or categories..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-full pl-9 pr-8 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-all"
+                aria-label="Search gallery"
+                className="w-full rounded-xl pl-9 pr-8 py-2 text-xs text-gray-900 placeholder-gray-400 transition-all focus:outline-none focus:ring-2 focus:ring-accent"
+                style={{ background: "rgba(255,255,255,0.8)", border: "1px solid rgba(17,24,39,0.10)" }}
               />
               {searchQuery && (
-                <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
+                <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600" aria-label="Clear search">
                   <X size={12} />
                 </button>
               )}
@@ -271,8 +282,8 @@ export default function GalleryPage() {
                 onClick={() => setActiveFilter(cat)}
                 className={`px-3 py-1 rounded-full text-[11px] font-medium whitespace-nowrap transition-all ${
                   activeFilter === cat
-                    ? "bg-cyan-500/20 border border-cyan-400 text-cyan-300 shadow-[0_0_12px_rgba(0,207,255,0.3)]"
-                    : "bg-white/5 border border-white/10 text-slate-400 hover:text-white"
+                    ? "bg-accent/20 border border-accent text-accent-light shadow-[0_0_12px_rgba(15,118,110,0.3)]"
+                    : "bg-gray-100 border border-gray-200 text-gray-600 hover:text-gray-900"
                 }`}
               >
                 {cat}
@@ -284,7 +295,7 @@ export default function GalleryPage() {
           {viewMode === "globe" && (
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-cyan-500/40 text-cyan-400 hover:bg-cyan-950/50 transition-all text-xs font-semibold shadow-[0_0_10px_rgba(0,207,255,0.15)]"
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gray-100 border border-accent/40 text-accent hover:bg-cyan-950/50 transition-all text-xs font-semibold shadow-[0_0_10px_rgba(15,118,110,0.15)]"
             >
               {isPlaying ? <Pause size={13} /> : <Play size={13} />}
               <span>{isPlaying ? "Pause" : "Rotate"}</span>
@@ -297,10 +308,10 @@ export default function GalleryPage() {
       {viewMode === "globe" ? (
         /* ── MODE 1: 3D CYBER EARTH GLOBE WALL (MARQUEE) ── */
         <section className="relative py-8 overflow-hidden flex items-center justify-center min-h-[640px]">
-          {/* Vignette Gradients */}
-          <div className="absolute inset-0 pointer-events-none z-20 bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(7,9,14,0.95)_80%)]" />
-          <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-[#07090e] via-[#07090e]/80 to-transparent pointer-events-none z-20" />
-          <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-[#07090e] via-[#07090e]/80 to-transparent pointer-events-none z-20" />
+          {/* Vignette Gradients — cream-based */}
+          <div className="absolute inset-0 pointer-events-none z-20" style={{ background: "radial-gradient(ellipse at center, transparent 25%, rgba(255,242,229,0.92) 80%)" }} />
+          <div className="absolute inset-y-0 left-0 w-40 pointer-events-none z-20" style={{ background: "linear-gradient(to right, #FFF2E5, transparent)" }} />
+          <div className="absolute inset-y-0 right-0 w-40 pointer-events-none z-20" style={{ background: "linear-gradient(to left, #FFF2E5, transparent)" }} />
 
           {/* 3D Barrel Transformation Canvas */}
           <div 
@@ -362,8 +373,8 @@ export default function GalleryPage() {
         /* ── MODE 2: MODERN BENTO GRID ── */
         <section className="relative px-6 py-8 mx-auto max-w-7xl z-10">
           {filteredImages.length === 0 ? (
-            <div className="text-center py-20 border border-dashed border-white/10 rounded-3xl bg-white/[0.01]">
-              <p className="text-slate-400 text-sm">No items matching your filter/search criteria.</p>
+            <div className="text-center py-20 border border-dashed border-gray-200 rounded-3xl bg-white/[0.01]">
+              <p className="text-gray-600 text-sm">No items matching your filter/search criteria.</p>
             </div>
           ) : (
             <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
@@ -372,44 +383,48 @@ export default function GalleryPage() {
                   <motion.div
                     key={img.id}
                     layout
-                    initial={{ opacity: 0, scale: 0.92 }}
+                    initial={{ opacity: 0, scale: 0.94 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.92 }}
-                    transition={{ duration: 0.3 }}
+                    exit={{ opacity: 0, scale: 0.94 }}
+                    transition={{ duration: 0.28 }}
                     onClick={() => openLightbox(idx)}
-                    className="group relative rounded-3xl overflow-hidden border border-white/10 bg-slate-900/60 backdrop-blur-xl cursor-pointer hover:border-cyan-400/80 transition-all duration-300 hover:shadow-[0_0_25px_rgba(0,207,255,0.25)] hover:-translate-y-1"
+                    className="group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1"
+                    style={{ background: "#FFFFFF", border: "1px solid rgba(17,24,39,0.10)", boxShadow: "0 2px 8px rgba(17,24,39,0.06)" }}
+                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(15,118,110,0.30)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(17,24,39,0.10)"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(17,24,39,0.10)"; e.currentTarget.style.boxShadow = "0 2px 8px rgba(17,24,39,0.06)"; }}
                   >
                     <div className="aspect-[4/3] w-full overflow-hidden relative">
                       <img
                         src={img.src}
                         alt={img.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/20 to-transparent opacity-85 group-hover:opacity-60 transition-opacity" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-70 group-hover:opacity-50 transition-opacity" />
                       
                       {img.sticker && (
-                        <div className="absolute top-3 left-3 bg-cyan-500 text-black text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-0.5 rounded-full shadow-md flex items-center gap-1">
+                        <div className="absolute top-3 left-3 bg-accent text-white text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-0.5 rounded-full shadow-md flex items-center gap-1">
                           <Zap size={11} className="fill-black" />
                           {img.sticker}
                         </div>
                       )}
 
                       <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div className="w-7 h-7 flex items-center justify-center rounded-full bg-black/70 border border-cyan-400 text-cyan-300 backdrop-blur-md">
+                        <div className="w-7 h-7 flex items-center justify-center rounded-full bg-cream-primary/70 border border-accent text-accent-light backdrop-blur-md">
                           <Maximize2 size={13} />
                         </div>
                       </div>
                     </div>
 
                     <div className="p-4">
-                      <div className="flex items-center justify-between gap-2 mb-1">
-                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400 bg-cyan-950/80 border border-cyan-500/30 px-2 py-0.5 rounded-full">
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <span className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full" style={{ background: "rgba(15,118,110,0.08)", color: "#0F766E", border: "1px solid rgba(15,118,110,0.20)" }}>
                           {img.category}
                         </span>
-                        <span className="text-[10px] font-mono text-slate-500">{img.specs?.split('•')[0]}</span>
+                        <span className="text-[10px] text-gray-400">{img.specs?.split('•')[0]?.trim()}</span>
                       </div>
-                      <h3 className="font-bold text-white text-sm group-hover:text-cyan-300 transition-colors line-clamp-1">{img.title}</h3>
-                      <p className="text-slate-400 text-xs mt-1 line-clamp-2 font-light">{img.desc}</p>
+                      <h3 className="font-semibold text-gray-900 text-sm group-hover:text-accent transition-colors line-clamp-1">{img.title}</h3>
+                      <p className="text-gray-500 text-xs mt-1 line-clamp-2">{img.desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -427,14 +442,14 @@ export default function GalleryPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black/95 backdrop-blur-3xl p-4 sm:p-6 overscroll-none select-none"
+            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#FFF2E5]/97 backdrop-blur-2xl p-4 sm:p-6 overscroll-none select-none"
             onClick={closeLightbox}
             onWheel={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={closeLightbox}
-              className="absolute top-6 right-6 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors z-30"
+              className="absolute top-6 right-6 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-gray-900 hover:bg-white/20 transition-colors z-30"
             >
               <X size={20} />
             </button>
@@ -442,7 +457,7 @@ export default function GalleryPage() {
             {/* Prev Button */}
             <button
               onClick={(e) => { e.stopPropagation(); prevImg(); }}
-              className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-cyan-500/20 hover:border-cyan-400 transition-colors z-30"
+              className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-gray-900 hover:bg-accent/20 hover:border-accent transition-colors z-30"
             >
               <ChevronLeft size={22} />
             </button>
@@ -450,7 +465,7 @@ export default function GalleryPage() {
             {/* Next Button */}
             <button
               onClick={(e) => { e.stopPropagation(); nextImg(); }}
-              className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-white hover:bg-cyan-500/20 hover:border-cyan-400 transition-colors z-30"
+              className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 border border-white/20 text-gray-900 hover:bg-accent/20 hover:border-accent transition-colors z-30"
             >
               <ChevronRight size={22} />
             </button>
@@ -465,7 +480,7 @@ export default function GalleryPage() {
               className="max-w-4xl max-h-[85vh] flex flex-col items-center gap-4 w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative rounded-3xl overflow-hidden border border-cyan-500/40 shadow-[0_0_60px_rgba(0,207,255,0.25)] bg-[#07090e]">
+              <div className="relative rounded-3xl overflow-hidden border border-gray-200 bg-white" style={{boxShadow:"0 0 0 1px rgba(15,118,110,0.15)"}}>
                 <img
                   src={filteredImages[lightboxIdx].src}
                   alt={filteredImages[lightboxIdx].title}
@@ -474,22 +489,22 @@ export default function GalleryPage() {
               </div>
 
               {/* HUD Details Bar */}
-              <div className="text-center max-w-xl bg-slate-900/90 border border-white/10 p-4 rounded-3xl backdrop-blur-2xl shadow-2xl w-full">
-                <div className="flex items-center justify-between gap-2 mb-2 border-b border-white/10 pb-2">
-                  <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[11px] font-mono font-semibold">
+              <div className="text-center max-w-xl bg-white/90 border border-gray-200 p-4 rounded-3xl backdrop-blur-2xl shadow-2xl w-full">
+                <div className="flex items-center justify-between gap-2 mb-2 border-b border-gray-200 pb-2">
+                  <span className="px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/30 text-accent text-[11px] font-mono font-semibold">
                     {filteredImages[lightboxIdx].category}
                   </span>
-                  <div className="flex items-center gap-2 text-[11px] font-mono text-cyan-400">
+                  <div className="flex items-center gap-2 text-[11px] font-mono text-accent">
                     <Cpu size={12} />
                     <span>{filteredImages[lightboxIdx].specs || "Lab Hardware Setup"}</span>
                   </div>
                 </div>
 
-                <h3 className="font-bold text-white text-lg sm:text-xl">{filteredImages[lightboxIdx].title}</h3>
-                <p className="text-slate-400 text-xs sm:text-sm mt-1 font-light">{filteredImages[lightboxIdx].desc}</p>
-                <div className="text-[11px] text-slate-500 font-mono mt-3 pt-2 border-t border-white/5 flex items-center justify-between">
+                <h3 className="font-bold text-gray-900 text-lg sm:text-xl">{filteredImages[lightboxIdx].title}</h3>
+                <p className="text-gray-600 text-xs sm:text-sm mt-1 font-light">{filteredImages[lightboxIdx].desc}</p>
+                <div className="text-[11px] text-gray-500 font-mono mt-3 pt-2 border-t border-gray-200 flex items-center justify-between">
                   <span className="text-emerald-400">SYSTEM: ONLINE</span>
-                  <span className="text-cyan-400">{lightboxIdx + 1} / {filteredImages.length}</span>
+                  <span className="text-accent">{lightboxIdx + 1} / {filteredImages.length}</span>
                 </div>
               </div>
             </motion.div>
@@ -505,7 +520,8 @@ function VideoCard({ img, onClick }) {
   return (
     <div
       onClick={onClick}
-      className="relative flex-shrink-0 w-48 sm:w-56 h-32 sm:h-36 rounded-2xl overflow-hidden cursor-pointer group border border-white/20 bg-slate-900/90 backdrop-blur-md shadow-2xl hover:border-cyan-400 transition-all duration-300 hover:scale-110 hover:z-30"
+      className="relative flex-shrink-0 w-48 sm:w-52 h-32 sm:h-36 rounded-2xl overflow-hidden cursor-pointer group transition-all duration-300 hover:scale-105 hover:z-30"
+      style={{ border: "1px solid rgba(17,24,39,0.10)", background: "#FFFFFF", boxShadow: "0 4px 16px rgba(17,24,39,0.08)" }}
     >
       <img
         src={img.src}
@@ -513,36 +529,34 @@ function VideoCard({ img, onClick }) {
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-[#07090e]/90 via-transparent to-[#07090e]/20 opacity-90 group-hover:opacity-60 transition-opacity" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent opacity-80 group-hover:opacity-50 transition-opacity" />
 
-      {/* STICKER OVERLAY */}
       {img.sticker && (
         <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none">
           <motion.div
-            animate={{ scale: [0.95, 1.1, 0.95], rotate: [-5, 5, -5] }}
-            transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-            className="px-2.5 py-0.5 bg-cyan-400 text-black font-black text-xs sm:text-sm tracking-wider uppercase rounded-full border border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] flex items-center gap-1"
+            animate={{ scale: [0.95, 1.08, 0.95] }}
+            transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+            className="px-2.5 py-0.5 text-white font-bold text-xs tracking-wider uppercase rounded-full flex items-center gap-1"
+            style={{ background: "#0F766E" }}
           >
-            <Zap size={13} className="fill-black" />
+            <Zap size={11} className="fill-current" />
             {img.sticker}
           </motion.div>
         </div>
       )}
 
-      <div className="absolute inset-0 border border-transparent group-hover:border-cyan-400/60 rounded-2xl transition-all duration-300 pointer-events-none" />
-
       <div className="absolute inset-0 flex flex-col justify-end p-2.5 z-10">
-        <span className="self-start text-[9px] font-mono font-bold uppercase tracking-wider text-cyan-300 bg-[#07090e]/80 border border-cyan-500/30 px-2 py-0.5 rounded-full mb-1 backdrop-blur-sm">
+        <span className="self-start text-[9px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full mb-1" style={{ background: "rgba(15,118,110,0.12)", color: "#0F766E" }}>
           {img.category}
         </span>
-        <h4 className="font-bold text-white text-xs line-clamp-1 group-hover:text-cyan-300 transition-colors">
+        <h4 className="font-semibold text-white text-xs line-clamp-1">
           {img.title}
         </h4>
       </div>
 
       <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-        <div className="w-6 h-6 flex items-center justify-center rounded-full bg-black/60 border border-cyan-400 text-cyan-300 backdrop-blur-md">
-          <ZoomIn size={12} />
+        <div className="w-6 h-6 flex items-center justify-center rounded-full bg-white/80 text-accent">
+          <ZoomIn size={11} />
         </div>
       </div>
     </div>

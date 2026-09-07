@@ -22,11 +22,11 @@ function SingleStatItem({ target, suffix, label, inView, index }) {
       transition={{ duration: 0.6, delay: index * 0.08 }}
       className="flex flex-col items-center text-center p-3 sm:p-4"
     >
-      <div className="font-sans font-bold text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-2">
+      <div className="font-sans font-bold text-2xl sm:text-4xl lg:text-5xl text-gray-900 tracking-tight mb-2">
         {formattedCount}
-        <span className="text-cyan-primary">{suffix}</span>
+        <span className="text-accent">{suffix}</span>
       </div>
-      <div className="text-xs sm:text-sm text-muted font-sans font-medium tracking-wide">
+      <div className="text-xs sm:text-sm text-gray-600 font-sans font-medium tracking-wide">
         {label}
       </div>
     </motion.div>
@@ -38,15 +38,15 @@ export default function StatsCounter() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section ref={ref} className="relative py-16 sm:py-20 bg-black border-y border-white/[0.08] overflow-hidden">
+    <section ref={ref} className="relative py-16 sm:py-20 bg-[#FAECE1] border-y border-gray-200 overflow-hidden">
       {/* Background Radial Glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,207,255,0.08)_0%,_transparent_70%)] blur-[100px]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(15,118,110,0.04)_0%,_transparent_70%)] blur-[100px]"
       />
 
       <div className="mx-auto max-w-7xl px-6 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 divide-y md:divide-y-0 md:divide-x divide-white/[0.08]">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 divide-y md:divide-y-0 md:divide-x divide-gray-200">
           {STATS_DATA.map((stat, i) => (
             <SingleStatItem
               key={stat.label}

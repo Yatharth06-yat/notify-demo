@@ -9,7 +9,7 @@ const FACULTY = [
     dept: "Computer Science & Engineering",
     specialization: "AI, Deep Learning, Edge Intelligence",
     initials: "PS",
-    color: "from-cyan-primary to-blue-accent",
+    color: "from-accent to-accent-light",
     bio: "PhD from IIT Bombay. 12+ years in AI research. Author of 40+ publications in IEEE and Springer.",
   },
   {
@@ -45,7 +45,7 @@ const FACULTY = [
     dept: "Industrial & Production Engineering",
     specialization: "Digital Twins, Smart Manufacturing",
     initials: "MS",
-    color: "from-cyan-primary to-blue-accent",
+    color: "from-accent to-accent-light",
     bio: "15 years in manufacturing automation. Bridges academia-industry with 5 active industry partners.",
   },
   {
@@ -82,19 +82,19 @@ function FacultyCard({ member, i }) {
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: i * 0.08 }}
       whileHover={{ y: -6, transition: { duration: 0.25 } }}
-      className="glass-card group p-8 flex flex-col items-center text-center cursor-default"
+      className="bg-white border-gray-200 shadow-sm group p-8 flex flex-col items-center text-center cursor-default"
     >
       {/* Avatar */}
       <div className="relative mb-6">
-        <div className={`w-24 h-24 rounded-full bg-gradient-to-br ${member.color} flex items-center justify-center text-white font-mono font-bold text-2xl shadow-glow transition-transform duration-400 group-hover:scale-105`}>
+        <div className={`w-24 h-24 rounded-full bg-gradient-to-br ${member.color} flex items-center justify-center text-gray-900 font-mono font-bold text-2xl shadow-glow transition-transform duration-400 group-hover:scale-105`}>
           {member.initials}
         </div>
         {/* Status dot */}
         <span className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-[#090B11]" />
       </div>
 
-      <h3 className="font-display font-bold text-white text-xl mb-1 group-hover:text-cyan-bright transition-colors">{member.name}</h3>
-      <p className="text-cyan-primary text-xs font-display tracking-widest uppercase mb-1">{member.role}</p>
+      <h3 className="font-display font-bold text-gray-900 text-xl mb-1 group-hover:text-cyan-bright transition-colors">{member.name}</h3>
+      <p className="text-accent text-xs font-display tracking-widest uppercase mb-1">{member.role}</p>
       <p className="text-muted text-xs mb-3">{member.dept}</p>
 
       <div className="flex flex-wrap justify-center gap-1.5 mb-5">
@@ -109,7 +109,7 @@ function FacultyCard({ member, i }) {
       <div className="flex items-center gap-3">
         {[Mail, Linkedin, Github].map((Icon, j) => (
           <a key={j} href="#"
-            className="w-8 h-8 flex items-center justify-center rounded-full border border-white/10 text-muted hover:text-cyan-primary hover:border-cyan-primary/40 transition-all duration-200">
+            className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-muted hover:text-accent hover:border-accent/40 transition-all duration-200">
             <Icon size={13} />
           </a>
         ))}
@@ -126,15 +126,15 @@ function ResearcherCard({ member, i }) {
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: i * 0.05 }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="glass-card group p-5 flex items-center gap-4 cursor-default"
+      className="bg-white border-gray-200 shadow-sm group p-5 flex items-center gap-4 cursor-default"
     >
-      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-primary/20 to-blue-accent/20 border border-cyan-primary/20 flex items-center justify-center text-white font-mono font-semibold text-sm flex-shrink-0 group-hover:border-cyan-primary/50 transition-colors">
+      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent/20 to-blue-accent/20 border border-accent/20 flex items-center justify-center text-gray-900 font-mono font-semibold text-sm flex-shrink-0 group-hover:border-accent/50 transition-colors">
         {member.initials}
       </div>
       <div className="flex-1 min-w-0">
-        <div className="font-display font-semibold text-white text-sm truncate">{member.name}</div>
+        <div className="font-display font-semibold text-gray-900 text-sm truncate">{member.name}</div>
         <div className="text-muted text-xs mt-0.5">{member.domain}</div>
-        <div className="text-cyan-primary text-[10px] font-display mt-0.5">{member.year}</div>
+        <div className="text-accent text-[10px] font-display mt-0.5">{member.year}</div>
       </div>
     </motion.div>
   );
@@ -152,10 +152,10 @@ export default function TeamPage({ onNavigate }) {
         <div className="mx-auto max-w-3xl relative z-10">
           <motion.div initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <span className="eyebrow-badge inline-flex mb-7">
-              <Users size={13} className="text-cyan-primary" />
+              <Users size={13} className="text-accent" />
               Our Team
             </span>
-            <h1 className="font-mono font-extrabold text-4xl sm:text-6xl lg:text-7xl text-white leading-[1.05] mb-6">
+            <h1 className="font-mono font-extrabold text-4xl sm:text-6xl lg:text-7xl text-gray-900 leading-[1.05] mb-6">
               The Minds Behind the{" "}
               <span className="text-gradient">Innovation</span>
             </h1>
@@ -183,9 +183,9 @@ export default function TeamPage({ onNavigate }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-card p-6 text-center"
+                className="bg-white border-gray-200 shadow-sm p-6 text-center"
               >
-                <div className="font-mono font-bold text-3xl text-white mb-1">{s.num}</div>
+                <div className="font-mono font-bold text-3xl text-gray-900 mb-1">{s.num}</div>
                 <div className="text-xs text-muted font-display">{s.label}</div>
               </motion.div>
             ))}
@@ -203,7 +203,7 @@ export default function TeamPage({ onNavigate }) {
             className="text-center mb-14"
           >
             <span className="section-label block mb-4">Faculty & Mentors</span>
-            <h2 className="font-mono font-extrabold text-3xl sm:text-5xl text-white">
+            <h2 className="font-mono font-extrabold text-3xl sm:text-5xl text-gray-900">
               Expert <span className="text-gradient">Leadership</span>
             </h2>
           </motion.div>
@@ -227,7 +227,7 @@ export default function TeamPage({ onNavigate }) {
           >
             <div>
               <span className="section-label block mb-3">Student Researchers</span>
-              <h2 className="font-mono font-extrabold text-3xl sm:text-4xl text-white">
+              <h2 className="font-mono font-extrabold text-3xl sm:text-4xl text-gray-900">
                 The <span className="text-gradient">Builders</span>
               </h2>
             </div>
@@ -246,8 +246,8 @@ export default function TeamPage({ onNavigate }) {
             viewport={{ once: true }}
             className="text-center mt-12"
           >
-            <div className="glass-card inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-muted text-sm">
-              <GraduationCap size={16} className="text-cyan-primary" />
+            <div className="bg-white border-gray-200 shadow-sm inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-muted text-sm">
+              <GraduationCap size={16} className="text-accent" />
               + 100 more active researchers across all domains
             </div>
           </motion.div>
@@ -262,7 +262,7 @@ export default function TeamPage({ onNavigate }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-mono font-extrabold text-3xl sm:text-5xl text-white mb-6">
+            <h2 className="font-mono font-extrabold text-3xl sm:text-5xl text-gray-900 mb-6">
               Want to Join the{" "}
               <span className="text-gradient">Team?</span>
             </h2>

@@ -68,23 +68,22 @@ const projectDeployments = [
 
 export default function ProjectsPage() {
   return (
-    <section className="relative px-6 py-20 lg:py-28 overflow-hidden bg-black text-white min-h-screen flex items-center font-sans">
-      {/* Background Circuit Grid & Vignette */}
-      <div className="absolute inset-0 circuit-bg opacity-30 pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(0,0,0,0.85)_90%)] pointer-events-none" />
+    <section className="relative px-6 py-20 lg:py-28 overflow-hidden bg-cream-primary text-gray-900 min-h-screen flex items-center font-sans">
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-grid-lines opacity-[0.4] pointer-events-none" />
 
       {/* Advanced Multi-layered Glow Backdrop */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(0,229,255,0.18) 0%, rgba(79,70,229,0.08) 50%, transparent 70%)",
-          filter: "blur(140px)",
+          background: "radial-gradient(circle, rgba(15,118,110,0.06) 0%, rgba(3,105,161,0.03) 50%, transparent 70%)",
+          filter: "blur(100px)",
         }}
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-10 -left-10 w-[400px] h-[400px] rounded-full bg-cyan-500/5 blur-[100px]"
+        className="pointer-events-none absolute -bottom-10 -left-10 w-[400px] h-[400px] rounded-full bg-accent/5 blur-[80px]"
       />
 
       <div className="mx-auto max-w-7xl relative z-10 w-full">
@@ -97,12 +96,12 @@ export default function ProjectsPage() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="eyebrow-badge mb-5 text-xs sm:text-sm tracking-wider font-sans font-semibold inline-flex items-center gap-2">
-            <span className="glow-dot" />
+          <span className="eyebrow-badge mb-5 text-xs sm:text-sm tracking-wider font-sans font-semibold inline-flex items-center gap-2 text-accent">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block" />
             CIoT MITS - FLAGSHIP PROJECTS & DEPLOYMENTS
           </span>
-         
-          <p className="text-sm sm:text-base text-slate-300 font-sans mt-4 max-w-2xl mx-auto leading-relaxed">
+
+          <p className="text-sm sm:text-base text-gray-600 font-sans mt-4 max-w-2xl mx-auto leading-relaxed">
             Showcasing production-grade campus IoT infrastructure, automated hardware systems, and live telemetry field research.
           </p>
         </motion.div>
@@ -118,19 +117,19 @@ export default function ProjectsPage() {
             className="lg:col-span-5 flex flex-col items-start text-left"
           >
             {/* Green label */}
-            <span className="eyebrow-badge mb-5 text-xs sm:text-sm tracking-wider font-sans font-semibold inline-flex items-center gap-2">
-              <span className="glow-dot" />
+            <span className="eyebrow-badge mb-5 text-xs sm:text-sm tracking-wider font-sans font-semibold inline-flex items-center gap-2 text-gray-500">
+              <span className="w-1.5 h-1.5 rounded-full bg-gray-400 inline-block" />
               Iotify Lab Projects
             </span>
 
             {/* Heading */}
-            <h1 className="font-sans font-bold text-3xl sm:text-4xl lg:text-[42px] text-white leading-[1.2] tracking-tight mb-6">
+            <h1 className="font-sans font-bold text-3xl sm:text-4xl lg:text-[42px] text-gray-900 leading-[1.2] tracking-tight mb-6">
               Engineered for real-world{" "}
-              <span className="text-gradient">campus & industrial impact.</span>
+              <span className="text-accent">campus & industrial impact.</span>
             </h1>
 
             {/* Paragraph */}
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-sans mb-8 text-justify">
+            <p className="text-gray-600 text-base sm:text-lg leading-relaxed font-sans mb-8 text-justify">
               From wide-area smart campus sensor mesh networks to autonomous water skimmers and Edge AI labs, our projects bridge advanced hardware prototyping with real-time cloud analytics and operational telemetry.
             </p>
 
@@ -145,9 +144,9 @@ export default function ProjectsPage() {
                 return (
                   <div
                     key={idx}
-                    className="tag-badge group hover:border-cyan-400/50 hover:shadow-[0_0_15px_rgba(0,229,255,0.2)] transition-all duration-300 flex items-center px-4 py-2 rounded-xl bg-white/[0.03] border border-white/10 text-xs font-sans font-medium"
+                    className="group hover:border-accent hover:shadow-md transition-all duration-300 flex items-center px-4 py-2 rounded-xl bg-white border border-gray-200 text-xs font-sans font-semibold text-gray-700 cursor-default"
                   >
-                    <IconComponent size={14} className="text-cyan-400 mr-1.5 group-hover:scale-110 transition-transform" />
+                    <IconComponent size={14} className="text-accent mr-1.5 group-hover:scale-110 transition-transform" />
                     {badge.label}
                   </div>
                 );
@@ -170,8 +169,8 @@ export default function ProjectsPage() {
             />
 
             {/* Left & Right Gradient Fade Masks */}
-            <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-cream-primary to-transparent z-20 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-cream-primary to-transparent z-20 pointer-events-none" />
 
             {/* Scrolling Marquee Container (Right to Left) */}
             <div className="flex overflow-hidden w-full">
@@ -188,68 +187,67 @@ export default function ProjectsPage() {
                 {[...projectDeployments, ...projectDeployments].map((item, index) => (
                   <div
                     key={`${item.id}-${index}`}
-                    className="relative w-[380px] sm:w-[420px] shrink-0 rounded-3xl glass-card p-6 shadow-[0_0_40px_rgba(0,0,0,0.8)] overflow-hidden cursor-pointer group border border-cyan-500/30"
-                    style={{ background: "linear-gradient(145deg, rgba(13,17,23,0.95), rgba(5,7,11,0.98))" }}
+                    className="relative w-[380px] sm:w-[420px] shrink-0 rounded-3xl p-6 shadow-sm hover:shadow-md overflow-hidden cursor-pointer group border border-gray-200 bg-white"
                   >
-                    {/* Circuit Grid Background */}
-                    <div className="absolute inset-0 circuit-bg opacity-20 pointer-events-none" />
-
                     <div className="relative z-10 flex flex-col gap-4">
 
                       {/* Top Node Bar with Live Pulse */}
-                      <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+                      <div className="flex items-center justify-between pb-3 border-b border-gray-100">
                         <div className="flex items-center gap-3">
                           <div className="relative flex items-center justify-center">
-                            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping absolute" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_10px_#00e5ff]" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-ping absolute" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
                           </div>
-                          <span className="text-xs font-sans font-medium tracking-wide text-white/95 truncate max-w-[200px]">
-                            {item.title.split(":")[0]} // MITS
+                          <span className="text-xs font-sans font-bold tracking-wide text-gray-900 truncate max-w-[200px]">
+                            {item.title.split(":")[0]}
                           </span>
                         </div>
-                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30">
-                          <Wifi size={11} className="text-cyan-400 animate-pulse" />
-                          <span className="text-[10px] font-sans font-semibold text-cyan-300 tracking-wider">{item.version}</span>
+                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent/10 border border-accent/20">
+                          <Wifi size={11} className="text-accent animate-pulse" />
+                          <span className="text-[10px] font-sans font-bold text-accent tracking-wider">{item.version}</span>
                         </div>
                       </div>
 
                       {/* Central Image Container */}
-                      <div className="relative rounded-2xl overflow-hidden aspect-[16/10] border border-cyan-500/30 group/img shadow-[0_0_25px_rgba(0,229,255,0.15)]">
+                      <div className="relative rounded-2xl overflow-hidden aspect-[16/10] border border-gray-200 group/img shadow-sm">
                         <img
                           src={item.image}
                           alt={item.title}
                           className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent" />
 
                         {/* Floating Caption inside Image */}
-                        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-2 rounded-xl bg-black/60 backdrop-blur-md border border-white/10">
-                          <span className="text-xs font-sans text-cyan-300 font-medium truncate max-w-[240px]">{item.title}</span>
-                          <span className="text-[10px] font-sans text-white/70">{item.tag}</span>
+                        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-2 rounded-xl bg-white/90 backdrop-blur-md border border-gray-200 shadow-sm">
+                          <span className="text-xs font-sans text-gray-900 font-bold truncate max-w-[240px]">{item.title}</span>
+                          <span className="text-[10px] font-sans font-semibold text-accent">{item.tag}</span>
                         </div>
                       </div>
 
                       {/* Live Real-time Telemetry Stream Bar */}
-                      <div className="bg-black/40 p-3 rounded-2xl border border-white/[0.06] flex items-center justify-between">
+                      <div className="bg-gray-50 p-3 rounded-2xl border border-gray-100 flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400">
+                          <div className="p-2 rounded-xl bg-accent/10 text-accent">
                             <Activity size={16} />
                           </div>
                           <div className="text-left">
-                            <span className="text-[9px] text-slate-400 block font-sans tracking-wide">TELEMETRY STREAM</span>
-                            <span className="text-xs font-sans font-semibold text-white truncate max-w-[180px] block">{item.telemetry}</span>
+                            <span className="text-[9px] text-gray-500 block font-sans font-bold tracking-wide">TELEMETRY STREAM</span>
+                            <span className="text-xs font-sans font-bold text-gray-800 truncate max-w-[180px] block">{item.telemetry}</span>
                           </div>
                         </div>
                         <div className="flex items-center gap-1">
-                          {item.graphValues.map((h, i) => (
-                            <motion.div
-                              key={i}
-                              animate={{ height: [`${h}%`, `${Math.max(20, h - 30)}%`, `${h}%`] }}
-                              transition={{ duration: 1.5 + i * 0.2, repeat: Infinity, ease: "easeInOut" }}
-                              className="w-1 bg-gradient-to-t from-cyan-500 to-cyan-300 rounded-full"
-                              style={{ height: `${h}%`, minHeight: '8px' }}
-                            />
-                          ))}
+                          {item.graphValues.map((h, i) => {
+                            const lo = h > 30 ? h - 30 : 20;
+                            return (
+                              <motion.div
+                                key={i}
+                                animate={{ height: [h + "%", lo + "%", h + "%"] }}
+                                transition={{ duration: 1.5 + i * 0.2, repeat: Infinity, ease: "easeInOut" }}
+                                className="w-1 bg-gradient-to-t from-accent to-accent-light rounded-full"
+                                style={{ height: h + "%", minHeight: "8px" }}
+                              />
+                            );
+                          })}
                         </div>
                       </div>
 
@@ -258,10 +256,10 @@ export default function ProjectsPage() {
                         {item.metrics.map((m) => {
                           const MetricIcon = m.icon;
                           return (
-                            <div key={m.label} className="bg-white/[0.03] hover:bg-white/[0.06] transition-colors p-2.5 rounded-xl border border-white/[0.08] flex flex-col items-center">
-                              <MetricIcon size={13} className={m.accent ? "text-cyan-400 mb-1" : "text-white/60 mb-1"} />
-                              <span className="text-[9px] text-slate-400 block font-sans">{m.label}</span>
-                              <span className={`text-xs font-sans font-semibold mt-0.5 ${m.accent ? "text-cyan-400 drop-shadow-[0_0_8px_rgba(0,229,255,0.5)]" : "text-white"}`}>
+                            <div key={m.label} className="bg-white hover:bg-gray-50 transition-colors p-2.5 rounded-xl border border-gray-100 flex flex-col items-center">
+                              <MetricIcon size={13} className={m.accent ? "text-accent mb-1" : "text-gray-400 mb-1"} />
+                              <span className="text-[9px] text-gray-500 block font-sans font-medium">{m.label}</span>
+                              <span className={`text-xs font-sans font-bold mt-0.5 ${m.accent ? "text-accent" : "text-gray-800"}`}>
                                 {m.value}
                               </span>
                             </div>
@@ -270,12 +268,6 @@ export default function ProjectsPage() {
                       </div>
 
                     </div>
-
-                    {/* Glowing Corner Accents */}
-                    <div className="absolute -bottom-12 -right-12 w-44 h-44 rounded-full pointer-events-none"
-                      style={{ background: "rgba(0,229,255,0.18)", filter: "blur(50px)" }} />
-                    <div className="absolute -top-12 -left-12 w-44 h-44 rounded-full pointer-events-none"
-                      style={{ background: "rgba(99,102,241,0.12)", filter: "blur(50px)" }} />
                   </div>
                 ))}
               </motion.div>
