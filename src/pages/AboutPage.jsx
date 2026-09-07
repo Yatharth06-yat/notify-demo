@@ -137,44 +137,70 @@ const CLIENT_SLIDES = [
 const LEADERSHIP = {
   name: "Dr. Praveen Bansal",
   role: "HEAD OF CENTRE FOR IOT & DEAN",
+  designation: "Associate Professor and Dean, Centre for IoT",
+  qualification: "M.Tech(MANIT,Bhopal), Ph.D. (DTU,Delhi)",
   image: "https://res.cloudinary.com/dwumernfk/image/upload/v1785521483/PIC_u3q9ur.png",
 };
 
 const FACULTY_COORDINATORS = [
-
   {
     name: "Dr. Bhavna Rathore",
-    role: "Faculty Coordinator / Asst. Prof.",
+    role: "Faculty Coordinator",
+    designation: "Assistant Professor",
+    qualification: "Ph.D. IIT Kanpur || M.Tech DTU Delhi || B.E. SGSITS Indore",
     image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786084905/2681f153-4d9d-446e-8f19-9ca53806d352.png",
   },
   {
     name: "Dr. Priyanka Garg",
-    role: "Faculty Coordinator / Asst. Prof.",
+    role: "Faculty Coordinator",
+    designation: "Assistant Professor",
+    qualification: "Ph.D., Delhi Technological University",
     image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786084923/20fc50ad-939a-4088-a2b5-b84004018612.png",
   },
   {
     name: "Dr. Dhananjay Bisen",
-    role: "Faculty Member / Resource Person",
+    role: "Faculty Coordinator",
+    designation: "Assistant Professor",
+    qualification: "B.E., M.Tech., Ph.D.",
     image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786205891/d932cab9-5fbe-4907-99b4-42819cef8880.png",
   },
 ];
 
 const FACULTY_MEMBERS = [
-
+  {
+    name: "Dr. Aftab Ahmed Ansari",
+    role: "Faculty Member / Resource Person",
+    designation: "Assistant Professor",
+    qualification: "Ph.D.",
+    image: "https://res.cloudinary.com/w1uqr8sy/image/upload/v1788801200/Aftab_sir_x0p4b7.jpg",
+  },
+  {
+    name: "Dr. Saurabh Kumar Rajput",
+    role: "Faculty Member / Resource Person",
+    designation: "Assistant Professor",
+    qualification: "Ph.D.(NIT Patna), M.Tech. (IIT Delhi), B.Tech. (UPTU Lucknow)",
+    image: "https://res.cloudinary.com/w1uqr8sy/image/upload/v1788800883/Saurabh_K_Rajput_pic_xub2ce.jpg",
+  },
   {
     name: "Dr. Namita Arya",
     role: "Faculty Member / Resource Person",
+    designation: "Assistant Professor",
+    qualification: "Post-Doc (Abroad), Ph.D",
     image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786177507/6eb598eb-0a9c-4f37-a522-e29d2bf6803e.png",
-  },
-  {
-    name: "Dr. Abhishek Sharma",
-    role: "Faculty Member / Resource Person",
-    image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786177524/df816717-ac2c-4e22-9f2f-1c8ee7669622.png",
   },
   {
     name: "Prof. Anuj Lodhi",
     role: "Faculty Member / Resource Person",
+    designation: "Assistant Professor",
+    qualification: "B.E., M.Tech., Ph.D. (Pursuing)",
     image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786177536/d78a7fdb-2ac8-42bb-8e4f-ba261a5ecc51.png",
+  },
+  {
+    name: "Dr. Abhishek Sharma",
+    role: "Faculty Member / Resource Person",
+    designation: "Assistant Professor",
+    qualification: "Post Doc (UCSB, IITK), PhD (IIITDM Jabalpur)",
+    image: "https://res.cloudinary.com/dwumernfk/image/upload/v1786177524/df816717-ac2c-4e22-9f2f-1c8ee7669622.png",
   },
 ];
 
@@ -309,7 +335,7 @@ function Carousel({ items }) {
 }
 
 // --- COMPONENT: TEAM CARD WITH ANIMATION AND WHITE IMAGE BACKGROUND ---
-function TeamCard({ name, role, image, index = 0, isLeader = false, imageClassName = "" }) {
+function TeamCard({ name, role, image, index = 0, isLeader = false, imageClassName = "", designation, qualification, compact = false }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40, scale: 0.92 }}
@@ -321,13 +347,13 @@ function TeamCard({ name, role, image, index = 0, isLeader = false, imageClassNa
         delay: index * 0.08,
       }}
       whileHover={{ y: -6, boxShadow: "0 12px 32px rgba(0,0,0,0.10)", transition: { duration: 0.3 } }}
-      className="bg-[#FDF6EE] rounded-2xl flex flex-col items-center text-center px-6 pt-8 pb-7 h-full"
-      style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}
+      className={`bg-[#FDF6EE] rounded-2xl flex flex-col items-center text-center w-full border border-teal-800/10 shadow-sm ${compact ? "px-3 pt-5 pb-4 min-h-[250px]" : "px-5 pt-7 pb-6 h-full"
+        }`}
     >
       {/* Circular image with teal ring + white gap */}
-      <div className="mb-5 rounded-full p-[3px] bg-gradient-to-br from-teal-400/60 to-teal-300/30"
-        style={{ background: "none", outline: "2px solid #5bbfb5", outlineOffset: "4px" }}>
-        <div className="w-24 h-24 rounded-full overflow-hidden bg-white">
+      <div className={`rounded-full p-[3px] ${compact ? "mb-3" : "mb-4"}`}
+        style={{ outline: "2px solid #0F766E", outlineOffset: "3px" }}>
+        <div className={`${compact ? "w-20 h-20" : "w-24 h-24"} rounded-full overflow-hidden bg-white shadow-inner`}>
           <motion.img
             src={image}
             alt={name}
@@ -340,12 +366,26 @@ function TeamCard({ name, role, image, index = 0, isLeader = false, imageClassNa
       </div>
 
       {/* Name */}
-      <h3 className="font-display font-bold text-base sm:text-lg text-gray-900 leading-snug mb-1">
+      <h3 className={`font-display font-bold text-gray-900 leading-snug mb-1 ${compact ? "text-xs sm:text-sm" : "text-base sm:text-lg"}`}>
         {name}
       </h3>
 
+      {/* Designation */}
+      {designation && (
+        <p className={`font-bold text-[#0F766E] leading-snug px-1 ${compact ? "text-[11px] mb-1" : "text-xs mb-1.5"}`}>
+          {designation}
+        </p>
+      )}
+
+      {/* Qualification */}
+      {qualification && (
+        <p className={`font-medium text-gray-600 leading-snug px-1.5 ${compact ? "text-[10px] mb-1.5" : "text-[11px] mb-2"}`}>
+          {qualification}
+        </p>
+      )}
+
       {/* Role */}
-      <p className="text-xs font-semibold whitespace-nowrap overflow-hidden text-ellipsis w-full" style={{ color: "#3aafa9" }}>
+      <p className={`font-semibold text-gray-500 tracking-wider uppercase mt-auto pt-1 ${compact ? "text-[9px]" : "text-[10px]"}`}>
         {role}
       </p>
     </motion.div>
@@ -617,14 +657,15 @@ function TeamSection() {
         </motion.div>
 
         <div className="flex flex-col items-center relative">
-          <div className="w-full max-w-sm z-10 mb-2">
+          <div className="w-full max-w-md z-10 mb-2">
             <TeamCard
               name={LEADERSHIP.name}
               role={LEADERSHIP.role}
+              designation={LEADERSHIP.designation}
+              qualification={LEADERSHIP.qualification}
               image={LEADERSHIP.image}
               isLeader={true}
               index={0}
-              // Ensure rounded image styles via custom props if applicable, or wrap the image container with rounded-full
               imageClassName="rounded-full object-cover aspect-square"
             />
           </div>
@@ -651,13 +692,15 @@ function TeamSection() {
                 Faculty Coordinator(s)
               </span>
             </motion.div>
-            <div className="grid grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {FACULTY_COORDINATORS.map((member, idx) => (
                 <TeamCard
                   key={member.name}
                   index={idx + 1}
                   name={member.name}
                   role={member.role}
+                  designation={member.designation}
+                  qualification={member.qualification}
                   image={member.image}
                   imageClassName="rounded-full object-cover aspect-square"
                 />
@@ -685,14 +728,17 @@ function TeamSection() {
                 Faculty Members / Resource Persons
               </span>
             </motion.div>
-            <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto justify-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 max-w-7xl mx-auto">
               {FACULTY_MEMBERS.map((member, idx) => (
                 <TeamCard
                   key={member.name}
                   index={idx + 1}
                   name={member.name}
                   role={member.role}
+                  designation={member.designation}
+                  qualification={member.qualification}
                   image={member.image}
+                  compact={true}
                   imageClassName="rounded-full object-cover aspect-square"
                 />
               ))}

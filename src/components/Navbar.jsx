@@ -34,10 +34,11 @@ export default function Navbar({ currentPage, onNavigate }) {
       initial={{ y: -70, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? "bg-[#FFF2E5]/95 backdrop-blur-md border-b border-[rgba(17,24,39,0.09)] shadow-[0_1px_12px_rgba(17,24,39,0.06)] py-3"
-          : "bg-transparent py-4"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-[#FFF2E5]/95 backdrop-blur-md border-b border-[rgba(17,24,39,0.09)] shadow-[0_2px_16px_rgba(17,24,39,0.08)] py-4"
+          : "bg-transparent py-5 sm:py-6"
+      }`}
       role="navigation"
       aria-label="Main navigation"
     >
@@ -58,42 +59,43 @@ export default function Navbar({ currentPage, onNavigate }) {
           <img
             src="https://res.cloudinary.com/w1uqr8sy/image/upload/v1785951313/logo_mtsjp4.png"
             alt="IoTify Lab logo"
-            className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            className="h-10 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
-          <div className="flex flex-col leading-none">
-            <span className="font-bold text-sm tracking-wide text-gray-900 group-hover:text-accent transition-colors duration-200">
+          <div className="flex flex-col leading-none text-left">
+            <span className="font-bold text-base sm:text-lg tracking-wide text-gray-900 group-hover:text-[#0F766E] transition-colors duration-200">
               IoTify Lab
             </span>
-            <span className="text-[10px] text-gray-500 tracking-wide font-medium hidden sm:block">
+            <span className="text-xs text-gray-500 tracking-wide font-medium hidden sm:block mt-0.5">
               CIoT · MITS Deemed University
             </span>
           </div>
         </button>
 
         {/* ── Desktop nav ── */}
-        <nav className="hidden lg:flex items-center gap-0.5" aria-label="Site sections">
+        <nav className="hidden lg:flex items-center gap-1" aria-label="Site sections">
           {NAV_LINKS.map((link) => {
             const isActive = currentPage === link.page;
             return (
               <button
                 key={link.label}
                 onClick={() => handleNav(link.page)}
-                className={`relative px-3.5 py-2 rounded-lg text-[13px] font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 ${isActive
-                    ? "text-accent"
-                    : "text-gray-600 hover:text-gray-900"
-                  }`}
+                className={`relative px-4 py-2.5 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F766E] focus-visible:ring-offset-1 ${
+                  isActive
+                    ? "text-white"
+                    : "text-gray-700 hover:text-white hover:bg-[#0F766E]"
+                }`}
                 aria-current={isActive ? "page" : undefined}
               >
                 {isActive && (
                   <>
                     <motion.span
                       layoutId="nav-bg"
-                      className="absolute inset-0 rounded-lg bg-accent/8 border border-accent/15"
+                      className="absolute inset-0 rounded-xl bg-[#0F766E] shadow-md border border-[#0D6860]"
                       transition={{ type: "spring", stiffness: 400, damping: 32 }}
                     />
                     <motion.span
                       layoutId="nav-underline"
-                      className="absolute bottom-0.5 left-3 right-3 h-[2px] rounded-full bg-accent"
+                      className="absolute bottom-1 left-4 right-4 h-[2.5px] rounded-full bg-teal-200"
                       transition={{ type: "spring", stiffness: 400, damping: 32 }}
                     />
                   </>
@@ -108,7 +110,7 @@ export default function Navbar({ currentPage, onNavigate }) {
         <div className="hidden lg:flex items-center gap-3">
           <button
             onClick={() => handleNav("book")}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-[13px] font-semibold text-white transition-all duration-250 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all duration-250 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F766E] focus-visible:ring-offset-2"
             style={{
               background: "#0F766E",
               border: "1px solid #0D6860",
@@ -117,7 +119,7 @@ export default function Navbar({ currentPage, onNavigate }) {
             onMouseEnter={(e) => { e.currentTarget.style.background = "#0D6860"; e.currentTarget.style.boxShadow = "0 4px 14px rgba(15,118,110,0.30)"; e.currentTarget.style.transform = "translateY(-1px)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = "#0F766E"; e.currentTarget.style.boxShadow = "0 2px 8px rgba(15,118,110,0.22)"; e.currentTarget.style.transform = "translateY(0)"; }}
           >
-            <GraduationCap size={15} />
+            <GraduationCap size={17} />
             <span>Register Now</span>
           </button>
         </div>
@@ -125,7 +127,7 @@ export default function Navbar({ currentPage, onNavigate }) {
         {/* ── Mobile hamburger ── */}
         <button
           onClick={() => setOpen(!open)}
-          className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F766E]"
           style={{
             background: "rgba(255,255,255,0.85)",
             borderColor: "rgba(17,24,39,0.12)",
@@ -143,7 +145,7 @@ export default function Navbar({ currentPage, onNavigate }) {
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.15 }}
               >
-                <X size={18} className="text-accent" />
+                <X size={20} className="text-[#0F766E]" />
               </motion.span>
             ) : (
               <motion.span
@@ -153,7 +155,7 @@ export default function Navbar({ currentPage, onNavigate }) {
                 exit={{ rotate: -90, opacity: 0 }}
                 transition={{ duration: 0.15 }}
               >
-                <Menu size={18} className="text-gray-700" />
+                <Menu size={20} className="text-gray-700" />
               </motion.span>
             )}
           </AnimatePresence>
@@ -168,7 +170,7 @@ export default function Navbar({ currentPage, onNavigate }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="lg:hidden mx-4 mt-2 rounded-2xl overflow-hidden"
+            className="lg:hidden mx-4 mt-3 rounded-2xl overflow-hidden"
             style={{
               background: "rgba(255,242,229,0.97)",
               backdropFilter: "blur(12px)",
@@ -178,13 +180,13 @@ export default function Navbar({ currentPage, onNavigate }) {
           >
             {/* Brand header in drawer */}
             <div className="px-4 py-3 border-b flex items-center gap-2" style={{ borderColor: "rgba(17,24,39,0.07)" }}>
-              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0F766E]" />
               <span className="text-[11px] font-semibold text-gray-500 tracking-wider uppercase">
                 MITS School Connect Programme
               </span>
             </div>
 
-            <div className="p-3 flex flex-col gap-1">
+            <div className="p-3 flex flex-col gap-1.5">
               {NAV_LINKS.map((link, i) => {
                 const isActive = currentPage === link.page;
                 return (
@@ -194,29 +196,30 @@ export default function Navbar({ currentPage, onNavigate }) {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.035 }}
                     onClick={() => handleNav(link.page)}
-                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${isActive
-                        ? "text-accent bg-accent/8 border-l-[3px] border-accent"
-                        : "text-gray-700 hover:text-gray-900 hover:bg-[rgba(17,24,39,0.04)]"
-                      }`}
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold transition-all duration-200 focus-visible:outline-none ${
+                      isActive
+                        ? "text-white bg-[#0F766E] shadow-md border-l-4 border-[#0D6860]"
+                        : "text-gray-700 hover:text-white hover:bg-[#0F766E]"
+                    }`}
                     aria-current={isActive ? "page" : undefined}
                   >
                     <span>{link.label}</span>
                     <ChevronRight
-                      size={14}
-                      className={`transition-transform ${isActive ? "text-accent translate-x-0.5" : "text-gray-400"}`}
+                      size={16}
+                      className={`transition-transform ${isActive ? "text-white translate-x-0.5" : "text-gray-400"}`}
                     />
                   </motion.button>
                 );
               })}
             </div>
 
-            <div className="px-4 pb-4">
+            <div className="px-4 pb-4 pt-1">
               <button
                 onClick={() => handleNav("book")}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-white text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-white text-base font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0F766E]"
                 style={{ background: "#0F766E", border: "1px solid #0D6860" }}
               >
-                <GraduationCap size={16} />
+                <GraduationCap size={18} />
                 <span>Register Now</span>
               </button>
             </div>

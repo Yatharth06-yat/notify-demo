@@ -7,6 +7,7 @@ import {
   MessageSquare,
   CheckCircle2,
   Loader2,
+  Calendar,
   CalendarX,
   BookOpen,
   GraduationCap,
@@ -34,10 +35,10 @@ import {
 import { publicApi } from "../lib/api";
 import { WHATSAPP_BOOKINGS, whatsappLink } from "../lib/contact";
 import AnnouncementsBanner from "../components/AnnouncementsBanner";
-import { HARD_COPY_FORM_URL, GOOGLE_FORM_URL } from "../lib/forms";
-import { programModules, pricingModels } from "./ProjectsPage";
+import { HARD_COPY_FORM_URL, GOOGLE_FORM_URL, M1_FORM_URL, M2_FORM_URL, M3_FORM_URL } from "../lib/forms";
+import { programModules, pricingModels, detailedModules } from "./ProjectsPage";
 
-export { HARD_COPY_FORM_URL, GOOGLE_FORM_URL };
+export { HARD_COPY_FORM_URL, GOOGLE_FORM_URL, M1_FORM_URL, M2_FORM_URL, M3_FORM_URL };
 
 const EMPTY_FORM = {
   studentName: "",
@@ -777,11 +778,11 @@ export default function BookPage({ onNavigate }) {
           </div>
 
           {/* 1. TRAINING MODELS FULL TABLE */}
-          <div className="mb-12">
+          <div className="mb-12" id="modules-table-section">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-accent" />
-                <span>Training Models</span>
+                <span>Modules Overview (M1, M2, M3)</span>
               </h3>
             </div>
 
@@ -790,83 +791,225 @@ export default function BookPage({ onNavigate }) {
                 <FileText className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                 <div>
                   <span className="font-semibold text-accent">Instruction: </span>
-                  <span className="hidden sm:inline">Download the common registration form, take a printout, fill it manually, scan the completed form, and upload the scanned copy while completing the Google Registration Form.</span>
-                  <span className="sm:hidden inline">Download, print and fill the form. Scan the completed form and upload it in the Google Registration Form.</span>
+                  <span className="hidden sm:inline">Download the registration form for Module 1 (M1), M2, or M3, take a printout, fill it manually, scan the completed form, and upload the scanned copy while completing the online registration.</span>
+                  <span className="sm:hidden inline">Download, print and fill the form. Scan the completed form and upload it in the online registration form.</span>
                 </div>
               </div>
               <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse" role="table" aria-label="Training modules">
+                <table className="w-full text-left border-collapse" role="table" aria-label="Program modules details">
                   <thead>
-                    <tr className="border-b border-gray-200/80 bg-[#FFFAF5]">
-                      {["Module", "Training Model", "Target Participants", "Duration", "Major Activities", "Expected Deliverables", "Hard Copy Form Download", ""].map((h) => (
-                        <th
-                          key={h}
-                          className="py-3.5 px-5 text-[11px] font-bold tracking-[0.08em] uppercase text-accent"
-                        >
-                          {h}
-                        </th>
-                      ))}
+                    <tr style={{ borderBottom: "2px solid rgba(15,118,110,0.2)", background: "#FFFAF5" }}>
+                      <th className="py-4 px-4 sm:px-5 text-xs font-extrabold tracking-wider uppercase text-[#0F766E] w-16 text-center">Module</th>
+                      <th className="py-4 px-4 sm:px-5 text-xs font-extrabold tracking-wider uppercase text-[#0F766E] min-w-[140px]">Program</th>
+                      <th className="py-4 px-4 sm:px-5 text-xs font-extrabold tracking-wider uppercase text-[#0F766E] min-w-[180px]">Modules / Offerings</th>
+                      <th className="py-4 px-4 sm:px-5 text-xs font-extrabold tracking-wider uppercase text-[#0F766E] min-w-[280px]">Hands-on Activities / Key Offerings</th>
+                      <th className="py-4 px-4 sm:px-5 text-xs font-extrabold tracking-wider uppercase text-[#0F766E] min-w-[140px]">Proposed Duration</th>
+                      <th className="py-4 px-4 sm:px-5 text-xs font-extrabold tracking-wider uppercase text-[#0F766E] min-w-[110px]">Last Date to Apply</th>
+                      <th className="py-4 px-4 sm:px-5 text-xs font-extrabold tracking-wider uppercase text-[#0F766E] min-w-[140px] text-center">Details / Action</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {programModules.map((item, idx) => (
+                  <tbody className="divide-y divide-gray-200 text-xs sm:text-sm">
+
+                    {/* ── M1 ROW GROUP ── */}
+                    {detailedModules[0].tracks.map((track, tIdx) => (
                       <tr
-                        key={idx}
-                        className="transition-colors duration-150 border-b border-gray-100 hover:bg-[#FFFAF5]"
+                        key={`m1-track-${tIdx}`}
+                        id={`module-m1-track-${tIdx + 1}`}
+                        className="hover:bg-[#FFFAF5] transition-colors border-b border-gray-100"
                       >
-                        <td className="py-4 px-5 whitespace-nowrap">
-                          <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-md text-xs font-bold font-mono bg-accent/10 text-accent border border-accent/20">
-                            {item.id}
-                          </span>
-                        </td>
-                        <td className="py-4 px-5 font-semibold text-sm text-gray-900">{item.model}</td>
-                        <td className="py-4 px-5 text-sm text-gray-600">
-                          <div className="flex items-center gap-2">
-                            <Users className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-                            <span>{item.participants}</span>
+                        {tIdx === 0 && (
+                          <>
+                            <td
+                              rowSpan={3}
+                              className="py-5 px-4 font-extrabold text-base text-center align-top border-r border-gray-200 bg-[#FFFAF5]/60"
+                            >
+                              <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#0F766E] text-white font-mono font-bold text-sm shadow-md">
+                                M1
+                              </span>
+                            </td>
+                            <td
+                              rowSpan={3}
+                              className="py-5 px-5 font-bold text-gray-900 align-top border-r border-gray-200 bg-[#FFFAF5]/40"
+                            >
+                              <div className="text-sm font-bold text-[#0F766E]">{detailedModules[0].program}</div>
+                              <div className="text-xs text-gray-500 font-medium mt-1">{detailedModules[0].targetClass}</div>
+                              <div className="text-[11px] text-gray-400 mt-2 font-mono">{detailedModules[0].note}</div>
+                            </td>
+                          </>
+                        )}
+
+                        <td className="py-4 px-5 font-semibold text-gray-900 align-top border-r border-gray-200/80">
+                          <div className="flex items-start gap-1.5">
+                            <Zap className="w-4 h-4 text-[#0F766E] shrink-0 mt-0.5" />
+                            <span>{track.name}</span>
                           </div>
                         </td>
-                        <td className="py-4 px-5 whitespace-nowrap">
-                          <div className="flex items-center gap-1.5 text-sm font-medium text-accent">
-                            <Clock className="w-3.5 h-3.5 flex-shrink-0" />
-                            <span>{item.duration}</span>
+
+                        <td className="py-4 px-5 text-gray-700 align-top border-r border-gray-200/80">
+                          <div className="flex flex-wrap gap-1.5">
+                            {track.activities.map((act, aIdx) => (
+                              <span
+                                key={aIdx}
+                                className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium bg-emerald-50 text-[#0F766E] border border-emerald-100"
+                              >
+                                • {act}
+                              </span>
+                            ))}
                           </div>
                         </td>
-                        <td className="py-4 px-5 text-sm text-gray-600 leading-relaxed max-w-[220px]">
-                          {item.activities}
-                        </td>
-                        <td className="py-4 px-5 text-sm text-gray-700">
-                          <div className="flex items-start gap-2">
-                            <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                            <span>{item.deliverables}</span>
+
+                        <td className="py-4 px-5 font-medium text-[#0F766E] align-top border-r border-gray-200/80 whitespace-nowrap">
+                          <div className="flex items-center gap-1.5">
+                            <Clock className="w-3.5 h-3.5 shrink-0" />
+                            <span>{track.duration}</span>
                           </div>
                         </td>
-                        <td className="py-4 px-5 whitespace-nowrap">
+
+                        <td className="py-4 px-5 font-semibold text-gray-800 align-top border-r border-gray-200/80 whitespace-nowrap">
+                          <div className="flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5 text-gray-400 shrink-0" />
+                            <span>{track.lastDate}</span>
+                          </div>
+                        </td>
+
+                        <td className="py-4 px-5 align-top text-center">
+                          <div className="flex flex-col gap-2 items-center min-w-[120px]">
+                            <a
+                              href={M1_FORM_URL}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-[#0F766E] hover:bg-[#0D6860] shadow-sm transition-all"
+                            >
+                              <Download className="w-3.5 h-3.5" />
+                              <span>M1 Form</span>
+                            </a>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const cta = document.getElementById("google-form-cta-section");
+                                if (cta) cta.scrollIntoView({ behavior: "smooth" });
+                              }}
+                              className="w-full inline-flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-[#0F766E] bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all"
+                            >
+                              <span>Book M1</span>
+                              <ChevronRight className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+
+                    {/* ── M2 ROW ── */}
+                    <tr className="hover:bg-[#FFFAF5] transition-colors border-b border-gray-100" id="module-m2">
+                      <td className="py-5 px-4 font-extrabold text-base text-center align-top border-r border-gray-200 bg-[#FFFAF5]/60">
+                        <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#0F766E] text-white font-mono font-bold text-sm shadow-md">
+                          M2
+                        </span>
+                      </td>
+                      <td className="py-5 px-5 font-bold text-gray-900 align-top border-r border-gray-200 bg-[#FFFAF5]/40">
+                        <div className="text-sm font-bold text-[#0F766E]">{detailedModules[1].program}</div>
+                        <div className="text-xs text-gray-500 font-medium mt-1 leading-relaxed">{detailedModules[1].targetClass}</div>
+                      </td>
+                      <td className="py-4 px-5 font-semibold text-gray-900 align-top border-r border-gray-200/80">
+                        {detailedModules[1].title}
+                      </td>
+                      <td className="py-4 px-5 text-gray-700 align-top border-r border-gray-200/80">
+                        <ul className="space-y-1">
+                          {detailedModules[1].activities.map((act, aIdx) => (
+                            <li key={aIdx} className="flex items-start gap-1.5 text-xs text-gray-700">
+                              <span className="text-[#0F766E] font-bold">•</span>
+                              <span>{act}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </td>
+                      <td className="py-4 px-5 font-medium text-[#0F766E] align-top border-r border-gray-200/80">
+                        <div className="flex items-start gap-1.5">
+                          <Clock className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+                          <span>{detailedModules[1].duration}</span>
+                        </div>
+                      </td>
+                      <td className="py-4 px-5 font-semibold text-gray-800 align-top border-r border-gray-200/80 whitespace-nowrap">
+                        {detailedModules[1].lastDate}
+                      </td>
+                      <td className="py-4 px-5 align-top text-center">
+                        <div className="flex flex-col gap-2 items-center min-w-[120px]">
                           <a
-                            href={HARD_COPY_FORM_URL}
+                            href={M2_FORM_URL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20 transition-all"
+                            className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-[#0F766E] hover:bg-[#0D6860] shadow-sm transition-all"
                           >
                             <Download className="w-3.5 h-3.5" />
-                            Download Form
+                            <span>M2 Form</span>
                           </a>
-                        </td>
-                        <td className="py-4 px-5 whitespace-nowrap">
                           <button
                             type="button"
                             onClick={() => {
                               const cta = document.getElementById("google-form-cta-section");
                               if (cta) cta.scrollIntoView({ behavior: "smooth" });
                             }}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20 transition-all"
+                            className="w-full inline-flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-[#0F766E] bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all"
                           >
-                            Book
+                            <span>Book M2</span>
                             <ChevronRight className="w-3.5 h-3.5" />
                           </button>
-                        </td>
-                      </tr>
-                    ))}
+                        </div>
+                      </td>
+                    </tr>
+
+                    {/* ── M3 ROW ── */}
+                    <tr className="hover:bg-[#FFFAF5] transition-colors border-b border-gray-100" id="module-m3">
+                      <td className="py-5 px-4 font-extrabold text-base text-center align-top border-r border-gray-200 bg-[#FFFAF5]/60">
+                        <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#0F766E] text-white font-mono font-bold text-sm shadow-md">
+                          M3
+                        </span>
+                      </td>
+                      <td className="py-5 px-5 font-bold text-gray-900 align-top border-r border-gray-200 bg-[#FFFAF5]/40">
+                        <div className="text-sm font-bold text-[#0F766E]">{detailedModules[2].program}</div>
+                        <div className="text-xs text-gray-500 font-medium mt-1">{detailedModules[2].targetClass}</div>
+                      </td>
+                      <td className="py-4 px-5 font-semibold text-gray-900 align-top border-r border-gray-200/80">
+                        {detailedModules[2].title}
+                      </td>
+                      <td className="py-4 px-5 text-gray-700 align-top border-r border-gray-200/80 leading-relaxed text-xs">
+                        {detailedModules[2].description}
+                      </td>
+                      <td className="py-4 px-5 font-medium text-[#0F766E] align-top border-r border-gray-200/80">
+                        <div className="flex items-start gap-1.5">
+                          <Clock className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+                          <span>{detailedModules[2].duration}</span>
+                        </div>
+                      </td>
+                      <td className="py-4 px-5 font-semibold text-gray-800 align-top border-r border-gray-200/80 whitespace-nowrap">
+                        {detailedModules[2].lastDate}
+                      </td>
+                      <td className="py-4 px-5 align-top text-center">
+                        <div className="flex flex-col gap-2 items-center min-w-[120px]">
+                          <a
+                            href={M3_FORM_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-[#0F766E] hover:bg-[#0D6860] shadow-sm transition-all"
+                          >
+                            <Download className="w-3.5 h-3.5" />
+                            <span>M3 Form</span>
+                          </a>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const cta = document.getElementById("google-form-cta-section");
+                              if (cta) cta.scrollIntoView({ behavior: "smooth" });
+                            }}
+                            className="w-full inline-flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-[#0F766E] bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all"
+                          >
+                            <span>Book M3</span>
+                            <ChevronRight className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+
                   </tbody>
                 </table>
               </div>
@@ -948,18 +1091,8 @@ export default function BookPage({ onNavigate }) {
         {/* DEDICATED GOOGLE FORM & HARD COPY FORM SECTION     */}
         {/* ================================================== */}
         <section id="google-form-cta-section" className="mb-20">
-          <div className="bg-white rounded-3xl p-8 sm:p-10 border border-gray-200/90 shadow-lg relative overflow-hidden space-y-8">
+          <div className="bg-white rounded-3xl p-8 sm:p-10 border border-gray-200/90 shadow-lg relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-bl-full pointer-events-none" />
-
-            {/* User Instruction Banner */}
-            <div className="p-4 rounded-2xl bg-[#FFFAF5] border border-accent/20 flex items-start gap-3">
-              <FileText className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-              <div className="text-xs sm:text-sm text-gray-800 leading-relaxed">
-                <span className="font-bold text-accent">Important Registration Instruction: </span>
-                <span className="hidden sm:inline">Download the common registration form, take a printout, fill it manually, scan the completed form, and upload the scanned copy while completing the Google Registration Form.</span>
-                <span className="sm:hidden inline">Download, print and fill the form. Scan the completed form and upload it in the Google Registration Form.</span>
-              </div>
-            </div>
 
             <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
               <div className="space-y-4 max-w-xl text-left">
@@ -973,12 +1106,12 @@ export default function BookPage({ onNavigate }) {
                 </h3>
 
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Download the common hard-copy registration form for M1, M2, or M3 modules, fill and scan it, then submit your details via our online Google Form.
+                  Download the hard-copy registration form for M1 (Module 1), M2, or M3, fill it out, then submit your details via our online Google Form.
                 </p>
 
                 <div className="flex flex-wrap gap-2 text-xs font-semibold text-gray-700 pt-1">
-                  <span className="px-3 py-1 rounded-lg bg-gray-100 border border-gray-200">
-                    M1: Student Workshops
+                  <span className="px-3 py-1 rounded-lg bg-gray-100 border border-gray-200 font-bold text-[#0F766E]">
+                    M1: Student Workshops (Class 6th-12th)
                   </span>
                   <span className="px-3 py-1 rounded-lg bg-gray-100 border border-gray-200">
                     M2: Train-the-Teacher (ToT)
@@ -990,21 +1123,53 @@ export default function BookPage({ onNavigate }) {
               </div>
 
               <div className="w-full lg:w-auto bg-cream-primary/60 p-6 rounded-2xl border border-gray-200 text-center space-y-4 shrink-0 max-w-md">
-                <div className="space-y-2">
-                  <span className="block text-[11px] font-extrabold uppercase tracking-wider text-accent">Step 1: Download Hard Copy Form</span>
-                  <a
-                    href={HARD_COPY_FORM_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-3 px-5 rounded-xl bg-white border border-accent/30 hover:border-accent text-accent hover:bg-accent/5 font-bold text-xs sm:text-sm transition-all shadow-sm flex items-center justify-center gap-2"
-                  >
-                    <Download className="w-4 h-4" />
-                    <span>Download Hard Copy Form</span>
-                  </a>
+                <div className="space-y-2.5">
+                  <span className="block text-[11px] font-extrabold uppercase tracking-wider text-accent text-left">STEP 1: DOWNLOAD HARD COPY FORM</span>
+                  
+                  <div className="flex flex-col gap-2">
+                    <a
+                      href={M1_FORM_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2.5 px-4 rounded-xl bg-white border-2 border-[#0F766E] text-[#0F766E] hover:bg-[#0F766E] hover:text-white font-extrabold text-xs transition-all shadow-sm flex items-center justify-between group"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Download className="w-4 h-4 shrink-0 transition-transform group-hover:-translate-y-0.5" />
+                        <span>Download M1 Form (Student Workshop)</span>
+                      </span>
+                      <span className="text-[10px] bg-emerald-50 text-[#0F766E] group-hover:bg-white/20 group-hover:text-white px-2 py-0.5 rounded font-bold">PDF</span>
+                    </a>
+
+                    <a
+                      href={M2_FORM_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2.5 px-4 rounded-xl bg-white border-2 border-[#0F766E] text-[#0F766E] hover:bg-[#0F766E] hover:text-white font-extrabold text-xs transition-all shadow-sm flex items-center justify-between group"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Download className="w-4 h-4 shrink-0 transition-transform group-hover:-translate-y-0.5" />
+                        <span>Download M2 Form (Train-the-Teacher)</span>
+                      </span>
+                      <span className="text-[10px] bg-emerald-50 text-[#0F766E] group-hover:bg-white/20 group-hover:text-white px-2 py-0.5 rounded font-bold">PDF</span>
+                    </a>
+
+                    <a
+                      href={M3_FORM_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-2.5 px-4 rounded-xl bg-white border-2 border-[#0F766E] text-[#0F766E] hover:bg-[#0F766E] hover:text-white font-extrabold text-xs transition-all shadow-sm flex items-center justify-between group"
+                    >
+                      <span className="flex items-center gap-2">
+                        <Download className="w-4 h-4 shrink-0 transition-transform group-hover:-translate-y-0.5" />
+                        <span>Download M3 Form (Hackathons)</span>
+                      </span>
+                      <span className="text-[10px] bg-emerald-50 text-[#0F766E] group-hover:bg-white/20 group-hover:text-white px-2 py-0.5 rounded font-bold">PDF</span>
+                    </a>
+                  </div>
                 </div>
 
-                <div className="pt-2 border-t border-gray-200 space-y-2">
-                  <span className="block text-[11px] font-extrabold uppercase tracking-wider text-accent">Step 2: Submit Online Registration</span>
+                <div className="pt-3 border-t border-gray-200 space-y-2">
+                  <span className="block text-[11px] font-extrabold uppercase tracking-wider text-accent text-left">STEP 2: SUBMIT ONLINE REGISTRATION</span>
                   <button
                     type="button"
                     onClick={handleOpenGoogleForm}
@@ -1018,7 +1183,7 @@ export default function BookPage({ onNavigate }) {
                 <button
                   type="button"
                   onClick={() => setShowInternalForm(!showInternalForm)}
-                  className="text-xs font-bold text-gray-600 hover:text-accent underline transition-colors pt-1 block mx-auto"
+                  className="text-xs font-bold text-gray-600 hover:text-accent underline transition-colors block mx-auto pt-1"
                 >
                   {showInternalForm ? "Hide On-Site Form" : "Or fill on-site registration form below"}
                 </button>
